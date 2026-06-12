@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  ::selection { background: #C8102E; color: #fff; }
+  @keyframes inv-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+</style>
+</helmet>
+
+<div style="font-family: 'Hanken Grotesk', system-ui, sans-serif; color: #11182e; background: #ffffff; -webkit-font-smoothing: antialiased; line-height: 1.6;">
+
+  <!-- ============ HEADER ============ -->
+  <div style="background: #0a1324; color: #9aa6c2;">
+      <div style="max-width: 1180px; margin: 0 auto; padding: 0 32px; min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 12.5px;">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 7px 0; white-space: nowrap;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: #C8102E; display: block; flex: none;"></span>
+          <span style="color: #cdd5e6; font-weight: 600; letter-spacing: 0.02em;">Harare, Zimbabwe</span>
+          <span style="color: #46527a;">Multi-sector technology &amp; trade</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; padding: 7px 0; white-space: nowrap;">
+          <span style="color: #aeb8d0;">0712 538 836</span>
+          <span style="width: 1px; height: 13px; background: #25304f; display: block;"></span>
+          <span style="color: #aeb8d0;">innovantisolutions.co.zw</span>
+          <span style="width: 1px; height: 13px; background: #25304f; display: block;"></span>
+          <span style="color: #aeb8d0;">Mon&ndash;Fri &middot; 08:00&ndash;17:00</span>
+        </div>
+      </div>
+    </div>
+    <nav style="position: sticky; top: 0; z-index: 60; background: rgba(255,255,255,0.88); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid #e9ebf2;">
+      <div style="max-width: 1180px; margin: 0 auto; padding: 0 32px; height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+        <button onClick="{{ goHome }}" style="background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center;">
+          <img src="assets/innovanti-logo.png" alt="Innovanti Solutions" style="height: 40px; width: auto; display: block;">
+        </button>
+        <div style="display: flex; align-items: center; gap: 2px; background: #f4f5f9; border: 1px solid #eceef5; border-radius: 999px; padding: 5px;">
+          <button onClick="{{ goHome }}" style="position: relative; background: none; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 14.5px; font-weight: 600; padding: 9px 20px; border-radius: 999px;">
+            <sc-if value="{{ navHome }}" hint-placeholder-val="{{ true }}"><span style="position: absolute; inset: 0; background: #15213f; border-radius: 999px;"></span><span style="position: relative; color: #fff;">Home</span></sc-if>
+            <sc-if value="{{ navHomeOff }}"><span style="position: relative; color: #39456b; transition: color .2s ease;" style-hover="color: #C8102E;">Home</span></sc-if>
+          </button>
+          <button onClick="{{ goServices }}" style="position: relative; background: none; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 14.5px; font-weight: 600; padding: 9px 20px; border-radius: 999px;">
+            <sc-if value="{{ navServices }}"><span style="position: absolute; inset: 0; background: #15213f; border-radius: 999px;"></span><span style="position: relative; color: #fff;">Services</span></sc-if>
+            <sc-if value="{{ navServicesOff }}" hint-placeholder-val="{{ true }}"><span style="position: relative; color: #39456b; transition: color .2s ease;" style-hover="color: #C8102E;">Services</span></sc-if>
+          </button>
+          <button onClick="{{ goAbout }}" style="position: relative; background: none; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 14.5px; font-weight: 600; padding: 9px 20px; border-radius: 999px;">
+            <sc-if value="{{ navAbout }}"><span style="position: absolute; inset: 0; background: #15213f; border-radius: 999px;"></span><span style="position: relative; color: #fff;">About</span></sc-if>
+            <sc-if value="{{ navAboutOff }}" hint-placeholder-val="{{ true }}"><span style="position: relative; color: #39456b; transition: color .2s ease;" style-hover="color: #C8102E;">About</span></sc-if>
+          </button>
+          <button onClick="{{ goContact }}" style="position: relative; background: none; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 14.5px; font-weight: 600; padding: 9px 20px; border-radius: 999px;">
+            <sc-if value="{{ navContact }}"><span style="position: absolute; inset: 0; background: #15213f; border-radius: 999px;"></span><span style="position: relative; color: #fff;">Contact</span></sc-if>
+            <sc-if value="{{ navContactOff }}" hint-placeholder-val="{{ true }}"><span style="position: relative; color: #39456b; transition: color .2s ease;" style-hover="color: #C8102E;">Contact</span></sc-if>
+          </button>
+        </div>
+        <button onClick="{{ goContact }}" style="display: inline-flex; align-items: center; gap: 9px; background: #C8102E; color: #fff; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 14px; font-weight: 600; padding: 12px 22px; border-radius: 999px; letter-spacing: 0.01em; white-space: nowrap; transition: background .2s ease, transform .2s ease, box-shadow .2s ease;" style-hover="background: #a50d26; transform: translateY(-1px); box-shadow: 0 12px 24px -10px rgba(200,16,46,0.55);">Request a proposal <span style="font-size: 15px;">&rarr;</span></button>
+      </div>
+    </nav>
+
+  <!-- ============ HOME ============ -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div>
+
+    <!-- HERO -->
+    <section style="position: relative; overflow: hidden; background: #0a1324; color: #fff;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(900px 520px at 80% 6%, rgba(46,78,150,0.55), transparent 60%), radial-gradient(720px 520px at 4% 100%, rgba(200,16,46,0.20), transparent 62%), linear-gradient(180deg, #0b1426 0%, #0a1324 100%); pointer-events: none;"></div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 62px 62px; -webkit-mask-image: radial-gradient(circle at 74% 38%, #000 0%, transparent 76%); mask-image: radial-gradient(circle at 74% 38%, #000 0%, transparent 76%); pointer-events: none;"></div>
+      <div aria-hidden="true" data-drift="1" style="position: absolute; top: -140px; right: 3%; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(70,110,200,0.30), transparent 65%); pointer-events: none;"></div>
+
+      <svg aria-hidden="true" viewBox="0 0 520 480" width="520" height="480" style="position: absolute; top: 50%; right: -30px; transform: translateY(-50%); max-width: 47%; opacity: 0.95; pointer-events: none;">
+        <g stroke="rgba(150,180,240,0.26)" stroke-width="1.2">
+          <line x1="260" y1="240" x2="80" y2="90"></line>
+          <line x1="260" y1="240" x2="190" y2="60"></line>
+          <line x1="260" y1="240" x2="430" y2="80"></line>
+          <line x1="260" y1="240" x2="470" y2="220"></line>
+          <line x1="260" y1="240" x2="420" y2="400"></line>
+          <line x1="260" y1="240" x2="250" y2="450"></line>
+          <line x1="260" y1="240" x2="90" y2="380"></line>
+          <line x1="260" y1="240" x2="50" y2="210"></line>
+          <line x1="80" y1="90" x2="190" y2="60"></line>
+          <line x1="430" y1="80" x2="470" y2="220"></line>
+          <line x1="420" y1="400" x2="250" y2="450"></line>
+          <line x1="90" y1="380" x2="50" y2="210"></line>
+        </g>
+        <circle cx="260" cy="240" r="34" fill="none" stroke="rgba(200,16,46,0.4)" stroke-width="1.4"></circle>
+        <circle cx="260" cy="240" r="56" fill="none" stroke="rgba(150,180,240,0.16)" stroke-width="1"></circle>
+        <circle data-pulse="0" cx="80" cy="90" r="5" fill="#7fa0e0"></circle>
+        <circle data-pulse="1.1" cx="190" cy="60" r="4" fill="#9fb6ea"></circle>
+        <circle data-pulse="2.2" cx="430" cy="80" r="5.5" fill="#ff7f8d"></circle>
+        <circle data-pulse="3.0" cx="470" cy="220" r="4" fill="#9fb6ea"></circle>
+        <circle data-pulse="3.8" cx="420" cy="400" r="5" fill="#7fa0e0"></circle>
+        <circle data-pulse="1.6" cx="250" cy="450" r="4.5" fill="#ff7f8d"></circle>
+        <circle data-pulse="2.7" cx="90" cy="380" r="5" fill="#9fb6ea"></circle>
+        <circle data-pulse="0.6" cx="50" cy="210" r="4" fill="#7fa0e0"></circle>
+        <circle cx="260" cy="240" r="9" fill="#C8102E"></circle>
+      </svg>
+
+      <div style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: clamp(72px,9vw,126px) 32px clamp(28px,3vw,40px);">
+        <div style="max-width: 690px;">
+          <div style="display: inline-flex; align-items: center; gap: 11px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ff7f8d; margin-bottom: 26px;">
+            <span style="width: 26px; height: 2px; background: #C8102E; display: block;"></span>
+            Harare, Zimbabwe &middot; Multi-sector enterprise
+          </div>
+          <h1 style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: clamp(40px,5.6vw,74px); line-height: 1.02; letter-spacing: -0.03em; color: #fff; margin: 0 0 28px;">Innovating technology.<br>Connecting markets.<br><span style="color: #ff7f8d;">Delivering value.</span></h1>
+          <p style="font-size: clamp(16px,1.4vw,19px); color: #aeb8d0; max-width: 540px; margin: 0 0 38px; line-height: 1.6;">Innovanti Solutions is a diversified partner in IT, cybersecurity, procurement and trade — helping businesses, institutions and governments operate with confidence and grow with purpose.</p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <button onClick="{{ goContact }}" style="display: inline-flex; align-items: center; gap: 9px; background: #C8102E; color: #fff; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; font-weight: 600; padding: 16px 30px; border-radius: 4px; transition: background .2s ease, transform .2s ease, box-shadow .2s ease;" style-hover="background: #e01435; transform: translateY(-2px); box-shadow: 0 16px 32px -12px rgba(200,16,46,0.65);">Request a proposal <span style="font-size: 16px;">&rarr;</span></button>
+            <button onClick="{{ goServices }}" style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.22); cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; font-weight: 600; padding: 16px 30px; border-radius: 4px; transition: background .2s ease, border-color .2s ease, transform .2s ease;" style-hover="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); transform: translateY(-2px);">Explore services</button>
+          </div>
+        </div>
+
+        <div style="margin-top: clamp(48px,6vw,82px); padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: space-between;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6b769a;">Trusted across</span>
+          <div style="display: flex; gap: clamp(14px,2.4vw,30px); flex-wrap: wrap; align-items: center;">
+            <span style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: clamp(15px,1.4vw,18px); color: #c9d2e4;">Government</span>
+            <span style="width: 5px; height: 5px; border-radius: 50%; background: #C8102E; display: block;"></span>
+            <span style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: clamp(15px,1.4vw,18px); color: #c9d2e4;">Institutions</span>
+            <span style="width: 5px; height: 5px; border-radius: 50%; background: #C8102E; display: block;"></span>
+            <span style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: clamp(15px,1.4vw,18px); color: #c9d2e4;">Enterprise</span>
+            <span style="width: 5px; height: 5px; border-radius: 50%; background: #C8102E; display: block;"></span>
+            <span style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: clamp(15px,1.4vw,18px); color: #c9d2e4;">SMEs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section style="position: relative; background: #f7f8fb;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, rgba(21,33,63,0.05) 1px, transparent 0); background-size: 28px 28px; pointer-events: none;"></div>
+      <div style="position: relative; max-width: 1180px; margin: 0 auto; padding: clamp(64px,8vw,108px) 32px;">
+        <div style="max-width: 640px; margin-bottom: 52px;">
+          <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #C8102E; margin-bottom: 16px;">What we do</div>
+          <h2 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(28px,3.6vw,44px); line-height: 1.06; letter-spacing: -0.02em; color: #11182e; margin: 0 0 16px;">Integrated solutions across technology and trade.</h2>
+          <p style="font-size: 17px; color: #515c72; margin: 0;">From infrastructure and security to sourcing and brokerage — one partner bridging suppliers, manufacturers, service providers and end-users.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px;">
+          <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 30px 28px; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;" style-hover="border-color: #c7cddc; transform: translateY(-5px); box-shadow: 0 22px 44px -24px rgba(14,24,48,0.4);">
+            <div style="width: 40px; height: 40px; border-radius: 7px; background: #15213f; margin-bottom: 22px;"></div>
+            <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 19px; color: #15213f; margin: 0 0 10px;">IT Solutions &amp; Consulting</h3>
+            <p style="font-size: 15px; color: #5b6479; margin: 0;">Strategy, infrastructure and digital transformation built around how you operate.</p>
+          </div>
+          <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 30px 28px; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;" style-hover="border-color: #c7cddc; transform: translateY(-5px); box-shadow: 0 22px 44px -24px rgba(14,24,48,0.4);">
+            <div style="width: 40px; height: 40px; border-radius: 7px; background: #15213f; margin-bottom: 22px;"></div>
+            <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 19px; color: #15213f; margin: 0 0 10px;">Network Solutions</h3>
+            <p style="font-size: 15px; color: #5b6479; margin: 0;">Design, deployment and management of secure, high-performance networks.</p>
+          </div>
+          <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 30px 28px; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;" style-hover="border-color: #c7cddc; transform: translateY(-5px); box-shadow: 0 22px 44px -24px rgba(14,24,48,0.4);">
+            <div style="width: 40px; height: 40px; border-radius: 7px; background: #15213f; margin-bottom: 22px;"></div>
+            <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 19px; color: #15213f; margin: 0 0 10px;">Managed IT Services</h3>
+            <p style="font-size: 15px; color: #5b6479; margin: 0;">Proactive support, monitoring and maintenance that keep systems running.</p>
+          </div>
+          <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 30px 28px; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;" style-hover="border-color: #c7cddc; transform: translateY(-5px); box-shadow: 0 22px 44px -24px rgba(14,24,48,0.4);">
+            <div style="width: 40px; height: 40px; border-radius: 7px; background: #C8102E; margin-bottom: 22px;"></div>
+            <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 19px; color: #15213f; margin: 0 0 10px;">Cybersecurity</h3>
+            <p style="font-size: 15px; color: #5b6479; margin: 0;">Assessments, protection and training that safeguard your data and your people.</p>
+          </div>
+          <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 30px 28px; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;" style-hover="border-color: #c7cddc; transform: translateY(-5px); box-shadow: 0 22px 44px -24px rgba(14,24,48,0.4);">
+            <div style="width: 40px; height: 40px; border-radius: 7px; background: #15213f; margin-bottom: 22px;"></div>
+            <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 19px; color: #15213f; margin: 0 0 10px;">Procurement &amp; Supply Chain</h3>
+            <p style="font-size: 15px; color: #5b6479; margin: 0;">Strategic sourcing that secures quality products at competitive prices.</p>
+          </div>
+          <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 30px 28px; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;" style-hover="border-color: #c7cddc; transform: translateY(-5px); box-shadow: 0 22px 44px -24px rgba(14,24,48,0.4);">
+            <div style="width: 40px; height: 40px; border-radius: 7px; background: #C8102E; margin-bottom: 22px;"></div>
+            <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 19px; color: #15213f; margin: 0 0 10px;">Brokerage &amp; Trading</h3>
+            <p style="font-size: 15px; color: #5b6479; margin: 0;">Commodity brokerage and general trade connecting markets end to end.</p>
+          </div>
+        </div>
+        <div style="margin-top: 40px;">
+          <button onClick="{{ goServices }}" style="background: none; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: #C8102E; padding: 0; display: inline-flex; align-items: center; gap: 8px; transition: gap .2s ease;" style-hover="gap: 14px;">View all services <span style="font-size: 18px;">&rarr;</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAROUSEL -->
+    <section style="background: #fff;">
+      <div style="max-width: 1180px; margin: 0 auto; padding: clamp(64px,8vw,108px) 32px;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 36px; flex-wrap: wrap;">
+          <div style="max-width: 560px;">
+            <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #C8102E; margin-bottom: 16px;">Where we deliver</div>
+            <h2 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(28px,3.6vw,44px); line-height: 1.06; letter-spacing: -0.02em; color: #11182e; margin: 0;">Capability in the field.</h2>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button onClick="{{ prevSlide }}" aria-label="Previous" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid #d8dce7; background: #fff; color: #15213f; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; transition: background .2s ease, color .2s ease, border-color .2s ease;" style-hover="background: #15213f; color: #fff; border-color: #15213f;">&larr;</button>
+            <button onClick="{{ nextSlide }}" aria-label="Next" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid #d8dce7; background: #fff; color: #15213f; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; transition: background .2s ease, color .2s ease, border-color .2s ease;" style-hover="background: #15213f; color: #fff; border-color: #15213f;">&rarr;</button>
+          </div>
+        </div>
+
+        <div onMouseEnter="{{ pauseOn }}" onMouseLeave="{{ pauseOff }}" style="position: relative; border-radius: 14px; overflow: hidden; background: #0e1830;">
+          <div ref="{{ trackRef }}" style="display: flex; transition: transform .7s cubic-bezier(.45,0,.15,1); will-change: transform;">
+            <div style="flex: 0 0 100%; position: relative; aspect-ratio: 16 / 7; overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=75" alt="Data centre" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 6s ease;" style-hover="transform: scale(1.06);">
+              <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14,24,48,0.85) 0%, rgba(14,24,48,0.4) 55%, rgba(14,24,48,0.1) 100%);"></div>
+              <div style="position: absolute; left: clamp(24px,4vw,56px); bottom: clamp(24px,4vw,52px); right: 24px; max-width: 520px;">
+                <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ff7f8d; margin-bottom: 12px;">IT &amp; Infrastructure</div>
+                <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(22px,2.8vw,34px); line-height: 1.1; color: #fff; margin: 0 0 10px;">Resilient infrastructure, engineered to perform.</h3>
+                <p style="font-size: 15.5px; color: #c9d2e4; margin: 0;">Networks, servers and managed services built for uptime and security.</p>
+              </div>
+            </div>
+            <div style="flex: 0 0 100%; position: relative; aspect-ratio: 16 / 7; overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=75" alt="Cybersecurity" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 6s ease;" style-hover="transform: scale(1.06);">
+              <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14,24,48,0.85) 0%, rgba(14,24,48,0.4) 55%, rgba(14,24,48,0.1) 100%);"></div>
+              <div style="position: absolute; left: clamp(24px,4vw,56px); bottom: clamp(24px,4vw,52px); right: 24px; max-width: 520px;">
+                <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ff7f8d; margin-bottom: 12px;">Cybersecurity</div>
+                <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(22px,2.8vw,34px); line-height: 1.1; color: #fff; margin: 0 0 10px;">Security that protects data and people.</h3>
+                <p style="font-size: 15.5px; color: #c9d2e4; margin: 0;">Assessments, endpoint protection and awareness training, end to end.</p>
+              </div>
+            </div>
+            <div style="flex: 0 0 100%; position: relative; aspect-ratio: 16 / 7; overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=75" alt="Warehouse logistics" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 6s ease;" style-hover="transform: scale(1.06);">
+              <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14,24,48,0.85) 0%, rgba(14,24,48,0.4) 55%, rgba(14,24,48,0.1) 100%);"></div>
+              <div style="position: absolute; left: clamp(24px,4vw,56px); bottom: clamp(24px,4vw,52px); right: 24px; max-width: 520px;">
+                <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ff7f8d; margin-bottom: 12px;">Procurement &amp; Supply Chain</div>
+                <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(22px,2.8vw,34px); line-height: 1.1; color: #fff; margin: 0 0 10px;">Strategic sourcing, delivered to your door.</h3>
+                <p style="font-size: 15.5px; color: #c9d2e4; margin: 0;">Quality products at competitive prices, with logistics handled.</p>
+              </div>
+            </div>
+            <div style="flex: 0 0 100%; position: relative; aspect-ratio: 16 / 7; overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=75" alt="Market trading" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 6s ease;" style-hover="transform: scale(1.06);">
+              <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14,24,48,0.85) 0%, rgba(14,24,48,0.4) 55%, rgba(14,24,48,0.1) 100%);"></div>
+              <div style="position: absolute; left: clamp(24px,4vw,56px); bottom: clamp(24px,4vw,52px); right: 24px; max-width: 520px;">
+                <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ff7f8d; margin-bottom: 12px;">Trading &amp; Brokerage</div>
+                <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(22px,2.8vw,34px); line-height: 1.1; color: #fff; margin: 0 0 10px;">Connecting markets with confidence.</h3>
+                <p style="font-size: 15.5px; color: #c9d2e4; margin: 0;">Commodity brokerage and general trade across the value chain.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 24px; align-items: center;">
+          <button onClick="{{ goSlide0 }}" aria-label="Slide 1" style="height: 8px; border: none; padding: 0; cursor: pointer; background: none; display: flex; align-items: center;">
+            <sc-if value="{{ dot0 }}" hint-placeholder-val="{{ true }}"><span style="display: block; height: 8px; width: 28px; border-radius: 4px; background: #C8102E;"></span></sc-if>
+            <sc-if value="{{ dot0Off }}"><span style="display: block; height: 8px; width: 8px; border-radius: 4px; background: #cdd3e0;"></span></sc-if>
+          </button>
+          <button onClick="{{ goSlide1 }}" aria-label="Slide 2" style="height: 8px; border: none; padding: 0; cursor: pointer; background: none; display: flex; align-items: center;">
+            <sc-if value="{{ dot1 }}"><span style="display: block; height: 8px; width: 28px; border-radius: 4px; background: #C8102E;"></span></sc-if>
+            <sc-if value="{{ dot1Off }}" hint-placeholder-val="{{ true }}"><span style="display: block; height: 8px; width: 8px; border-radius: 4px; background: #cdd3e0;"></span></sc-if>
+          </button>
+          <button onClick="{{ goSlide2 }}" aria-label="Slide 3" style="height: 8px; border: none; padding: 0; cursor: pointer; background: none; display: flex; align-items: center;">
+            <sc-if value="{{ dot2 }}"><span style="display: block; height: 8px; width: 28px; border-radius: 4px; background: #C8102E;"></span></sc-if>
+            <sc-if value="{{ dot2Off }}" hint-placeholder-val="{{ true }}"><span style="display: block; height: 8px; width: 8px; border-radius: 4px; background: #cdd3e0;"></span></sc-if>
+          </button>
+          <button onClick="{{ goSlide3 }}" aria-label="Slide 4" style="height: 8px; border: none; padding: 0; cursor: pointer; background: none; display: flex; align-items: center;">
+            <sc-if value="{{ dot3 }}"><span style="display: block; height: 8px; width: 28px; border-radius: 4px; background: #C8102E;"></span></sc-if>
+            <sc-if value="{{ dot3Off }}" hint-placeholder-val="{{ true }}"><span style="display: block; height: 8px; width: 8px; border-radius: 4px; background: #cdd3e0;"></span></sc-if>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE / VALUES -->
+    <section style="position: relative; background: #fff;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background-image: repeating-linear-gradient(135deg, rgba(21,33,63,0.025) 0 1px, transparent 1px 16px); pointer-events: none;"></div>
+      <div style="position: relative; max-width: 1180px; margin: 0 auto; padding: clamp(64px,8vw,108px) 32px;">
+        <div style="display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(36px,6vw,80px); align-items: start;">
+          <div>
+            <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #C8102E; margin-bottom: 16px;">Why Innovanti</div>
+            <h2 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(28px,3.6vw,42px); line-height: 1.07; letter-spacing: -0.02em; color: #11182e; margin: 0 0 18px;">Expertise that earns trust, delivery that creates value.</h2>
+            <p style="font-size: 17px; color: #515c72; margin: 0;">We combine technical depth, commercial experience and strategic market knowledge — held to a single standard of professionalism, reliability and value creation.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #e8ebf2; border: 1px solid #e8ebf2; border-radius: 10px; overflow: hidden;">
+            <div style="background: #fff; padding: 32px 28px; transition: background .25s ease;" style-hover="background: #f7f8fb;">
+              <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 15px; color: #C8102E; margin-bottom: 14px;">01</div>
+              <h4 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; color: #15213f; margin: 0 0 8px;">Innovation</h4>
+              <p style="font-size: 14.5px; color: #5b6479; margin: 0;">Creativity, technology and continuous improvement in every solution.</p>
+            </div>
+            <div style="background: #fff; padding: 32px 28px; transition: background .25s ease;" style-hover="background: #f7f8fb;">
+              <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 15px; color: #C8102E; margin-bottom: 14px;">02</div>
+              <h4 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; color: #15213f; margin: 0 0 8px;">Integrity</h4>
+              <p style="font-size: 14.5px; color: #5b6479; margin: 0;">Transparency, honesty and ethical responsibility in how we work.</p>
+            </div>
+            <div style="background: #fff; padding: 32px 28px; transition: background .25s ease;" style-hover="background: #f7f8fb;">
+              <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 15px; color: #C8102E; margin-bottom: 14px;">03</div>
+              <h4 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; color: #15213f; margin: 0 0 8px;">Excellence</h4>
+              <p style="font-size: 14.5px; color: #5b6479; margin: 0;">Superior quality and professionalism across every engagement.</p>
+            </div>
+            <div style="background: #fff; padding: 32px 28px; transition: background .25s ease;" style-hover="background: #f7f8fb;">
+              <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 15px; color: #C8102E; margin-bottom: 14px;">04</div>
+              <h4 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; color: #15213f; margin: 0 0 8px;">Customer Focus</h4>
+              <p style="font-size: 14.5px; color: #5b6479; margin: 0;">Clients at the centre of everything we plan and deliver.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARALLAX MISSION BAND -->
+    <section style="position: relative; overflow: hidden; background: #0e1830; color: #fff;">
+      <div aria-hidden="true" data-px="0.12" style="position: absolute; left: 0; right: 0; top: -22%; height: 144%; background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=75'); background-size: cover; background-position: center; opacity: 0.5;"></div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,24,48,0.82), rgba(14,24,48,0.9)); pointer-events: none;"></div>
+      <div style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: clamp(72px,9vw,128px) 32px; display: grid; grid-template-columns: auto 1fr; gap: clamp(28px,5vw,64px); align-items: center;">
+        <div style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: #ff6b7a; writing-mode: vertical-rl; transform: rotate(180deg);">Our Mission</div>
+        <p style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: clamp(24px,3vw,38px); line-height: 1.2; letter-spacing: -0.015em; color: #f3f5fa; margin: 0; max-width: 880px;">To provide innovative technology, strategic sourcing, commodity brokerage and quality products that empower businesses and communities — creating <span style="color: #ff7f8d;">sustainable value</span> for clients, partners and stakeholders.</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background: #f7f8fb;">
+      <div style="max-width: 1180px; margin: 0 auto; padding: clamp(60px,7vw,96px) 32px; display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap;">
+        <div>
+          <h2 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(26px,3.2vw,40px); line-height: 1.08; letter-spacing: -0.02em; color: #11182e; margin: 0 0 10px;">Let's build what's next, together.</h2>
+          <p style="font-size: 17px; color: #515c72; margin: 0;">Tell us what you need — we'll respond with a clear, considered proposal.</p>
+        </div>
+        <button onClick="{{ goContact }}" style="background: #C8102E; color: #fff; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 15.5px; font-weight: 600; padding: 16px 32px; border-radius: 4px; white-space: nowrap; transition: background .2s ease, transform .2s ease, box-shadow .2s ease;" style-hover="background: #a50d26; transform: translateY(-2px); box-shadow: 0 14px 28px -12px rgba(200,16,46,0.6);">Request a proposal</button>
+      </div>
+    </section>
+
+  </div>
+  </sc-if>
+
+  <!-- ============ SERVICES ============ -->
+  <sc-if value="{{ isServices }}">
+  <div>
+    <section style="position: relative; overflow: hidden; background: #0a1324; color: #fff;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(820px 460px at 84% 0%, rgba(46,78,150,0.5), transparent 62%), radial-gradient(620px 440px at 0% 100%, rgba(200,16,46,0.18), transparent 62%), linear-gradient(180deg, #0b1426, #0a1324); pointer-events: none;"></div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(circle at 86% 22%, #000, transparent 72%); mask-image: radial-gradient(circle at 86% 22%, #000, transparent 72%); pointer-events: none;"></div>
+      <div style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: clamp(60px,8vw,104px) 32px clamp(48px,6vw,76px);">
+        <div style="display: inline-flex; align-items: center; gap: 11px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ff7f8d; margin-bottom: 22px;"><span style="width: 26px; height: 2px; background: #C8102E; display: block;"></span>Services</div>
+        <h1 style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: clamp(36px,5vw,60px); line-height: 1.03; letter-spacing: -0.028em; color: #fff; margin: 0 0 20px; max-width: 800px;">Capabilities that span technology and trade.</h1>
+        <p style="font-size: clamp(16px,1.3vw,18.5px); color: #aeb8d0; margin: 0; max-width: 620px; line-height: 1.6;">A single, accountable partner across IT, security, procurement and commercial facilitation — tailored to the realities of your sector.</p>
+      </div>
+    </section>
+
+    <!-- IT -->
+    <section style="border-top: 1px solid #edeff5;">
+      <div style="max-width: 1180px; margin: 0 auto; padding: clamp(48px,6vw,80px) 32px;">
+        <div style="display: grid; grid-template-columns: 320px 1fr; gap: clamp(28px,5vw,64px); align-items: start;">
+          <div style="position: sticky; top: 100px;">
+            <div style="display: inline-block; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; color: #C8102E; margin-bottom: 14px;">01 / TECHNOLOGY</div>
+            <h2 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(26px,3vw,34px); line-height: 1.08; letter-spacing: -0.02em; color: #15213f; margin: 0 0 14px;">Information Technology Solutions</h2>
+            <p style="font-size: 15.5px; color: #5b6479; margin: 0 0 20px;">Comprehensive IT services that help organisations leverage technology for efficiency, security and growth.</p>
+            <div style="border-radius: 10px; overflow: hidden; aspect-ratio: 4/3;">
+              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=75" alt="Technology" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s ease;" style-hover="transform: scale(1.06);">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div style="border: 1px solid #e8ebf2; border-radius: 8px; padding: 26px 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 17px; color: #15213f; margin: 0 0 14px;">IT Consulting</h3>
+              <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px;">
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>IT strategy development</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Digital transformation planning</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Technology assessments</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>IT infrastructure design</li>
+              </ul>
+            </div>
+            <div style="border: 1px solid #e8ebf2; border-radius: 8px; padding: 26px 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 17px; color: #15213f; margin: 0 0 14px;">Network Solutions</h3>
+              <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px;">
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Network design &amp; deployment</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>LAN / WAN implementation</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Wireless &amp; structured cabling</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Monitoring &amp; management</li>
+              </ul>
+            </div>
+            <div style="border: 1px solid #e8ebf2; border-radius: 8px; padding: 26px 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 17px; color: #15213f; margin: 0 0 14px;">Managed IT Services</h3>
+              <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px;">
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Support &amp; maintenance</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Helpdesk &amp; remote monitoring</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Infrastructure &amp; sys admin</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Preventive maintenance</li>
+              </ul>
+            </div>
+            <div style="border: 1px solid #e8ebf2; border-radius: 8px; padding: 26px 24px; background: #fbfbfd; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 17px; color: #15213f; margin: 0 0 14px;">Cybersecurity</h3>
+              <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px;">
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Security &amp; vulnerability testing</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Firewall &amp; endpoint protection</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Security awareness training</li>
+                <li style="font-size: 14.5px; color: #5b6479; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E;">&bull;</span>Data protection solutions</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCUREMENT -->
+    <section style="border-top: 1px solid #edeff5; background: #f7f8fb;">
+      <div style="max-width: 1180px; margin: 0 auto; padding: clamp(48px,6vw,80px) 32px;">
+        <div style="display: grid; grid-template-columns: 320px 1fr; gap: clamp(28px,5vw,64px); align-items: start;">
+          <div>
+            <div style="display: inline-block; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; color: #C8102E; margin-bottom: 14px;">02 / SOURCING</div>
+            <h2 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(26px,3vw,34px); line-height: 1.08; letter-spacing: -0.02em; color: #15213f; margin: 0 0 14px;">Procurement &amp; Supply Chain</h2>
+            <p style="font-size: 15.5px; color: #5b6479; margin: 0;">Strategic procurement that helps organisations obtain quality products and services at competitive prices.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px;">
+            <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; color: #15213f; margin: 0 0 8px;">Strategic Sourcing</h3>
+              <p style="font-size: 14px; color: #5b6479; margin: 0;">Identifying and securing the right suppliers for quality and price.</p>
+            </div>
+            <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; color: #15213f; margin: 0 0 8px;">Vendor Management</h3>
+              <p style="font-size: 14px; color: #5b6479; margin: 0;">Competitive tendering, evaluation and supplier relationships.</p>
+            </div>
+            <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; color: #15213f; margin: 0 0 8px;">Logistics &amp; Delivery</h3>
+              <p style="font-size: 14px; color: #5b6479; margin: 0;">Coordinated supply, delivery and fulfilment to your site.</p>
+            </div>
+            <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; color: #15213f; margin: 0 0 8px;">Quality Assurance</h3>
+              <p style="font-size: 14px; color: #5b6479; margin: 0;">Compliance and standards upheld across every order.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRADING -->
+    <section style="border-top: 1px solid #edeff5;">
+      <div style="max-width: 1180px; margin: 0 auto; padding: clamp(48px,6vw,80px) 32px;">
+        <div style="display: grid; grid-template-columns: 320px 1fr; gap: clamp(28px,5vw,64px); align-items: start;">
+          <div>
+            <div style="display: inline-block; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; color: #C8102E; margin-bottom: 14px;">03 / TRADE</div>
+            <h2 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(26px,3vw,34px); line-height: 1.08; letter-spacing: -0.02em; color: #15213f; margin: 0 0 14px;">Trading &amp; Commodity Brokerage</h2>
+            <p style="font-size: 15.5px; color: #5b6479; margin: 0;">Bridging suppliers, manufacturers and end-users with market intelligence and trusted facilitation.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px;">
+            <div style="border: 1px solid #e8ebf2; border-radius: 8px; padding: 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; color: #15213f; margin: 0 0 8px;">Commodity Brokerage</h3>
+              <p style="font-size: 14px; color: #5b6479; margin: 0;">Connecting buyers and sellers across markets with integrity.</p>
+            </div>
+            <div style="border: 1px solid #e8ebf2; border-radius: 8px; padding: 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; color: #15213f; margin: 0 0 8px;">General Trading</h3>
+              <p style="font-size: 14px; color: #5b6479; margin: 0;">Sourcing and supplying goods across diverse categories.</p>
+            </div>
+            <div style="border: 1px solid #e8ebf2; border-radius: 8px; padding: 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; color: #15213f; margin: 0 0 8px;">Hardware Supply</h3>
+              <p style="font-size: 14px; color: #5b6479; margin: 0;">Procurement and support for IT and business hardware.</p>
+            </div>
+            <div style="border: 1px solid #e8ebf2; border-radius: 8px; padding: 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="border-color: #c7cddc; transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.38);">
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; color: #15213f; margin: 0 0 8px;">Software Implementation</h3>
+              <p style="font-size: 14px; color: #5b6479; margin: 0;">Development and deployment aligned to your workflows.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background: #15213f; color: #fff;">
+      <div style="max-width: 1180px; margin: 0 auto; padding: clamp(56px,6vw,88px) 32px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+        <h2 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(24px,3vw,36px); line-height: 1.1; letter-spacing: -0.02em; margin: 0; max-width: 560px;">Have a requirement in mind? Let's scope it.</h2>
+        <button onClick="{{ goContact }}" style="background: #C8102E; color: #fff; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 15.5px; font-weight: 600; padding: 16px 32px; border-radius: 4px; white-space: nowrap; transition: background .2s ease, transform .2s ease;" style-hover="background: #a50d26; transform: translateY(-2px);">Get in touch</button>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ============ ABOUT ============ -->
+  <sc-if value="{{ isAbout }}">
+  <div>
+    <section style="position: relative; overflow: hidden; background: #0a1324; color: #fff;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(820px 460px at 84% 0%, rgba(46,78,150,0.5), transparent 62%), radial-gradient(620px 440px at 0% 100%, rgba(200,16,46,0.18), transparent 62%), linear-gradient(180deg, #0b1426, #0a1324); pointer-events: none;"></div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(circle at 86% 22%, #000, transparent 72%); mask-image: radial-gradient(circle at 86% 22%, #000, transparent 72%); pointer-events: none;"></div>
+      <div style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: clamp(60px,8vw,104px) 32px clamp(48px,6vw,76px);">
+        <div style="display: inline-flex; align-items: center; gap: 11px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ff7f8d; margin-bottom: 22px;"><span style="width: 26px; height: 2px; background: #C8102E; display: block;"></span>About us</div>
+        <h1 style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: clamp(36px,5vw,60px); line-height: 1.03; letter-spacing: -0.028em; color: #fff; margin: 0 0 20px; max-width: 820px;">A trusted partner across technology, sourcing and trade.</h1>
+        <p style="font-size: clamp(16px,1.3vw,18.5px); color: #aeb8d0; margin: 0; max-width: 620px; line-height: 1.6;">Diversified expertise in technology, strategic sourcing and trade — built on integrity, professionalism and a commitment to delivery.</p>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section style="max-width: 1180px; margin: 0 auto; padding: clamp(56px,7vw,88px) 32px clamp(48px,6vw,80px);">
+      <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(32px,5vw,72px); align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <p style="font-size: 18px; color: #2a3350; margin: 0; font-weight: 500;">Innovanti Solutions is a dynamic, diversified enterprise specialising in IT solutions, hardware and software services, commodity brokerage, procurement and general business services.</p>
+          <p style="font-size: 16.5px; color: #515c72; margin: 0;">We are committed to delivering innovative, reliable and cost-effective solutions that enable businesses, institutions, governments and individuals to achieve operational excellence, sustainable growth and competitive advantage.</p>
+          <p style="font-size: 16.5px; color: #515c72; margin: 0;">With a strong focus on technology, strategic sourcing and commercial facilitation, we serve as a trusted partner across sectors — bridging the gap between suppliers, manufacturers, service providers and end-users through industry expertise, market intelligence and strategic partnerships.</p>
+        </div>
+        <div style="border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 4.4; box-shadow: 0 30px 60px -28px rgba(14,24,48,0.4);">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=75" alt="Team collaboration" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s ease;" style-hover="transform: scale(1.06);">
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION + VALUES -->
+    <section style="position: relative; background: #f7f8fb; border-top: 1px solid #edeff5;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, rgba(21,33,63,0.05) 1px, transparent 0); background-size: 28px 28px; pointer-events: none;"></div>
+      <div style="position: relative; max-width: 1180px; margin: 0 auto; padding: clamp(56px,7vw,96px) 32px;">
+        <div style="max-width: 720px; margin-bottom: 44px;">
+          <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #C8102E; margin-bottom: 16px;">Mission &amp; Values</div>
+          <p style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: clamp(22px,2.6vw,32px); line-height: 1.22; letter-spacing: -0.015em; color: #15213f; margin: 0;">To empower businesses and communities with innovative technology, strategic sourcing and quality products — creating sustainable value for clients, partners and stakeholders.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 16px;">
+          <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 28px 26px; transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.35);">
+            <h4 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; color: #15213f; margin: 0 0 8px;">Innovation</h4>
+            <p style="font-size: 14.5px; color: #5b6479; margin: 0;">We embrace creativity, technology and continuous improvement.</p>
+          </div>
+          <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 28px 26px; transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.35);">
+            <h4 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; color: #15213f; margin: 0 0 8px;">Integrity</h4>
+            <p style="font-size: 14.5px; color: #5b6479; margin: 0;">We conduct business with transparency, honesty and ethics.</p>
+          </div>
+          <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 28px 26px; transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.35);">
+            <h4 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; color: #15213f; margin: 0 0 8px;">Excellence</h4>
+            <p style="font-size: 14.5px; color: #5b6479; margin: 0;">We strive for superior quality and professionalism throughout.</p>
+          </div>
+          <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 8px; padding: 28px 26px; transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-4px); box-shadow: 0 18px 38px -22px rgba(14,24,48,0.35);">
+            <h4 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; color: #15213f; margin: 0 0 8px;">Customer Focus</h4>
+            <p style="font-size: 14.5px; color: #5b6479; margin: 0;">We place our clients at the centre of everything we do.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESPONSIBILITY + QUALITY -->
+    <section style="max-width: 1180px; margin: 0 auto; padding: clamp(56px,7vw,96px) 32px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,5vw,64px);">
+        <div>
+          <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(22px,2.4vw,28px); line-height: 1.12; letter-spacing: -0.02em; color: #11182e; margin: 0 0 20px;">Sustainability &amp; corporate responsibility</h3>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 13px;">
+            <li style="font-size: 15.5px; color: #515c72; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E; font-weight: 700;">&bull;</span>Promoting ethical business practices</li>
+            <li style="font-size: 15.5px; color: #515c72; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E; font-weight: 700;">&bull;</span>Supporting local economic development</li>
+            <li style="font-size: 15.5px; color: #515c72; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E; font-weight: 700;">&bull;</span>Encouraging environmental sustainability</li>
+            <li style="font-size: 15.5px; color: #515c72; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E; font-weight: 700;">&bull;</span>Investing in innovation and skills development</li>
+            <li style="font-size: 15.5px; color: #515c72; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E; font-weight: 700;">&bull;</span>Building long-term stakeholder relationships</li>
+            <li style="font-size: 15.5px; color: #515c72; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: #C8102E; font-weight: 700;">&bull;</span>Supporting community development initiatives</li>
+          </ul>
+        </div>
+        <div style="position: relative; border-radius: 12px; overflow: hidden; padding: clamp(32px,4vw,48px); color: #fff; display: flex; flex-direction: column; justify-content: center; min-height: 280px;">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=75" alt="Quality" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+          <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(150deg, rgba(21,33,63,0.92), rgba(14,24,48,0.86));"></div>
+          <div style="position: relative; z-index: 2;">
+            <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(20px,2.2vw,26px); line-height: 1.14; letter-spacing: -0.015em; margin: 0 0 14px;">Commitment to quality</h3>
+            <p style="font-size: 16px; color: #c9d2e4; margin: 0;">We are dedicated to delivering products and services that consistently exceed expectations — maintaining high standards of quality, compliance, operational efficiency and professional conduct across all operations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background: #f7f8fb;">
+      <div style="max-width: 1180px; margin: 0 auto; padding: clamp(56px,6vw,88px) 32px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+        <h2 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: clamp(24px,3vw,36px); line-height: 1.1; letter-spacing: -0.02em; color: #11182e; margin: 0; max-width: 560px;">Work with a partner you can trust.</h2>
+        <button onClick="{{ goContact }}" style="background: #C8102E; color: #fff; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 15.5px; font-weight: 600; padding: 16px 32px; border-radius: 4px; white-space: nowrap; transition: background .2s ease, transform .2s ease;" style-hover="background: #a50d26; transform: translateY(-2px);">Contact us</button>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ============ CONTACT ============ -->
+  <sc-if value="{{ isContact }}">
+  <div>
+    <section style="position: relative; overflow: hidden; background: #0a1324; color: #fff;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(820px 460px at 84% 0%, rgba(46,78,150,0.5), transparent 62%), radial-gradient(620px 440px at 0% 100%, rgba(200,16,46,0.18), transparent 62%), linear-gradient(180deg, #0b1426, #0a1324); pointer-events: none;"></div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(circle at 86% 22%, #000, transparent 72%); mask-image: radial-gradient(circle at 86% 22%, #000, transparent 72%); pointer-events: none;"></div>
+      <div style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: clamp(60px,8vw,104px) 32px clamp(48px,6vw,76px);">
+        <div style="display: inline-flex; align-items: center; gap: 11px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ff7f8d; margin-bottom: 22px;"><span style="width: 26px; height: 2px; background: #C8102E; display: block;"></span>Contact</div>
+        <h1 style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: clamp(36px,5vw,60px); line-height: 1.03; letter-spacing: -0.028em; color: #fff; margin: 0 0 20px; max-width: 720px;">Let's start a conversation.</h1>
+        <p style="font-size: clamp(16px,1.3vw,18.5px); color: #aeb8d0; margin: 0; max-width: 560px; line-height: 1.6;">Share your requirement and we'll respond with a clear, considered proposal.</p>
+      </div>
+    </section>
+
+    <section style="max-width: 1180px; margin: 0 auto; padding: clamp(56px,7vw,88px) 32px clamp(56px,7vw,96px);">
+      <div style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(28px,5vw,56px); align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div style="padding: 24px 0; border-top: 1px solid #e8ebf2;">
+            <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #C8102E; margin-bottom: 8px;">Visit</div>
+            <p style="font-size: 16px; color: #2a3350; margin: 0; line-height: 1.5;">No. 42 Tigere Mansions,<br>Corner 6th &amp; Central Avenue,<br>Harare, Zimbabwe</p>
+          </div>
+          <div style="padding: 24px 0; border-top: 1px solid #e8ebf2;">
+            <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #C8102E; margin-bottom: 8px;">Call</div>
+            <p style="font-size: 16px; color: #2a3350; margin: 0;">0712 538 836</p>
+          </div>
+          <div style="padding: 24px 0; border-top: 1px solid #e8ebf2;">
+            <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #C8102E; margin-bottom: 8px;">Email</div>
+            <p style="font-size: 16px; color: #2a3350; margin: 0;">innovantisolutions.co.zw</p>
+          </div>
+          <div style="padding: 24px 0; border-top: 1px solid #e8ebf2; border-bottom: 1px solid #e8ebf2;">
+            <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #C8102E; margin-bottom: 8px;">Hours</div>
+            <p style="font-size: 16px; color: #2a3350; margin: 0;">Monday &ndash; Friday &middot; 08:00 &ndash; 17:00</p>
+          </div>
+        </div>
+        <div style="background: #fff; border: 1px solid #e8ebf2; border-radius: 12px; padding: clamp(28px,3vw,40px); box-shadow: 0 1px 2px rgba(17,24,46,0.04);">
+          <sc-if value="{{ sent }}">
+            <div style="text-align: center; padding: 40px 12px;">
+              <div style="width: 56px; height: 56px; border-radius: 50%; background: #15213f; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 20px;">&check;</div>
+              <h3 style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 24px; color: #15213f; margin: 0 0 10px;">Thank you.</h3>
+              <p style="font-size: 16px; color: #5b6479; margin: 0;">Your enquiry has been received. Our team will be in touch shortly.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+              <div>
+                <label style="display: block; font-size: 13px; font-weight: 600; color: #2a3350; margin-bottom: 7px;">Full name</label>
+                <input value="{{ formName }}" onChange="{{ setName }}" placeholder="Jane Moyo" style="width: 100%; box-sizing: border-box; border: 1px solid #d8dce7; border-radius: 6px; padding: 12px 14px; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; color: #11182e; outline: none; transition: border-color .2s ease, box-shadow .2s ease;" style-focus="border-color: #15213f; box-shadow: 0 0 0 3px rgba(21,33,63,0.12);">
+              </div>
+              <div>
+                <label style="display: block; font-size: 13px; font-weight: 600; color: #2a3350; margin-bottom: 7px;">Email</label>
+                <input value="{{ formEmail }}" onChange="{{ setEmail }}" placeholder="jane@company.co.zw" style="width: 100%; box-sizing: border-box; border: 1px solid #d8dce7; border-radius: 6px; padding: 12px 14px; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; color: #11182e; outline: none; transition: border-color .2s ease, box-shadow .2s ease;" style-focus="border-color: #15213f; box-shadow: 0 0 0 3px rgba(21,33,63,0.12);">
+              </div>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <label style="display: block; font-size: 13px; font-weight: 600; color: #2a3350; margin-bottom: 7px;">Organisation</label>
+              <input value="{{ formCompany }}" onChange="{{ setCompany }}" placeholder="Company or institution" style="width: 100%; box-sizing: border-box; border: 1px solid #d8dce7; border-radius: 6px; padding: 12px 14px; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; color: #11182e; outline: none; transition: border-color .2s ease, box-shadow .2s ease;" style-focus="border-color: #15213f; box-shadow: 0 0 0 3px rgba(21,33,63,0.12);">
+            </div>
+            <div style="margin-bottom: 22px;">
+              <label style="display: block; font-size: 13px; font-weight: 600; color: #2a3350; margin-bottom: 7px;">How can we help?</label>
+              <textarea value="{{ formMessage }}" onChange="{{ setMessage }}" placeholder="Tell us about your requirement…" rows="4" style="width: 100%; box-sizing: border-box; border: 1px solid #d8dce7; border-radius: 6px; padding: 12px 14px; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; color: #11182e; outline: none; resize: vertical; transition: border-color .2s ease, box-shadow .2s ease;" style-focus="border-color: #15213f; box-shadow: 0 0 0 3px rgba(21,33,63,0.12);"></textarea>
+            </div>
+            <button onClick="{{ submit }}" style="width: 100%; background: #C8102E; color: #fff; border: none; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 15.5px; font-weight: 600; padding: 15px; border-radius: 6px; transition: background .2s ease;" style-hover="background: #a50d26;">Send enquiry</button>
+          </div>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width: 1180px; margin: 0 auto; padding: 0 32px clamp(56px,7vw,96px);">
+      <div style="position: relative; height: 320px; border-radius: 12px; overflow: hidden; box-shadow: 0 24px 50px -28px rgba(14,24,48,0.4);">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=75" alt="Our office" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(120deg, rgba(14,24,48,0.55), rgba(14,24,48,0.15));"></div>
+        <div style="position: absolute; left: clamp(20px,3vw,40px); bottom: clamp(20px,3vw,40px); background: #fff; border-radius: 10px; padding: 18px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 18px 40px -18px rgba(14,24,48,0.4);">
+          <div style="width: 38px; height: 38px; border-radius: 50%; background: #C8102E; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 18px;">&#9679;</div>
+          <div>
+            <div style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 15px; color: #15213f;">Innovanti Solutions</div>
+            <div style="font-size: 13px; color: #7a8398;">Tigere Mansions, Harare</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background: #0e1830; color: #c2cbde;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(56px,6vw,80px) 32px 32px;">
+      <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px;">
+        <div>
+          <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.01em; color: #fff; margin-bottom: 14px;">Innovanti<span style="color: #ff6b7a;"> Solutions</span></div>
+          <p style="font-size: 14.5px; color: #8b97b3; margin: 0 0 18px; max-width: 280px;">Innovating technology. Connecting markets. Delivering value.</p>
+          <div style="font-size: 13px; color: #6f7c9c;">Harare, Zimbabwe</div>
+        </div>
+        <div>
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #6f7c9c; margin-bottom: 16px;">Explore</div>
+          <div style="display: flex; flex-direction: column; gap: 11px; align-items: flex-start;">
+            <button onClick="{{ goHome }}" style="background: none; border: none; padding: 0; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 14.5px; color: #c2cbde; transition: color .2s ease;" style-hover="color: #fff;">Home</button>
+            <button onClick="{{ goServices }}" style="background: none; border: none; padding: 0; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 14.5px; color: #c2cbde; transition: color .2s ease;" style-hover="color: #fff;">Services</button>
+            <button onClick="{{ goAbout }}" style="background: none; border: none; padding: 0; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 14.5px; color: #c2cbde; transition: color .2s ease;" style-hover="color: #fff;">About</button>
+            <button onClick="{{ goContact }}" style="background: none; border: none; padding: 0; cursor: pointer; font-family: 'Hanken Grotesk', sans-serif; font-size: 14.5px; color: #c2cbde; transition: color .2s ease;" style-hover="color: #fff;">Contact</button>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #6f7c9c; margin-bottom: 16px;">Services</div>
+          <div style="display: flex; flex-direction: column; gap: 11px; font-size: 14.5px; color: #c2cbde;">
+            <span>IT &amp; Cybersecurity</span>
+            <span>Network Solutions</span>
+            <span>Procurement</span>
+            <span>Trading &amp; Brokerage</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #6f7c9c; margin-bottom: 16px;">Contact</div>
+          <div style="display: flex; flex-direction: column; gap: 11px; font-size: 14.5px; color: #c2cbde;">
+            <span>No. 42 Tigere Mansions, Harare</span>
+            <span>0712 538 836</span>
+            <span>innovantisolutions.co.zw</span>
+            <span>Mon&ndash;Fri &middot; 08:00&ndash;17:00</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid #1f2c4a; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <span style="font-size: 13px; color: #6f7c9c;">&copy; 2026 Innovanti Solutions. All rights reserved.</span>
+        <span style="font-size: 13px; color: #6f7c9c;">Multi-Sector Technology, Trading &amp; Procurement</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { page: 'home', form: { name: '', email: '', company: '', message: '' }, sent: false, slide: 0, paused: false };
+  slides = 4;
+
+  componentDidMount() {
+    const loop = () => {
+      const now = performance.now() / 1000;
+      const y = window.scrollY || window.pageYOffset || 0;
+      const vh = window.innerHeight || 800;
+      document.querySelectorAll('[data-px]').forEach((el) => {
+        const sp = parseFloat(el.getAttribute('data-px')) || 0;
+        const prevTy = el.__ty || 0;
+        const rect = el.getBoundingClientRect();
+        const baseTop = rect.top + y - prevTy;
+        const t = (y + vh - baseTop) - (vh + rect.height) / 2;
+        const ty = t * sp;
+        el.style.transform = 'translate3d(0,' + ty.toFixed(1) + 'px,0)';
+        el.__ty = ty;
+      });
+      document.querySelectorAll('[data-pulse]').forEach((el) => {
+        const ph = parseFloat(el.getAttribute('data-pulse')) || 0;
+        const k = 0.5 + 0.5 * Math.sin(now * 1.5 + ph);
+        el.style.opacity = (0.3 + 0.65 * k).toFixed(3);
+      });
+      document.querySelectorAll('[data-drift]').forEach((el) => {
+        const dx = Math.sin(now * 0.28) * 26;
+        const dy = Math.cos(now * 0.22) * 18;
+        el.style.transform = 'translate3d(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px,0)';
+      });
+      this._raf = requestAnimationFrame(loop);
+    };
+    this._raf = requestAnimationFrame(loop);
+    this._timer = setInterval(() => {
+      if (!this.state.paused && this.state.page === 'home') {
+        this.setState((s) => ({ slide: (s.slide + 1) % this.slides }));
+      }
+    }, 5000);
+  }
+
+  componentWillUnmount() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._timer) clearInterval(this._timer);
+  }
+
+  componentDidUpdate() { this._applyTrack(); }
+
+  _applyTrack() {
+    if (this._track) {
+      this._track.style.transform = 'translateX(-' + (this.state.slide * 100) + '%)';
+    }
+  }
+
+  go(page) {
+    this.setState({ page, sent: false });
+    try { window.scrollTo({ top: 0, behavior: 'auto' }); } catch (e) { try { window.scrollTo(0, 0); } catch (e2) {} }
+  }
+
+  setField(k) {
+    return (e) => {
+      const v = e && e.target ? e.target.value : '';
+      this.setState((s) => ({ form: Object.assign({}, s.form, { [k]: v }) }));
+    };
+  }
+
+  submit(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ sent: true });
+  }
+
+  renderVals() {
+    const p = this.state.page;
+    const sl = this.state.slide;
+    const dotW = (i) => (sl === i ? '28px' : '8px');
+    const dotC = (i) => (sl === i ? '#C8102E' : '#cdd3e0');
+    return {
+      navHomeOff: p !== 'home',
+      navServicesOff: p !== 'services',
+      navAboutOff: p !== 'about',
+      navContactOff: p !== 'contact',
+      trackRef: (el) => { this._track = el; this._applyTrack(); },
+      isHome: p === 'home',
+      isServices: p === 'services',
+      isAbout: p === 'about',
+      isContact: p === 'contact',
+      navHome: p === 'home',
+      navServices: p === 'services',
+      navAbout: p === 'about',
+      navContact: p === 'contact',
+      goHome: () => this.go('home'),
+      goServices: () => this.go('services'),
+      goAbout: () => this.go('about'),
+      goContact: () => this.go('contact'),
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      formName: this.state.form.name,
+      formEmail: this.state.form.email,
+      formCompany: this.state.form.company,
+      formMessage: this.state.form.message,
+      setName: this.setField('name'),
+      setEmail: this.setField('email'),
+      setCompany: this.setField('company'),
+      setMessage: this.setField('message'),
+      submit: (e) => this.submit(e),
+      nextSlide: () => this.setState((s) => ({ slide: (s.slide + 1) % this.slides })),
+      prevSlide: () => this.setState((s) => ({ slide: (s.slide + this.slides - 1) % this.slides })),
+      goSlide0: () => this.setState({ slide: 0 }),
+      goSlide1: () => this.setState({ slide: 1 }),
+      goSlide2: () => this.setState({ slide: 2 }),
+      goSlide3: () => this.setState({ slide: 3 }),
+      pauseOn: () => this.setState({ paused: true }),
+      pauseOff: () => this.setState({ paused: false }),
+      dot0: sl === 0, dot1: sl === 1, dot2: sl === 2, dot3: sl === 3,
+      dot0Off: sl !== 0, dot1Off: sl !== 1, dot2Off: sl !== 2, dot3Off: sl !== 3,
+    };
+  }
+}
+</script>
+</body>
+</html>
