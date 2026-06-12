@@ -14,7 +14,7 @@ export default function Values() {
       <div aria-hidden style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(135deg, rgba(21,33,63,0.025) 0 1px, transparent 1px 16px)', pointerEvents: 'none' }} />
 
       <div style={{ position: 'relative', maxWidth: 1180, margin: '0 auto', padding: 'clamp(64px,8vw,108px) 32px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 'clamp(36px,6vw,80px)', alignItems: 'start' }}>
+        <div className="grid-values">
           <div>
             <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase' as const, color: '#C8102E', marginBottom: 16 }}>Why Innovanti</div>
             <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(28px,3.6vw,42px)', lineHeight: 1.07, letterSpacing: '-0.02em', color: '#11182e', margin: '0 0 18px' }}>

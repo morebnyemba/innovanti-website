@@ -26,7 +26,7 @@ export default function ContactPage() {
 
       {/* Contact grid */}
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,7vw,88px) 32px clamp(56px,7vw,96px)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '0.85fr 1.15fr', gap: 'clamp(28px,5vw,56px)', alignItems: 'start' }}>
+        <div className="grid-contact">
           {/* Info column */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {contactItems.map(({ label, value }) => (

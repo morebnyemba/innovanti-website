@@ -5,7 +5,7 @@ export default function MissionBand() {
       <div aria-hidden style={{ position: 'absolute', left: 0, right: 0, top: '-22%', height: '144%', backgroundImage: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=75')", backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.5 }} />
       <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,24,48,0.82), rgba(14,24,48,0.9))', pointerEvents: 'none' }} />
 
-      <div style={{ position: 'relative', zIndex: 2, maxWidth: 1180, margin: '0 auto', padding: 'clamp(72px,9vw,128px) 32px', display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 'clamp(28px,5vw,64px)', alignItems: 'center' }}>
+      <div style={{ position: 'relative', zIndex: 2, maxWidth: 1180, margin: '0 auto', padding: 'clamp(72px,9vw,128px) 32px', display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 'clamp(28px,5vw,64px)', alignItems: 'center' }} className="mission-grid">
         <div className="font-display" style={{ fontWeight: 700, fontSize: 13, letterSpacing: '0.16em', textTransform: 'uppercase' as const, color: '#ff6b7a', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
           Our Mission
         </div>

@@ -39,7 +39,7 @@ export default function AboutPage() {
 
       {/* Story */}
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,7vw,88px) 32px clamp(48px,6vw,80px)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 'clamp(32px,5vw,72px)', alignItems: 'center' }}>
+        <div className="grid-2col">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <p style={{ fontSize: 18, color: '#2a3350', margin: 0, fontWeight: 500 }}>
               Innovanti Solutions is a dynamic, diversified enterprise specialising in IT solutions, hardware and software services, commodity brokerage, procurement and general business services.
@@ -80,7 +80,7 @@ export default function AboutPage() {
 
       {/* Responsibility + Quality */}
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,7vw,96px) 32px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(28px,5vw,64px)' }}>
+        <div className="grid-2col-even">
           <div>
             <h3 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(22px,2.4vw,28px)', lineHeight: 1.12, letterSpacing: '-0.02em', color: '#11182e', margin: '0 0 20px' }}>
               Sustainability &amp; corporate responsibility
@@ -106,13 +106,15 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section style={{ background: '#f7f8fb' }}>
-        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,88px) 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap' as const }}>
-          <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.1, letterSpacing: '-0.02em', color: '#11182e', margin: 0, maxWidth: 560 }}>
-            Work with a partner you can trust.
-          </h2>
-          <Link href="/contact" style={{ background: '#C8102E', color: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-hanken), sans-serif', fontSize: 15.5, fontWeight: 600, padding: '16px 32px', borderRadius: 4, whiteSpace: 'nowrap' as const, textDecoration: 'none', display: 'inline-block' }}>
-            Contact us
-          </Link>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,88px) 32px' }}>
+          <div className="cta-row">
+            <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.1, letterSpacing: '-0.02em', color: '#11182e', margin: 0, maxWidth: 560 }}>
+              Work with a partner you can trust.
+            </h2>
+            <Link href="/contact" style={{ background: '#C8102E', color: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-hanken), sans-serif', fontSize: 15.5, fontWeight: 600, padding: '16px 32px', borderRadius: 4, whiteSpace: 'nowrap' as const, textDecoration: 'none', display: 'inline-block' }}>
+              Contact us
+            </Link>
+          </div>
         </div>
       </section>
     </>

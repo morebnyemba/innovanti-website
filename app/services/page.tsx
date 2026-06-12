@@ -45,8 +45,8 @@ export default function ServicesPage() {
       {/* Technology */}
       <section style={{ borderTop: '1px solid #edeff5' }}>
         <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) 32px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 'clamp(28px,5vw,64px)', alignItems: 'start' }}>
-            <div style={{ position: 'sticky', top: 100 }}>
+          <div className="grid-sidebar">
+            <div className="sticky-col" style={{ position: 'sticky', top: 100 }}>
               <div className="font-display" style={{ fontWeight: 800, fontSize: 13, letterSpacing: '0.1em', color: '#C8102E', marginBottom: 14 }}>01 / TECHNOLOGY</div>
               <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(26px,3vw,34px)', lineHeight: 1.08, letterSpacing: '-0.02em', color: '#15213f', margin: '0 0 14px' }}>Information Technology Solutions</h2>
               <p style={{ fontSize: 15.5, color: '#5b6479', margin: '0 0 20px' }}>Comprehensive IT services that help organisations leverage technology for efficiency, security and growth.</p>
@@ -75,7 +75,7 @@ export default function ServicesPage() {
       {/* Procurement */}
       <section style={{ borderTop: '1px solid #edeff5', background: '#f7f8fb' }}>
         <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) 32px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 'clamp(28px,5vw,64px)', alignItems: 'start' }}>
+          <div className="grid-sidebar">
             <div>
               <div className="font-display" style={{ fontWeight: 800, fontSize: 13, letterSpacing: '0.1em', color: '#C8102E', marginBottom: 14 }}>02 / SOURCING</div>
               <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(26px,3vw,34px)', lineHeight: 1.08, letterSpacing: '-0.02em', color: '#15213f', margin: '0 0 14px' }}>Procurement &amp; Supply Chain</h2>
@@ -96,7 +96,7 @@ export default function ServicesPage() {
       {/* Trading */}
       <section style={{ borderTop: '1px solid #edeff5' }}>
         <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) 32px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 'clamp(28px,5vw,64px)', alignItems: 'start' }}>
+          <div className="grid-sidebar">
             <div>
               <div className="font-display" style={{ fontWeight: 800, fontSize: 13, letterSpacing: '0.1em', color: '#C8102E', marginBottom: 14 }}>03 / TRADE</div>
               <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(26px,3vw,34px)', lineHeight: 1.08, letterSpacing: '-0.02em', color: '#15213f', margin: '0 0 14px' }}>Trading &amp; Commodity Brokerage</h2>
@@ -116,13 +116,15 @@ export default function ServicesPage() {
 
       {/* CTA strip */}
       <section style={{ background: '#15213f', color: '#fff' }}>
-        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,88px) 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap' as const }}>
-          <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0, maxWidth: 560 }}>
-            Have a requirement in mind? Let&apos;s scope it.
-          </h2>
-          <Link href="/contact" style={{ background: '#C8102E', color: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-hanken), sans-serif', fontSize: 15.5, fontWeight: 600, padding: '16px 32px', borderRadius: 4, whiteSpace: 'nowrap' as const, textDecoration: 'none', display: 'inline-block' }}>
-            Get in touch
-          </Link>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,88px) 32px' }}>
+          <div className="cta-row">
+            <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0, maxWidth: 560 }}>
+              Have a requirement in mind? Let&apos;s scope it.
+            </h2>
+            <Link href="/contact" style={{ background: '#C8102E', color: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-hanken), sans-serif', fontSize: 15.5, fontWeight: 600, padding: '16px 32px', borderRadius: 4, whiteSpace: 'nowrap' as const, textDecoration: 'none', display: 'inline-block' }}>
+              Get in touch
+            </Link>
+          </div>
         </div>
       </section>
     </>

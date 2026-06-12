@@ -34,8 +34,9 @@ export default function Hero() {
         style={{ position: 'absolute', top: -140, right: '3%', width: 520, height: 520, borderRadius: '50%', background: 'radial-gradient(circle, rgba(70,110,200,0.30), transparent 65%)', pointerEvents: 'none' }}
       />
 
-      {/* Constellation SVG — right side */}
+      {/* Constellation SVG — right side, hidden on mobile */}
       <svg aria-hidden viewBox="0 0 520 480" width="520" height="480"
+        className="hidden md:block"
         style={{ position: 'absolute', top: '50%', right: -30, transform: 'translateY(-50%)', maxWidth: '47%', opacity: 0.95, pointerEvents: 'none' }}
       >
         <g stroke="rgba(150,180,240,0.26)" strokeWidth="1.2">

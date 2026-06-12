@@ -30,7 +30,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+      <div className="grid-2col-even" style={{ marginBottom: 16 }}>
         <div>
           <label style={labelStyle}>Full name</label>
           <input required placeholder="Jane Moyo" style={inputStyle}
