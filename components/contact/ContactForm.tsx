@@ -1,7 +1,9 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
-import { FiSend, FiCheckCircle } from 'react-icons/fi'
+
+const inputStyle = { width: '100%', boxSizing: 'border-box' as const, border: '1px solid #d8dce7', borderRadius: 6, padding: '12px 14px', fontFamily: 'var(--font-hanken), sans-serif', fontSize: 15, color: '#11182e', outline: 'none', transition: 'border-color .2s ease, box-shadow .2s ease' }
+const labelStyle = { display: 'block', fontSize: 13, fontWeight: 600, color: '#2a3350', marginBottom: 7 }
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false)
@@ -10,99 +12,61 @@ export default function ContactForm() {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 800))
+    await new Promise(r => setTimeout(r, 800))
     setLoading(false)
     setSent(true)
   }
 
   if (sent) {
     return (
-      <div className="flex flex-col items-center justify-center py-16 text-center gap-4">
-        <FiCheckCircle className="text-brand" size={48} />
-        <h3 className="font-display text-2xl font-bold text-navy">Message received!</h3>
-        <p className="text-navy/60 max-w-sm">
-          Thank you for reaching out. Our team will respond within one business day.
-        </p>
-        <button
-          onClick={() => setSent(false)}
-          className="mt-4 text-brand text-sm font-semibold hover:underline"
-        >
-          Send another message
-        </button>
+      <div style={{ textAlign: 'center', padding: '40px 12px' }}>
+        <div style={{ width: 56, height: 56, borderRadius: '50%', background: '#15213f', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, margin: '0 auto 20px' }}>✓</div>
+        <h3 className="font-display" style={{ fontWeight: 700, fontSize: 24, color: '#15213f', margin: '0 0 10px' }}>Thank you.</h3>
+        <p style={{ fontSize: 16, color: '#5b6479', margin: 0 }}>Your enquiry has been received. Our team will be in touch shortly.</p>
+        <button onClick={() => setSent(false)} style={{ marginTop: 20, background: 'none', border: 'none', cursor: 'pointer', color: '#C8102E', fontSize: 14, fontWeight: 600 }}>Send another message</button>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <form onSubmit={handleSubmit}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
         <div>
-          <label className="block text-navy text-sm font-medium mb-1.5">Full name *</label>
-          <input
-            type="text"
-            required
-            placeholder="John Moyo"
-            className="w-full px-4 py-3 rounded-xl border border-navy/15 bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand text-navy placeholder-navy/35 text-sm transition-colors"
+          <label style={labelStyle}>Full name</label>
+          <input required placeholder="Jane Moyo" style={inputStyle}
+            onFocus={e => { e.target.style.borderColor = '#15213f'; e.target.style.boxShadow = '0 0 0 3px rgba(21,33,63,0.12)' }}
+            onBlur={e => { e.target.style.borderColor = '#d8dce7'; e.target.style.boxShadow = 'none' }}
           />
         </div>
         <div>
-          <label className="block text-navy text-sm font-medium mb-1.5">Email address *</label>
-          <input
-            type="email"
-            required
-            placeholder="john@company.co.zw"
-            className="w-full px-4 py-3 rounded-xl border border-navy/15 bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand text-navy placeholder-navy/35 text-sm transition-colors"
+          <label style={labelStyle}>Email</label>
+          <input required type="email" placeholder="jane@company.co.zw" style={inputStyle}
+            onFocus={e => { e.target.style.borderColor = '#15213f'; e.target.style.boxShadow = '0 0 0 3px rgba(21,33,63,0.12)' }}
+            onBlur={e => { e.target.style.borderColor = '#d8dce7'; e.target.style.boxShadow = 'none' }}
           />
         </div>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div>
-          <label className="block text-navy text-sm font-medium mb-1.5">Company</label>
-          <input
-            type="text"
-            placeholder="Acme Corp"
-            className="w-full px-4 py-3 rounded-xl border border-navy/15 bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand text-navy placeholder-navy/35 text-sm transition-colors"
-          />
-        </div>
-        <div>
-          <label className="block text-navy text-sm font-medium mb-1.5">Service of interest</label>
-          <select className="w-full px-4 py-3 rounded-xl border border-navy/15 bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand text-navy text-sm transition-colors">
-            <option value="">Select a service</option>
-            <option>IT Consulting</option>
-            <option>Network Infrastructure</option>
-            <option>Cybersecurity</option>
-            <option>Strategic Sourcing</option>
-            <option>Logistics & Trade</option>
-            <option>Commodity Trading</option>
-            <option>Other</option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-navy text-sm font-medium mb-1.5">Message *</label>
-        <textarea
-          required
-          rows={5}
-          placeholder="Tell us about your project or requirement..."
-          className="w-full px-4 py-3 rounded-xl border border-navy/15 bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand text-navy placeholder-navy/35 text-sm transition-colors resize-none"
+      <div style={{ marginBottom: 16 }}>
+        <label style={labelStyle}>Organisation</label>
+        <input placeholder="Company or institution" style={inputStyle}
+          onFocus={e => { e.target.style.borderColor = '#15213f'; e.target.style.boxShadow = '0 0 0 3px rgba(21,33,63,0.12)' }}
+          onBlur={e => { e.target.style.borderColor = '#d8dce7'; e.target.style.boxShadow = 'none' }}
         />
       </div>
-
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full flex items-center justify-center gap-2 bg-brand hover:bg-brand-hover disabled:opacity-60 text-white font-semibold py-3.5 rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-brand/30"
+      <div style={{ marginBottom: 22 }}>
+        <label style={labelStyle}>How can we help?</label>
+        <textarea required rows={4} placeholder="Tell us about your requirement…"
+          style={{ ...inputStyle, resize: 'vertical' }}
+          onFocus={e => { e.target.style.borderColor = '#15213f'; e.target.style.boxShadow = '0 0 0 3px rgba(21,33,63,0.12)' }}
+          onBlur={e => { e.target.style.borderColor = '#d8dce7'; e.target.style.boxShadow = 'none' }}
+        />
+      </div>
+      <button type="submit" disabled={loading}
+        style={{ width: '100%', background: '#C8102E', color: '#fff', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'var(--font-hanken), sans-serif', fontSize: 15.5, fontWeight: 600, padding: 15, borderRadius: 6, transition: 'background .2s ease', opacity: loading ? 0.7 : 1 }}
+        onMouseEnter={e => { if (!loading) (e.currentTarget as HTMLButtonElement).style.background = '#a50d26' }}
+        onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.background = '#C8102E'}
       >
-        {loading ? (
-          <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-        ) : (
-          <>
-            <FiSend size={16} />
-            Send message
-          </>
-        )}
+        {loading ? 'Sending…' : 'Send enquiry'}
       </button>
     </form>
   )

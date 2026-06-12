@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { FiMapPin, FiPhone, FiClock, FiX, FiMenu } from 'react-icons/fi'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -19,64 +18,50 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50"
-    >
+    <header className="fixed top-0 left-0 right-0 z-50">
       {/* Utility bar */}
-      <div className="bg-navy text-white/70 text-xs py-2 px-4 hidden md:block">
-        <div className="max-w-site mx-auto flex items-center justify-between">
-          <span className="flex items-center gap-1.5">
-            <FiMapPin className="text-brand-light" size={12} />
-            No. 42 Tigere Mansions, Corner 6th &amp; Central Avenue, Harare
-          </span>
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5">
-              <FiPhone className="text-brand-light" size={12} />
-              0712 538 836
-            </span>
-            <span className="flex items-center gap-1.5">
-              <FiClock className="text-brand-light" size={12} />
-              Mon–Fri 08:00–17:00
-            </span>
+      <div className="bg-navy-dark text-white/70 text-xs py-0 hidden md:block">
+        <div className="max-w-site mx-auto px-8" style={{ minHeight: 42, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '7px 0', whiteSpace: 'nowrap' }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#C8102E', display: 'block', flexShrink: 0 }} />
+            <span style={{ color: '#cdd5e6', fontWeight: 600, letterSpacing: '0.02em' }}>Harare, Zimbabwe</span>
+            <span style={{ color: '#46527a' }}>Multi-sector technology &amp; trade</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '7px 0', whiteSpace: 'nowrap' }}>
+            <span style={{ color: '#aeb8d0' }}>0712 538 836</span>
+            <span style={{ width: 1, height: 13, background: '#25304f', display: 'block' }} />
+            <span style={{ color: '#aeb8d0' }}>innovantisolutions.co.zw</span>
+            <span style={{ width: 1, height: 13, background: '#25304f', display: 'block' }} />
+            <span style={{ color: '#aeb8d0' }}>Mon–Fri · 08:00–17:00</span>
           </div>
         </div>
       </div>
 
-      {/* Main nav */}
-      <nav className="bg-navy-dark/95 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-site mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/innovanti-logo.png"
-              alt="Innovanti Solutions"
-              width={160}
-              height={44}
-              className="h-10 w-auto"
-              priority
-            />
+      {/* Main nav — white/light */}
+      <nav style={{ background: 'rgba(255,255,255,0.92)', backdropFilter: 'saturate(160%) blur(14px)', WebkitBackdropFilter: 'saturate(160%) blur(14px)', borderBottom: '1px solid #e9ebf2' }}>
+        <div className="max-w-site mx-auto px-8" style={{ height: 78, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
+          <Link href="/" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+            <Image src="/innovanti-logo.png" alt="Innovanti Solutions" width={160} height={40} style={{ height: 40, width: 'auto', display: 'block' }} priority />
           </Link>
 
-          {/* Desktop pill nav */}
-          <div className="hidden md:flex items-center bg-white/5 rounded-full px-2 py-1.5 gap-1 relative">
+          {/* Pill nav */}
+          <div className="hidden md:flex" style={{ alignItems: 'center', gap: 2, background: '#f4f5f9', border: '1px solid #eceef5', borderRadius: 999, padding: 5, position: 'relative' }}>
             {navLinks.map((link) => {
               const isActive = pathname === link.href
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="relative px-5 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 z-10"
+                  style={{ position: 'relative', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-hanken), sans-serif', fontSize: 14.5, fontWeight: 600, padding: '9px 20px', borderRadius: 999, textDecoration: 'none', display: 'block' }}
                 >
                   {isActive && (
                     <motion.span
-                      layoutId="activePill"
-                      className="absolute inset-0 bg-brand rounded-full"
+                      layoutId="pill"
+                      style={{ position: 'absolute', inset: 0, background: '#15213f', borderRadius: 999 }}
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
-                  <span className={`relative z-10 ${isActive ? 'text-white' : 'text-white/70 hover:text-brand-light'}`}>
+                  <span style={{ position: 'relative', zIndex: 1, color: isActive ? '#fff' : '#39456b' }}>
                     {link.label}
                   </span>
                 </Link>
@@ -86,50 +71,41 @@ export default function Header() {
 
           <Link
             href="/contact"
-            className="hidden md:inline-flex items-center gap-1.5 bg-brand hover:bg-brand-hover text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-brand/30"
+            className="hidden md:inline-flex"
+            style={{ alignItems: 'center', gap: 9, background: '#C8102E', color: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-hanken), sans-serif', fontSize: 14, fontWeight: 600, padding: '12px 22px', borderRadius: 999, letterSpacing: '0.01em', whiteSpace: 'nowrap', textDecoration: 'none', transition: 'background .2s ease' }}
           >
             Request a proposal →
           </Link>
 
           {/* Mobile toggle */}
-          <button
-            className="md:hidden text-white p-2"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+          <button className="md:hidden" onClick={() => setMobileOpen(v => !v)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, color: '#15213f' }}>
+            <div style={{ width: 22, display: 'flex', flexDirection: 'column', gap: 5 }}>
+              <span style={{ display: 'block', height: 2, background: '#15213f', borderRadius: 2, width: mobileOpen ? '100%' : '100%' }} />
+              <span style={{ display: 'block', height: 2, background: '#15213f', borderRadius: 2 }} />
+              <span style={{ display: 'block', height: 2, background: '#15213f', borderRadius: 2, width: '70%' }} />
+            </div>
           </button>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile dropdown */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden overflow-hidden border-t border-white/10"
+              style={{ overflow: 'hidden', borderTop: '1px solid #e9ebf2' }}
             >
-              <div className="px-4 pb-4 pt-2 flex flex-col gap-1">
+              <div style={{ padding: '12px 16px 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                      pathname === link.href
-                        ? 'bg-brand text-white'
-                        : 'text-white/70 hover:text-white hover:bg-white/5'
-                    }`}
+                  <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}
+                    style={{ padding: '10px 14px', borderRadius: 8, fontSize: 14, fontWeight: 600, color: pathname === link.href ? '#fff' : '#39456b', background: pathname === link.href ? '#15213f' : 'transparent', textDecoration: 'none', display: 'block' }}
                   >
                     {link.label}
                   </Link>
                 ))}
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="mt-2 bg-brand text-white text-sm font-semibold px-4 py-2.5 rounded-lg text-center"
+                <Link href="/contact" onClick={() => setMobileOpen(false)}
+                  style={{ marginTop: 6, padding: '12px 14px', borderRadius: 8, fontSize: 14, fontWeight: 600, color: '#fff', background: '#C8102E', textDecoration: 'none', textAlign: 'center', display: 'block' }}
                 >
                   Request a proposal →
                 </Link>
@@ -138,6 +114,6 @@ export default function Header() {
           )}
         </AnimatePresence>
       </nav>
-    </motion.header>
+    </header>
   )
 }

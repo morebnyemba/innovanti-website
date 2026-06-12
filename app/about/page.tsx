@@ -2,159 +2,118 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import InnerHero from '@/components/shared/InnerHero'
-import RevealWrapper from '@/components/shared/RevealWrapper'
-import { FiZap, FiAward, FiUsers, FiTarget, FiCheckCircle } from 'react-icons/fi'
+import HoverCard from '@/components/shared/HoverCard'
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Learn about Innovanti Solutions — our story, mission, values and commitment to Zimbabwe.',
+  description: 'A trusted partner across technology, sourcing and trade — Innovanti Solutions.',
 }
 
 const values = [
-  { Icon: FiZap,    title: 'Innovation',  desc: 'We continuously seek smarter, faster and more effective ways to solve complex problems.' },
-  { Icon: FiAward,  title: 'Excellence',  desc: 'Every engagement is measured against the highest standards of quality and delivery.' },
-  { Icon: FiUsers,  title: 'Partnership', desc: 'We invest in long-term relationships — your success is our success.' },
-  { Icon: FiTarget, title: 'Integrity',   desc: 'Transparent pricing, honest advice and ethical conduct in every interaction.' },
+  { title: 'Innovation',      desc: 'We embrace creativity, technology and continuous improvement.' },
+  { title: 'Integrity',       desc: 'We conduct business with transparency, honesty and ethics.' },
+  { title: 'Excellence',      desc: 'We strive for superior quality and professionalism throughout.' },
+  { title: 'Customer Focus',  desc: 'We place our clients at the centre of everything we do.' },
 ]
 
+const cardBase = { background: '#fff', border: '1px solid #e8ebf2', borderRadius: 8, padding: '28px 26px', transition: 'transform .25s ease, box-shadow .25s ease' }
+const cardHover = { transform: 'translateY(-4px)', boxShadow: '0 18px 38px -22px rgba(14,24,48,0.35)' }
+
 const responsibilities = [
-  'Supporting local skills development through ICT training',
-  'Partnering with Zimbabwean SMEs to build technology capacity',
-  'Sustainable procurement practices with responsible sourcing',
-  'Mentoring the next generation of technology professionals',
+  'Promoting ethical business practices',
+  'Supporting local economic development',
+  'Encouraging environmental sustainability',
+  'Investing in innovation and skills development',
+  'Building long-term stakeholder relationships',
+  'Supporting community development initiatives',
 ]
 
 export default function AboutPage() {
   return (
     <>
       <InnerHero
-        title="About Innovanti"
-        subtitle="A Harare-based technology partner serving businesses, institutions and governments across Zimbabwe and Africa."
+        tag="About us"
+        title="A trusted partner across technology, sourcing and trade."
+        subtitle="Diversified expertise in technology, strategic sourcing and trade — built on integrity, professionalism and a commitment to delivery."
       />
 
       {/* Story */}
-      <section className="py-20 bg-white">
-        <div className="max-w-site mx-auto px-4 grid md:grid-cols-2 gap-14 items-center">
-          <RevealWrapper>
-            <span className="text-brand text-xs font-bold uppercase tracking-widest">Our Story</span>
-            <h2 className="font-display text-4xl font-extrabold text-navy mt-3 leading-tight">
-              Born in Zimbabwe, built for Africa
-            </h2>
-            <div className="space-y-4 mt-5 text-navy/65 leading-relaxed">
-              <p>
-                Innovanti Solutions was founded on a simple conviction: that African businesses deserve
-                access to world-class technology solutions at competitive prices, with partners who
-                understand the local context.
-              </p>
-              <p>
-                From our base in Harare, we have grown into a diversified partner offering IT consulting,
-                cybersecurity, procurement, logistics and commodity trading services to a broad client base
-                spanning government, financial services, telecoms, manufacturing and NGOs.
-              </p>
-              <p>
-                Our team brings deep technical expertise and genuine business acumen — we don&apos;t just
-                implement technology, we help our clients extract lasting value from it.
-              </p>
-            </div>
-          </RevealWrapper>
-
-          <RevealWrapper delay={0.15}>
-            <div className="relative rounded-2xl overflow-hidden h-80 md:h-96">
-              <Image
-                src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80"
-                alt="Innovanti office"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/40 to-transparent" />
-            </div>
-          </RevealWrapper>
+      <section style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,7vw,88px) 32px clamp(48px,6vw,80px)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 'clamp(32px,5vw,72px)', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <p style={{ fontSize: 18, color: '#2a3350', margin: 0, fontWeight: 500 }}>
+              Innovanti Solutions is a dynamic, diversified enterprise specialising in IT solutions, hardware and software services, commodity brokerage, procurement and general business services.
+            </p>
+            <p style={{ fontSize: 16.5, color: '#515c72', margin: 0 }}>
+              We are committed to delivering innovative, reliable and cost-effective solutions that enable businesses, institutions, governments and individuals to achieve operational excellence, sustainable growth and competitive advantage.
+            </p>
+            <p style={{ fontSize: 16.5, color: '#515c72', margin: 0 }}>
+              With a strong focus on technology, strategic sourcing and commercial facilitation, we serve as a trusted partner across sectors — bridging the gap between suppliers, manufacturers, service providers and end-users through industry expertise, market intelligence and strategic partnerships.
+            </p>
+          </div>
+          <div style={{ borderRadius: 12, overflow: 'hidden', aspectRatio: '4 / 4.4', boxShadow: '0 30px 60px -28px rgba(14,24,48,0.4)' }}>
+            <Image src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=75" alt="Team collaboration" width={640} height={704} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-site mx-auto px-4">
-          <RevealWrapper>
-            <div className="text-center mb-12">
-              <span className="text-brand text-xs font-bold uppercase tracking-widest">Our Values</span>
-              <h2 className="font-display text-4xl font-extrabold text-navy mt-2">
-                Principles we live by
-              </h2>
-            </div>
-          </RevealWrapper>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map(({ Icon, title, desc }, i) => (
-              <RevealWrapper key={title} delay={i * 0.1}>
-                <div className="bg-white rounded-2xl border border-navy/8 p-7 hover:shadow-lg hover:shadow-navy/8 transition-all">
-                  <div className="w-11 h-11 rounded-xl bg-brand/8 flex items-center justify-center mb-4">
-                    <Icon className="text-brand" size={20} />
-                  </div>
-                  <h3 className="font-display font-bold text-navy mb-2">{title}</h3>
-                  <p className="text-navy/60 text-sm leading-relaxed">{desc}</p>
-                </div>
-              </RevealWrapper>
+      {/* Mission + Values */}
+      <section style={{ position: 'relative', background: '#f7f8fb', borderTop: '1px solid #edeff5' }}>
+        <div aria-hidden style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(21,33,63,0.05) 1px, transparent 0)', backgroundSize: '28px 28px', pointerEvents: 'none' }} />
+        <div style={{ position: 'relative', maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,7vw,96px) 32px' }}>
+          <div style={{ maxWidth: 720, marginBottom: 44 }}>
+            <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase' as const, color: '#C8102E', marginBottom: 16 }}>Mission &amp; Values</div>
+            <p className="font-display" style={{ fontWeight: 600, fontSize: 'clamp(22px,2.6vw,32px)', lineHeight: 1.22, letterSpacing: '-0.015em', color: '#15213f', margin: 0 }}>
+              To empower businesses and communities with innovative technology, strategic sourcing and quality products — creating sustainable value for clients, partners and stakeholders.
+            </p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px,1fr))', gap: 16 }}>
+            {values.map(({ title, desc }) => (
+              <HoverCard key={title} baseStyle={cardBase} hoverStyle={cardHover}>
+                <h4 className="font-display" style={{ fontWeight: 700, fontSize: 18, color: '#15213f', margin: '0 0 8px' }}>{title}</h4>
+                <p style={{ fontSize: 14.5, color: '#5b6479', margin: 0 }}>{desc}</p>
+              </HoverCard>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Corporate responsibility */}
-      <section className="py-20 bg-navy">
-        <div className="max-w-site mx-auto px-4 grid md:grid-cols-2 gap-14 items-center">
-          <RevealWrapper>
-            <span className="text-brand-light text-xs font-bold uppercase tracking-widest">Corporate Responsibility</span>
-            <h2 className="font-display text-4xl font-extrabold text-white mt-3 leading-tight">
-              Investing in our community
-            </h2>
-            <p className="text-white/60 mt-4 leading-relaxed">
-              We believe technology should uplift communities, not just corporations. Our corporate
-              responsibility commitments reflect our role as a Zimbabwean company with a stake in
-              the country&apos;s future.
-            </p>
-            <ul className="mt-6 space-y-3">
-              {responsibilities.map((r) => (
-                <li key={r} className="flex items-start gap-2.5 text-white/70 text-sm">
-                  <FiCheckCircle className="text-brand-light mt-0.5 shrink-0" size={15} />
-                  {r}
+      {/* Responsibility + Quality */}
+      <section style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,7vw,96px) 32px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(28px,5vw,64px)' }}>
+          <div>
+            <h3 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(22px,2.4vw,28px)', lineHeight: 1.12, letterSpacing: '-0.02em', color: '#11182e', margin: '0 0 20px' }}>
+              Sustainability &amp; corporate responsibility
+            </h3>
+            <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 13 }}>
+              {responsibilities.map(r => (
+                <li key={r} style={{ fontSize: 15.5, color: '#515c72', paddingLeft: 20, position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0, color: '#C8102E', fontWeight: 700 }}>•</span>{r}
                 </li>
               ))}
             </ul>
-          </RevealWrapper>
-
-          <RevealWrapper delay={0.15}>
-            <div className="relative rounded-2xl overflow-hidden h-72">
-              <Image
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
-                alt="Community"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-navy/30" />
+          </div>
+          <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', padding: 'clamp(32px,4vw,48px)', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 280 }}>
+            <Image src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=75" alt="Quality" fill style={{ objectFit: 'cover' }} sizes="50vw" />
+            <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(150deg, rgba(21,33,63,0.92), rgba(14,24,48,0.86))' }} />
+            <div style={{ position: 'relative', zIndex: 2 }}>
+              <h3 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(20px,2.2vw,26px)', lineHeight: 1.14, letterSpacing: '-0.015em', margin: '0 0 14px' }}>Commitment to quality</h3>
+              <p style={{ fontSize: 16, color: '#c9d2e4', margin: 0 }}>We are dedicated to delivering products and services that consistently exceed expectations — maintaining high standards of quality, compliance, operational efficiency and professional conduct.</p>
             </div>
-          </RevealWrapper>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-white text-center">
-        <RevealWrapper>
-          <div className="max-w-site mx-auto px-4">
-            <h3 className="font-display text-3xl font-extrabold text-navy">Work with us</h3>
-            <p className="text-navy/60 mt-3 max-w-md mx-auto">
-              Ready to partner with a team that truly understands your market?
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 mt-7 bg-brand hover:bg-brand-hover text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-brand/30"
-            >
-              Get in touch →
-            </Link>
-          </div>
-        </RevealWrapper>
+      <section style={{ background: '#f7f8fb' }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,88px) 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap' as const }}>
+          <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.1, letterSpacing: '-0.02em', color: '#11182e', margin: 0, maxWidth: 560 }}>
+            Work with a partner you can trust.
+          </h2>
+          <Link href="/contact" style={{ background: '#C8102E', color: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-hanken), sans-serif', fontSize: 15.5, fontWeight: 600, padding: '16px 32px', borderRadius: 4, whiteSpace: 'nowrap' as const, textDecoration: 'none', display: 'inline-block' }}>
+            Contact us
+          </Link>
+        </div>
       </section>
     </>
   )

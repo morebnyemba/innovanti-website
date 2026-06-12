@@ -1,113 +1,74 @@
+'use client'
+
 import Link from 'next/link'
-import Image from 'next/image'
-import { FiMapPin, FiPhone, FiGlobe, FiClock, FiMail } from 'react-icons/fi'
 
 const exploreLinks = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
-  { href: '/about', label: 'About Us' },
+  { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ]
 
-const serviceLinks = [
-  'IT Consulting',
-  'Network Solutions',
-  'Cybersecurity',
-  'Strategic Sourcing',
-  'Logistics & Trade',
-  'Commodity Trading',
-]
+const serviceLinks = ['IT & Cybersecurity', 'Network Solutions', 'Procurement', 'Trading & Brokerage']
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-deep text-white">
-      <div className="max-w-site mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <footer style={{ background: '#0e1830', color: '#c2cbde' }}>
+      <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,80px) 32px 32px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1.2fr', gap: 40 }}>
           {/* Brand */}
           <div>
-            <Image
-              src="/innovanti-logo.png"
-              alt="Innovanti Solutions"
-              width={150}
-              height={42}
-              className="h-10 w-auto mb-4"
-            />
-            <p className="text-white/55 text-sm leading-relaxed mt-3">
-              Innovating technology. Connecting markets. Delivering value across Zimbabwe and beyond.
+            <div className="font-display" style={{ fontWeight: 800, fontSize: 22, letterSpacing: '-0.01em', color: '#fff', marginBottom: 14 }}>
+              Innovanti<span style={{ color: '#ff6b7a' }}> Solutions</span>
+            </div>
+            <p style={{ fontSize: 14.5, color: '#8b97b3', margin: '0 0 18px', maxWidth: 280 }}>
+              Innovating technology. Connecting markets. Delivering value.
             </p>
+            <div style={{ fontSize: 13, color: '#6f7c9c' }}>Harare, Zimbabwe</div>
           </div>
 
           {/* Explore */}
           <div>
-            <h4 className="font-display font-bold text-white mb-4 text-xs uppercase tracking-widest">Explore</h4>
-            <ul className="space-y-2.5">
-              {exploreLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-white/55 hover:text-brand-light text-sm transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: '#6f7c9c', marginBottom: 16 }}>Explore</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 11, alignItems: 'flex-start' }}>
+              {exploreLinks.map(link => (
+                <Link key={link.href} href={link.href} style={{ fontSize: 14.5, color: '#c2cbde', textDecoration: 'none', transition: 'color .2s ease' }}
+                  onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = '#fff'}
+                  onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = '#c2cbde'}
+                >
+                  {link.label}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="font-display font-bold text-white mb-4 text-xs uppercase tracking-widest">Services</h4>
-            <ul className="space-y-2.5">
-              {serviceLinks.map((service) => (
-                <li key={service}>
-                  <Link
-                    href="/services"
-                    className="text-white/55 hover:text-brand-light text-sm transition-colors"
-                  >
-                    {service}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: '#6f7c9c', marginBottom: 16 }}>Services</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 11, fontSize: 14.5, color: '#c2cbde' }}>
+              {serviceLinks.map(s => <span key={s}>{s}</span>)}
+            </div>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-display font-bold text-white mb-4 text-xs uppercase tracking-widest">Contact</h4>
-            <ul className="space-y-3">
-              <li className="flex gap-2 text-sm text-white/55">
-                <FiMapPin className="text-brand-light mt-0.5 shrink-0" size={14} />
-                <span>No. 42 Tigere Mansions, Corner 6th &amp; Central Avenue, Harare, Zimbabwe</span>
-              </li>
-              <li className="flex gap-2 text-sm text-white/55">
-                <FiPhone className="text-brand-light mt-0.5 shrink-0" size={14} />
-                <span>0712 538 836</span>
-              </li>
-              <li className="flex gap-2 text-sm text-white/55">
-                <FiMail className="text-brand-light mt-0.5 shrink-0" size={14} />
-                <a href="mailto:info@innovantisolutions.co.zw" className="hover:text-brand-light transition-colors">
-                  info@innovantisolutions.co.zw
-                </a>
-              </li>
-              <li className="flex gap-2 text-sm text-white/55">
-                <FiGlobe className="text-brand-light mt-0.5 shrink-0" size={14} />
-                <span>innovantisolutions.co.zw</span>
-              </li>
-              <li className="flex gap-2 text-sm text-white/55">
-                <FiClock className="text-brand-light mt-0.5 shrink-0" size={14} />
-                <span>Mon–Fri 08:00–17:00</span>
-              </li>
-            </ul>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: '#6f7c9c', marginBottom: 16 }}>Contact</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 11, fontSize: 14.5, color: '#c2cbde' }}>
+              <span>No. 42 Tigere Mansions, Harare</span>
+              <span>0712 538 836</span>
+              <span>innovantisolutions.co.zw</span>
+              <span>Mon–Fri · 08:00–17:00</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="max-w-site mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2">
-          <p className="text-white/40 text-xs">
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: 8 }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: '20px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+          <p style={{ fontSize: 13, color: '#4f5e7a', margin: 0 }}>
             © {new Date().getFullYear()} Innovanti Solutions. All rights reserved.
           </p>
-          <p className="text-white/30 text-xs">Harare, Zimbabwe</p>
+          <p style={{ fontSize: 13, color: '#4f5e7a', margin: 0 }}>Harare, Zimbabwe</p>
         </div>
       </div>
     </footer>

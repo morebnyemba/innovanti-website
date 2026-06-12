@@ -1,152 +1,127 @@
 import type { Metadata } from 'next'
-import InnerHero from '@/components/shared/InnerHero'
-import RevealWrapper from '@/components/shared/RevealWrapper'
+import Image from 'next/image'
 import Link from 'next/link'
-import {
-  FiMonitor, FiLayers, FiShield, FiPackage, FiGlobe, FiTrendingUp,
-  FiCheckCircle,
-} from 'react-icons/fi'
+import InnerHero from '@/components/shared/InnerHero'
+import HoverCard from '@/components/shared/HoverCard'
 
 export const metadata: Metadata = {
   title: 'Services',
   description: 'IT consulting, cybersecurity, procurement and trade services from Innovanti Solutions.',
 }
 
-const services = [
-  {
-    Icon: FiMonitor,
-    id: 'it-consulting',
-    title: 'IT Consulting & Solutions',
-    summary: 'Strategic IT guidance and end-to-end implementation for modern enterprises.',
-    features: [
-      'IT strategy & roadmap development',
-      'Infrastructure design & deployment',
-      'Cloud migration & hybrid environments',
-      'Managed IT support & helpdesk',
-      'Digital transformation advisory',
-    ],
-  },
-  {
-    Icon: FiLayers,
-    id: 'network',
-    title: 'Network Infrastructure',
-    summary: 'High-performance, secure networking from structured cabling to enterprise WAN.',
-    features: [
-      'Structured cabling & data centres',
-      'LAN / WAN design & implementation',
-      'Wireless (Wi-Fi 6) deployments',
-      'SD-WAN & MPLS connectivity',
-      'Network monitoring & NOC support',
-    ],
-  },
-  {
-    Icon: FiShield,
-    id: 'cybersecurity',
-    title: 'Cybersecurity',
-    summary: 'Proactive protection across endpoints, networks and cloud workloads.',
-    features: [
-      'Vulnerability & penetration testing',
-      'SIEM / SOC implementation',
-      'Endpoint detection & response (EDR)',
-      'Security awareness training',
-      'Incident response & forensics',
-    ],
-  },
-  {
-    Icon: FiPackage,
-    id: 'procurement',
-    title: 'Strategic Sourcing',
-    summary: 'Competitive ICT hardware and software procurement with global reach.',
-    features: [
-      'Hardware & software supply',
-      'Vendor management & negotiation',
-      'Asset lifecycle management',
-      'OEM & reseller partnerships',
-      'Import / export coordination',
-    ],
-  },
-  {
-    Icon: FiGlobe,
-    id: 'logistics',
-    title: 'Logistics & Trade',
-    summary: 'Cross-border freight, customs clearance and last-mile delivery across Africa.',
-    features: [
-      'Air, sea & road freight',
-      'Customs brokerage & compliance',
-      'Warehousing & distribution',
-      'Supply chain optimisation',
-      'Regional corridor expertise',
-    ],
-  },
-  {
-    Icon: FiTrendingUp,
-    id: 'commodities',
-    title: 'Commodity Trading',
-    summary: 'Agricultural and mineral trading with transparent pricing and market insight.',
-    features: [
-      'Agricultural commodity sourcing',
-      'Mineral & mining products',
-      'Market intelligence & price discovery',
-      'Contract structuring',
-      'Trade finance facilitation',
-    ],
-  },
+const cardBase = { border: '1px solid #e8ebf2', borderRadius: 8, padding: '26px 24px', transition: 'transform .25s ease, box-shadow .25s ease, border-color .25s ease', background: '#fff' }
+const cardHover = { borderColor: '#c7cddc', transform: 'translateY(-4px)', boxShadow: '0 18px 38px -22px rgba(14,24,48,0.38)' }
+
+const techCards = [
+  { title: 'IT Consulting',       items: ['IT strategy development', 'Digital transformation planning', 'Technology assessments', 'IT infrastructure design'] },
+  { title: 'Network Solutions',   items: ['Network design & deployment', 'LAN / WAN implementation', 'Wireless & structured cabling', 'Monitoring & management'] },
+  { title: 'Managed IT Services', items: ['Support & maintenance', 'Helpdesk & remote monitoring', 'Infrastructure & sys admin', 'Preventive maintenance'] },
+  { title: 'Cybersecurity',       items: ['Security & vulnerability testing', 'Firewall & endpoint protection', 'Security awareness training', 'Data protection solutions'], alt: true },
+]
+
+const procurementCards = [
+  { title: 'Strategic Sourcing', desc: 'Identifying and securing the right suppliers for quality and price.' },
+  { title: 'Vendor Management',  desc: 'Competitive tendering, evaluation and supplier relationships.' },
+  { title: 'Logistics & Delivery', desc: 'Coordinated supply, delivery and fulfilment to your site.' },
+  { title: 'Quality Assurance',  desc: 'Compliance and standards upheld across every order.' },
+]
+
+const tradingCards = [
+  { title: 'Commodity Brokerage',    desc: 'Connecting buyers and sellers across markets with integrity.' },
+  { title: 'General Trading',        desc: 'Sourcing and supplying goods across diverse categories.' },
+  { title: 'Hardware Supply',        desc: 'Procurement and support for IT and business hardware.' },
+  { title: 'Software Implementation', desc: 'Development and deployment aligned to your workflows.' },
 ]
 
 export default function ServicesPage() {
   return (
     <>
       <InnerHero
-        title="Our Services"
-        subtitle="From IT infrastructure to cross-border trade — six integrated service lines built to deliver real business value."
+        tag="Services"
+        title="Capabilities that span technology and trade."
+        subtitle="A single, accountable partner across IT, security, procurement and commercial facilitation — tailored to the realities of your sector."
       />
 
-      <section className="py-20 bg-white">
-        <div className="max-w-site mx-auto px-4 space-y-8">
-          {services.map(({ Icon, id, title, summary, features }, i) => (
-            <RevealWrapper key={id} delay={i * 0.07}>
-              <div id={id} className="group grid md:grid-cols-[1fr_2fr] gap-8 bg-white border border-navy/8 rounded-2xl p-8 hover:shadow-xl hover:shadow-navy/8 transition-all duration-300">
-                <div>
-                  <div className="w-14 h-14 rounded-2xl bg-brand/8 flex items-center justify-center mb-4 group-hover:bg-brand/15 transition-colors">
-                    <Icon className="text-brand" size={26} />
-                  </div>
-                  <h2 className="font-display text-2xl font-extrabold text-navy">{title}</h2>
-                  <p className="text-navy/60 mt-2 text-sm leading-relaxed">{summary}</p>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-1.5 mt-5 text-brand text-sm font-semibold hover:gap-2.5 transition-all"
-                  >
-                    Enquire now →
-                  </Link>
-                </div>
-                <ul className="grid sm:grid-cols-2 gap-3 content-start">
-                  {features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-sm text-navy/70">
-                      <FiCheckCircle className="text-brand mt-0.5 shrink-0" size={15} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+      {/* Technology */}
+      <section style={{ borderTop: '1px solid #edeff5' }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) 32px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 'clamp(28px,5vw,64px)', alignItems: 'start' }}>
+            <div style={{ position: 'sticky', top: 100 }}>
+              <div className="font-display" style={{ fontWeight: 800, fontSize: 13, letterSpacing: '0.1em', color: '#C8102E', marginBottom: 14 }}>01 / TECHNOLOGY</div>
+              <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(26px,3vw,34px)', lineHeight: 1.08, letterSpacing: '-0.02em', color: '#15213f', margin: '0 0 14px' }}>Information Technology Solutions</h2>
+              <p style={{ fontSize: 15.5, color: '#5b6479', margin: '0 0 20px' }}>Comprehensive IT services that help organisations leverage technology for efficiency, security and growth.</p>
+              <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '4/3' }}>
+                <Image src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=75" alt="Technology" width={640} height={480} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
-            </RevealWrapper>
-          ))}
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              {techCards.map(({ title, items, alt }) => (
+                <HoverCard key={title} baseStyle={{ ...cardBase, background: alt ? '#fbfbfd' : '#fff' }} hoverStyle={cardHover}>
+                  <h3 className="font-display" style={{ fontWeight: 700, fontSize: 17, color: '#15213f', margin: '0 0 14px' }}>{title}</h3>
+                  <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 9 }}>
+                    {items.map(item => (
+                      <li key={item} style={{ fontSize: 14.5, color: '#5b6479', paddingLeft: 16, position: 'relative' }}>
+                        <span style={{ position: 'absolute', left: 0, color: '#C8102E' }}>•</span>{item}
+                      </li>
+                    ))}
+                  </ul>
+                </HoverCard>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Procurement */}
+      <section style={{ borderTop: '1px solid #edeff5', background: '#f7f8fb' }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) 32px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 'clamp(28px,5vw,64px)', alignItems: 'start' }}>
+            <div>
+              <div className="font-display" style={{ fontWeight: 800, fontSize: 13, letterSpacing: '0.1em', color: '#C8102E', marginBottom: 14 }}>02 / SOURCING</div>
+              <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(26px,3vw,34px)', lineHeight: 1.08, letterSpacing: '-0.02em', color: '#15213f', margin: '0 0 14px' }}>Procurement &amp; Supply Chain</h2>
+              <p style={{ fontSize: 15.5, color: '#5b6479', margin: 0 }}>Strategic procurement that helps organisations obtain quality products and services at competitive prices.</p>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px,1fr))', gap: 16 }}>
+              {procurementCards.map(({ title, desc }) => (
+                <HoverCard key={title} baseStyle={cardBase} hoverStyle={cardHover}>
+                  <h3 className="font-display" style={{ fontWeight: 700, fontSize: 16, color: '#15213f', margin: '0 0 8px' }}>{title}</h3>
+                  <p style={{ fontSize: 14, color: '#5b6479', margin: 0 }}>{desc}</p>
+                </HoverCard>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trading */}
+      <section style={{ borderTop: '1px solid #edeff5' }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) 32px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 'clamp(28px,5vw,64px)', alignItems: 'start' }}>
+            <div>
+              <div className="font-display" style={{ fontWeight: 800, fontSize: 13, letterSpacing: '0.1em', color: '#C8102E', marginBottom: 14 }}>03 / TRADE</div>
+              <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(26px,3vw,34px)', lineHeight: 1.08, letterSpacing: '-0.02em', color: '#15213f', margin: '0 0 14px' }}>Trading &amp; Commodity Brokerage</h2>
+              <p style={{ fontSize: 15.5, color: '#5b6479', margin: 0 }}>Bridging suppliers, manufacturers and end-users with market intelligence and trusted facilitation.</p>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px,1fr))', gap: 16 }}>
+              {tradingCards.map(({ title, desc }) => (
+                <HoverCard key={title} baseStyle={cardBase} hoverStyle={cardHover}>
+                  <h3 className="font-display" style={{ fontWeight: 700, fontSize: 16, color: '#15213f', margin: '0 0 8px' }}>{title}</h3>
+                  <p style={{ fontSize: 14, color: '#5b6479', margin: 0 }}>{desc}</p>
+                </HoverCard>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* CTA strip */}
-      <section className="py-16 bg-navy-dark">
-        <div className="max-w-site mx-auto px-4 text-center">
-          <h3 className="font-display text-3xl font-extrabold text-white">
-            Not sure which service you need?
-          </h3>
-          <p className="text-white/60 mt-3 max-w-lg mx-auto">
-            Our team will assess your situation and recommend the right combination of services.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 mt-7 bg-brand hover:bg-brand-hover text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-brand/30"
-          >
-            Talk to us
+      <section style={{ background: '#15213f', color: '#fff' }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,88px) 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap' as const }}>
+          <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0, maxWidth: 560 }}>
+            Have a requirement in mind? Let&apos;s scope it.
+          </h2>
+          <Link href="/contact" style={{ background: '#C8102E', color: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-hanken), sans-serif', fontSize: 15.5, fontWeight: 600, padding: '16px 32px', borderRadius: 4, whiteSpace: 'nowrap' as const, textDecoration: 'none', display: 'inline-block' }}>
+            Get in touch
           </Link>
         </div>
       </section>
