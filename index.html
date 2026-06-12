@@ -4,921 +4,228 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Innovanti Solutions — Innovating Technology. Connecting Markets. Delivering Value.</title>
-<meta name="description" content="Innovanti Solutions is a diversified partner in IT, cybersecurity, procurement and trade — helping businesses, institutions and governments operate with confidence and grow with purpose.">
+<meta name="description" content="Innovanti Solutions is a diversified partner in IT, cybersecurity, procurement and trade — helping businesses, institutions and governments operate with confidence.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-/* ── RESET ── */
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:'Hanken Grotesk',system-ui,sans-serif;color:#11182e;background:#fff;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
-::selection{background:#C8102E;color:#fff}
-button{font-family:inherit;cursor:pointer}
-img{display:block;max-width:100%}
-ul{margin:0;padding:0;list-style:none}
-p{margin:0}
-h1,h2,h3,h4{margin:0}
-
-/* ── TOKENS ── */
-:root{
-  --navy:#15213f;
-  --navy-dark:#0a1324;
-  --red:#C8102E;
-  --red-light:#ff7f8d;
-}
-
-/* ── LAYOUT ── */
-.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
-
-/* ── PAGE ROUTING ── */
-.page{display:none}
-.page.active{display:block}
-
-/* ── SCROLL REVEAL — fold effect ── */
-.reveal{
-  opacity:0;
-  transform:perspective(900px) rotateX(-6deg) translateY(26px);
-  transition:opacity .65s ease,transform .65s cubic-bezier(.16,1,.3,1);
-  transform-origin:top center;
-}
-.reveal.in{opacity:1;transform:perspective(900px) rotateX(0) translateY(0)}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
-
-/* ── UTILITY BAR ── */
-.ubar{background:#0a1324;color:#9aa6c2;font-size:12.5px}
-.ubar-in{max-width:1180px;margin:0 auto;padding:0 32px;min-height:42px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.ubar-l{display:flex;align-items:center;gap:10px;padding:7px 0;white-space:nowrap}
-.udot{width:6px;height:6px;border-radius:50%;background:var(--red);flex:none}
-.ubar-r{display:flex;align-items:center;gap:16px;padding:7px 0;white-space:nowrap;color:#aeb8d0}
-.usep{width:1px;height:13px;background:#25304f}
-
-/* ── NAV ── */
-.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(160%) blur(16px);-webkit-backdrop-filter:saturate(160%) blur(16px);border-bottom:1px solid #e9ebf2}
-.nav-in{max-width:1180px;margin:0 auto;padding:0 32px;height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.nav-logo{background:none;border:none;padding:0;display:flex;align-items:center;flex-shrink:0}
-.nav-logo img{height:40px;width:auto}
-.pills{display:flex;align-items:center;gap:2px;background:#f4f5f9;border:1px solid #eceef5;border-radius:999px;padding:5px}
-.pill{position:relative;background:none;border:none;font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;font-weight:600;padding:9px 20px;border-radius:999px;color:#39456b;transition:color .2s}
-.pill:hover{color:var(--red)}
-.pill.on{color:#fff}
-.pill .pbg{position:absolute;inset:0;background:var(--navy);border-radius:999px;opacity:0;transition:opacity .2s}
-.pill.on .pbg{opacity:1}
-.pill span{position:relative;z-index:1}
-.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;border:none;font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;padding:12px 22px;border-radius:999px;letter-spacing:.01em;white-space:nowrap;transition:background .2s,transform .2s,box-shadow .2s}
-.nav-cta:hover{background:#a50d26;transform:translateY(-1px);box-shadow:0 12px 24px -10px rgba(200,16,46,.55)}
-
-/* ── BUTTONS ── */
-.btn-r{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#fff;border:none;font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:600;padding:16px 30px;border-radius:4px;transition:background .2s,transform .2s,box-shadow .2s;white-space:nowrap;text-decoration:none}
-.btn-r:hover{background:#e01435;transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(200,16,46,.65)}
-.btn-r:focus-visible{outline:3px solid rgba(200,16,46,.5);outline-offset:3px}
-.btn-ghost{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.22);font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:600;padding:16px 30px;border-radius:4px;transition:background .2s,border-color .2s,transform .2s}
-.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);transform:translateY(-2px)}
-.btn-ghost:focus-visible{outline:3px solid rgba(255,255,255,.4);outline-offset:3px}
-.btn-circle{width:48px;height:48px;border-radius:50%;border:1px solid #d8dce7;background:#fff;color:var(--navy);font-size:20px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s,border-color .2s}
-.btn-circle:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
-.btn-navy{background:var(--red);color:#fff;border:none;font-family:'Hanken Grotesk',sans-serif;font-size:15.5px;font-weight:600;padding:16px 32px;border-radius:4px;white-space:nowrap;transition:background .2s,transform .2s,box-shadow .2s}
-.btn-navy:hover{background:#a50d26;transform:translateY(-2px);box-shadow:0 14px 28px -12px rgba(200,16,46,.6)}
-.view-all{background:none;border:none;font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--red);padding:0;display:inline-flex;align-items:center;gap:8px;transition:gap .2s}
-.view-all:hover{gap:14px}
-
-/* ── SECTION LABELS ── */
-.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:16px}
-.sh2{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,44px);line-height:1.06;letter-spacing:-.02em;color:#11182e;margin-bottom:16px}
-.sdesc{font-size:17px;color:#515c72}
-
-/* ── HERO ── */
-.hero{position:relative;overflow:hidden;background:#0a1324;color:#fff;min-height:88vh;display:flex;align-items:center}
-/* City image behind grid */
-#hero-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1800&q=80');background-size:cover;background-position:center 30%;opacity:.22;will-change:transform}
-.hero-ov{position:absolute;inset:0;background:radial-gradient(900px 520px at 80% 6%,rgba(46,78,150,.55),transparent 60%),radial-gradient(720px 520px at 4% 100%,rgba(200,16,46,.2),transparent 62%),linear-gradient(180deg,rgba(10,19,36,.7),rgba(10,19,36,.88));pointer-events:none}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:62px 62px;-webkit-mask-image:radial-gradient(circle at 74% 38%,#000 0%,transparent 76%);mask-image:radial-gradient(circle at 74% 38%,#000 0%,transparent 76%);pointer-events:none}
-#hero-glow{position:absolute;top:-140px;right:3%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(70,110,200,.30),transparent 65%);pointer-events:none;will-change:transform}
-.hero-svg{position:absolute;top:50%;right:-30px;transform:translateY(-50%);max-width:47%;opacity:.95;pointer-events:none}
-.hero-inner{position:relative;z-index:2;width:100%}
-.hero-wrap{max-width:1180px;margin:0 auto;padding:clamp(72px,9vw,126px) 32px clamp(28px,3vw,40px)}
-.hero-txt{max-width:690px}
-.hero-ey{display:inline-flex;align-items:center;gap:11px;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red-light);margin-bottom:26px}
-.hero-ey i{width:26px;height:2px;background:var(--red);display:block}
-.hero-h1{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(40px,5.6vw,74px);line-height:1.02;letter-spacing:-.03em;color:#fff;margin-bottom:28px}
-.hero-h1 .red{color:var(--red-light)}
-.hero-p{font-size:clamp(16px,1.4vw,19px);color:#aeb8d0;max-width:540px;margin-bottom:38px;line-height:1.6}
-.hero-acts{display:flex;gap:14px;flex-wrap:wrap}
-.hero-strip{margin-top:clamp(48px,6vw,82px);padding-top:26px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:space-between}
-.strip-label{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6b769a}
-.strip-items{display:flex;gap:clamp(14px,2.4vw,30px);flex-wrap:wrap;align-items:center}
-.strip-item{font-family:'Archivo',sans-serif;font-weight:600;font-size:clamp(15px,1.4vw,18px);color:#c9d2e4}
-.strip-dot{width:5px;height:5px;border-radius:50%;background:var(--red)}
-
-/* ── WHAT WE DO ── */
-.s-what{position:relative;background:#f7f8fb;padding:clamp(64px,8vw,108px) 0}
-.s-what-bg{position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(21,33,63,.05) 1px,transparent 0);background-size:28px 28px;pointer-events:none}
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
-.svc-card{background:#fff;border:1px solid #e8ebf2;border-radius:8px;padding:30px 28px;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
-.svc-card:hover{border-color:#c7cddc;transform:translateY(-5px);box-shadow:0 22px 44px -24px rgba(14,24,48,.4)}
-.svc-icon{width:40px;height:40px;border-radius:7px;background:var(--navy);margin-bottom:22px;display:flex;align-items:center;justify-content:center}
-.svc-icon.r{background:var(--red)}
-.svc-icon svg{width:18px;height:18px;fill:#fff}
-.svc-card h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;color:var(--navy);margin-bottom:10px}
-.svc-card p{font-size:15px;color:#5b6479}
-
-/* ── CAROUSEL ── */
-.s-carousel{background:#fff;padding:clamp(64px,8vw,108px) 0}
-.car-hdr{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px;flex-wrap:wrap}
-.car-outer{border-radius:14px;overflow:hidden;background:#0e1830}
-.car-track{display:flex;transition:transform .7s cubic-bezier(.45,0,.15,1);will-change:transform}
-.car-slide{flex:0 0 100%;position:relative;aspect-ratio:16/7;overflow:hidden}
-.car-slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 6s ease}
-.car-outer:hover .car-slide.active img{transform:scale(1.04)}
-.car-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,24,48,.85) 0%,rgba(14,24,48,.4) 55%,rgba(14,24,48,.1) 100%)}
-.car-txt{position:absolute;left:clamp(24px,4vw,56px);bottom:clamp(24px,4vw,52px);right:24px;max-width:520px}
-.car-lbl{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red-light);margin-bottom:12px}
-.car-txt h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(22px,2.8vw,34px);line-height:1.1;color:#fff;margin-bottom:10px}
-.car-txt p{font-size:15.5px;color:#c9d2e4}
-.dots{display:flex;gap:10px;margin-top:24px;align-items:center}
-.dot{height:8px;border:none;padding:0;background:none;display:flex;align-items:center}
-.dot-pip{display:block;height:8px;border-radius:4px;background:#cdd3e0;width:8px;transition:width .3s,background .3s}
-.dot.on .dot-pip{background:var(--red);width:28px}
-
-/* ── VALUES ── */
-.s-vals{position:relative;background:#fff;padding:clamp(64px,8vw,108px) 0}
-.vals-bg{position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(21,33,63,.025) 0 1px,transparent 1px 16px);pointer-events:none}
-.vals-lay{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,6vw,80px);align-items:start}
-.vals-cells{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8ebf2;border:1px solid #e8ebf2;border-radius:10px;overflow:hidden}
-.vcell{background:#fff;padding:32px 28px;transition:background .25s}
-.vcell:hover{background:#f7f8fb}
-.vnum{font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:var(--red);margin-bottom:14px}
-.vcell h4{font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:var(--navy);margin-bottom:8px}
-.vcell p{font-size:14.5px;color:#5b6479}
-
-/* ── MISSION PARALLAX ── */
-.s-mission{position:relative;overflow:hidden;background:#0e1830;color:#fff}
-#mpx{position:absolute;left:0;right:0;top:-20%;height:140%;background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=75');background-size:cover;background-position:center;opacity:.5;will-change:transform}
-.mission-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,24,48,.82),rgba(14,24,48,.9));pointer-events:none}
-.mission-in{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:clamp(72px,9vw,128px) 32px;display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,5vw,64px);align-items:center}
-.mission-vert{font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ff6b7a;writing-mode:vertical-rl;transform:rotate(180deg)}
-.mission-q{font-family:'Archivo',sans-serif;font-weight:600;font-size:clamp(24px,3vw,38px);line-height:1.2;letter-spacing:-.015em;color:#f3f5fa;max-width:880px}
-.mission-q .red{color:var(--red-light)}
-
-/* ── CTA BAND ── */
-.s-cta{background:#f7f8fb;padding:clamp(60px,7vw,96px) 0}
-.cta-flex{display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap}
-.cta-flex h2{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(26px,3.2vw,40px);line-height:1.08;letter-spacing:-.02em;color:#11182e;margin-bottom:10px}
-.cta-flex p{font-size:17px;color:#515c72}
-
-/* ── INNER HERO ── */
-.ihero{position:relative;overflow:hidden;background:#0a1324;color:#fff}
-.ihero-ov{position:absolute;inset:0;background:radial-gradient(820px 460px at 84% 0%,rgba(46,78,150,.5),transparent 62%),radial-gradient(620px 440px at 0% 100%,rgba(200,16,46,.18),transparent 62%),linear-gradient(180deg,#0b1426,#0a1324);pointer-events:none}
-.ihero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(circle at 86% 22%,#000,transparent 72%);mask-image:radial-gradient(circle at 86% 22%,#000,transparent 72%);pointer-events:none}
-.ihero-c{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:clamp(60px,8vw,104px) 32px clamp(48px,6vw,76px)}
-.ihero-ey{display:inline-flex;align-items:center;gap:11px;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red-light);margin-bottom:22px}
-.ihero-ey i{width:26px;height:2px;background:var(--red);display:block}
-.ihero h1{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(36px,5vw,60px);line-height:1.03;letter-spacing:-.028em;color:#fff;margin-bottom:20px;max-width:800px}
-.ihero p{font-size:clamp(16px,1.3vw,18.5px);color:#aeb8d0;max-width:620px;line-height:1.6}
-
-/* ── SERVICES ── */
-.ssec{padding:clamp(48px,6vw,80px) 0;border-top:1px solid #edeff5}
-.ssec.gray{background:#f7f8fb}
-.slay{display:grid;grid-template-columns:320px 1fr;gap:clamp(28px,5vw,64px);align-items:start}
-.sstick{position:sticky;top:100px}
-.stag{display:inline-block;font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.1em;color:var(--red);margin-bottom:14px}
-.sideh2{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(26px,3vw,34px);line-height:1.08;letter-spacing:-.02em;color:var(--navy);margin-bottom:14px}
-.sidep{font-size:15.5px;color:#5b6479;margin-bottom:20px}
-.side-img{border-radius:10px;overflow:hidden;aspect-ratio:4/3}
-.side-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s ease}
-.side-img:hover img{transform:scale(1.06)}
-.cards-2x2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.cards-auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.dcard{border:1px solid #e8ebf2;border-radius:8px;padding:26px 24px;transition:transform .25s,box-shadow .25s,border-color .25s}
-.dcard:hover{border-color:#c7cddc;transform:translateY(-4px);box-shadow:0 18px 38px -22px rgba(14,24,48,.38)}
-.dcard.wbg{background:#fbfbfd}
-.dcard h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;color:var(--navy);margin-bottom:14px}
-.dcard ul{display:flex;flex-direction:column;gap:9px}
-.dcard li{font-size:14.5px;color:#5b6479;padding-left:16px;position:relative}
-.dcard li::before{content:'•';position:absolute;left:0;color:var(--red)}
-.mcard{background:#fff;border:1px solid #e8ebf2;border-radius:8px;padding:24px;transition:transform .25s,box-shadow .25s,border-color .25s}
-.mcard:hover{border-color:#c7cddc;transform:translateY(-4px);box-shadow:0 18px 38px -22px rgba(14,24,48,.38)}
-.mcard h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;color:var(--navy);margin-bottom:8px}
-.mcard p{font-size:14px;color:#5b6479}
-.scta{background:var(--navy);color:#fff;padding:clamp(56px,6vw,88px) 0}
-.scta .cta-flex h2{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(24px,3vw,36px);line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:0}
-
-/* ── ABOUT ── */
-.about-story{max-width:1180px;margin:0 auto;padding:clamp(56px,7vw,88px) 32px clamp(48px,6vw,80px)}
-.as-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,72px);align-items:center}
-.as-txt{display:flex;flex-direction:column;gap:20px}
-.as-txt .lead{font-size:18px;color:#2a3350;font-weight:500}
-.as-txt .body{font-size:16.5px;color:#515c72}
-.as-img{border-radius:12px;overflow:hidden;aspect-ratio:4/4.4;box-shadow:0 30px 60px -28px rgba(14,24,48,.4)}
-.as-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease}
-.as-img:hover img{transform:scale(1.06)}
-.s-mv{position:relative;background:#f7f8fb;border-top:1px solid #edeff5;padding:clamp(56px,7vw,96px) 0}
-.mv-bg{position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(21,33,63,.05) 1px,transparent 0);background-size:28px 28px;pointer-events:none}
-.av-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.acard{background:#fff;border:1px solid #e8ebf2;border-radius:8px;padding:28px 26px;transition:transform .25s,box-shadow .25s}
-.acard:hover{transform:translateY(-4px);box-shadow:0 18px 38px -22px rgba(14,24,48,.35)}
-.acard h4{font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:var(--navy);margin-bottom:8px}
-.acard p{font-size:14.5px;color:#5b6479}
-.s-resp{padding:clamp(56px,7vw,96px) 0}
-.resp-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px)}
-.resp-h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(22px,2.4vw,28px);line-height:1.12;letter-spacing:-.02em;color:#11182e;margin-bottom:20px}
-.resp-list{display:flex;flex-direction:column;gap:13px}
-.resp-list li{font-size:15.5px;color:#515c72;padding-left:20px;position:relative}
-.resp-list li::before{content:'•';position:absolute;left:0;color:var(--red);font-weight:700}
-.qcard{position:relative;border-radius:12px;overflow:hidden;padding:clamp(32px,4vw,48px);color:#fff;display:flex;flex-direction:column;justify-content:center;min-height:280px}
-.qcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.qcard-ov{position:absolute;inset:0;background:linear-gradient(150deg,rgba(21,33,63,.92),rgba(14,24,48,.86))}
-.qcard-c{position:relative;z-index:2}
-.qcard h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(20px,2.2vw,26px);line-height:1.14;letter-spacing:-.015em;margin-bottom:14px}
-.qcard p{font-size:16px;color:#c9d2e4}
-
-/* ── CONTACT ── */
-.contact-body{max-width:1180px;margin:0 auto;padding:clamp(56px,7vw,88px) 32px clamp(56px,7vw,96px)}
-.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,56px);align-items:start}
-.cinfo{display:flex;flex-direction:column;gap:4px}
-.cinfo-row{padding:24px 0;border-top:1px solid #e8ebf2}
-.cinfo-row:last-child{border-bottom:1px solid #e8ebf2}
-.cinfo-lbl{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
-.cinfo-val{font-size:16px;color:#2a3350;line-height:1.5}
-.cform-card{background:#fff;border:1px solid #e8ebf2;border-radius:12px;padding:clamp(28px,3vw,40px);box-shadow:0 1px 2px rgba(17,24,46,.04)}
-.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.fgrp{margin-bottom:16px}
-.fgrp:last-of-type{margin-bottom:22px}
-.flbl{display:block;font-size:13px;font-weight:600;color:#2a3350;margin-bottom:7px}
-.finput{width:100%;border:1px solid #d8dce7;border-radius:6px;padding:12px 14px;font-family:'Hanken Grotesk',sans-serif;font-size:15px;color:#11182e;outline:none;transition:border-color .2s,box-shadow .2s;background:#fff}
-.finput:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(21,33,63,.12)}
-.finput:hover:not(:focus){border-color:#b0b7cc}
-.success{text-align:center;padding:40px 12px;display:none}
-.success-icon{width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 20px}
-.success h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:24px;color:var(--navy);margin-bottom:10px}
-.success p{font-size:16px;color:#5b6479}
-.cmap-wrap{max-width:1180px;margin:0 auto;padding:0 32px clamp(56px,7vw,96px)}
-.cmap{position:relative;height:320px;border-radius:12px;overflow:hidden;box-shadow:0 24px 50px -28px rgba(14,24,48,.4)}
-.cmap img{width:100%;height:100%;object-fit:cover;display:block}
-.cmap-ov{position:absolute;inset:0;background:linear-gradient(120deg,rgba(14,24,48,.55),rgba(14,24,48,.15))}
-.cmap-pin{position:absolute;left:clamp(20px,3vw,40px);bottom:clamp(20px,3vw,40px);background:#fff;border-radius:10px;padding:18px 22px;display:flex;align-items:center;gap:14px;box-shadow:0 18px 40px -18px rgba(14,24,48,.4)}
-.pin-icon{width:38px;height:38px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0}
-.pin-name{font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;color:var(--navy)}
-.pin-addr{font-size:13px;color:#7a8398}
-
-/* ── FOOTER ── */
-footer{background:#0e1830;color:#c2cbde}
-.ft-in{max-width:1180px;margin:0 auto;padding:clamp(56px,6vw,80px) 32px 32px}
-.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px}
-.ft-brand{font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.01em;color:#fff;margin-bottom:14px}
-.ft-brand .red{color:#ff6b7a}
-.ft-tag{font-size:14.5px;color:#8b97b3;max-width:280px;margin-bottom:18px}
-.ft-loc{font-size:13px;color:#6f7c9c}
-.ft-clbl{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6f7c9c;margin-bottom:16px}
-.ft-links{display:flex;flex-direction:column;gap:11px;align-items:flex-start}
-.ft-btn{background:none;border:none;padding:0;font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;color:#c2cbde;transition:color .2s;text-align:left}
-.ft-btn:hover{color:#fff}
-.ft-list{display:flex;flex-direction:column;gap:11px;font-size:14.5px;color:#c2cbde}
-.ft-bot{margin-top:48px;padding-top:24px;border-top:1px solid #1f2c4a;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.ft-bot span{font-size:13px;color:#6f7c9c}
-
-/* ── RESPONSIVE ── */
-@media(max-width:768px){
-  .pills{display:none}
-  .hero-svg{display:none}
-  .vals-lay,.as-grid,.resp-grid,.contact-grid{grid-template-columns:1fr}
-  .slay{grid-template-columns:1fr}
-  .cards-2x2{grid-template-columns:1fr}
-  .ft-grid{grid-template-columns:1fr 1fr}
-  .sstick{position:static}
-}
-@media(max-width:480px){
-  .form-2col{grid-template-columns:1fr}
-  .ft-grid{grid-template-columns:1fr}
-  .hero-acts{flex-direction:column}
-  .hero-acts button{width:100%;justify-content:center}
-  .wrap{padding:0 20px}
-}
-</style>
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
-<!-- ═══════════════════════ UTILITY BAR ═══════════════════════ -->
-<div class="ubar">
-  <div class="ubar-in">
-    <div class="ubar-l">
-      <span class="udot"></span>
-      <span style="color:#cdd5e6;font-weight:600;letter-spacing:.02em">Harare, Zimbabwe</span>
-      <span style="color:#46527a">Multi-sector technology &amp; trade</span>
-    </div>
-    <div class="ubar-r">
-      <span>0712 538 836</span>
-      <span class="usep"></span>
-      <span>innovantisolutions.co.zw</span>
-      <span class="usep"></span>
-      <span>Mon–Fri &middot; 08:00–17:00</span>
-    </div>
-  </div>
-</div>
+<div id="site-header"></div>
 
-<!-- ═══════════════════════ NAV ═══════════════════════ -->
-<nav class="nav">
-  <div class="nav-in">
-    <button class="nav-logo" data-nav="home" aria-label="Home">
-      <img src="project/assets/innovanti-logo.png" alt="Innovanti Solutions">
-    </button>
-    <div class="pills">
-      <button class="pill on" data-nav="home"><span class="pbg"></span><span>Home</span></button>
-      <button class="pill" data-nav="services"><span class="pbg"></span><span>Services</span></button>
-      <button class="pill" data-nav="about"><span class="pbg"></span><span>About</span></button>
-      <button class="pill" data-nav="contact"><span class="pbg"></span><span>Contact</span></button>
-    </div>
-    <button class="nav-cta" data-nav="contact">Request a proposal &rarr;</button>
-  </div>
-</nav>
-
-<!-- ═══════════════════════ HOME ═══════════════════════ -->
-<div class="page active" id="pg-home">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div id="hero-img"></div>
-    <div class="hero-ov"></div>
-    <div class="hero-grid"></div>
-    <div id="hero-glow"></div>
-
-    <!-- Network constellation -->
-    <svg class="hero-svg" aria-hidden="true" viewBox="0 0 520 480" width="520" height="480">
-      <g stroke="rgba(150,180,240,.26)" stroke-width="1.2">
-        <line x1="260" y1="240" x2="80" y2="90"/><line x1="260" y1="240" x2="190" y2="60"/>
-        <line x1="260" y1="240" x2="430" y2="80"/><line x1="260" y1="240" x2="470" y2="220"/>
-        <line x1="260" y1="240" x2="420" y2="400"/><line x1="260" y1="240" x2="250" y2="450"/>
-        <line x1="260" y1="240" x2="90" y2="380"/><line x1="260" y1="240" x2="50" y2="210"/>
-        <line x1="80" y1="90" x2="190" y2="60"/><line x1="430" y1="80" x2="470" y2="220"/>
-        <line x1="420" y1="400" x2="250" y2="450"/><line x1="90" y1="380" x2="50" y2="210"/>
-      </g>
-      <circle cx="260" cy="240" r="34" fill="none" stroke="rgba(200,16,46,.4)" stroke-width="1.4"/>
-      <circle cx="260" cy="240" r="56" fill="none" stroke="rgba(150,180,240,.16)" stroke-width="1"/>
-      <circle class="pnode" data-ph="0"   cx="80"  cy="90"  r="5"   fill="#7fa0e0"/>
-      <circle class="pnode" data-ph="1.1" cx="190" cy="60"  r="4"   fill="#9fb6ea"/>
-      <circle class="pnode" data-ph="2.2" cx="430" cy="80"  r="5.5" fill="#ff7f8d"/>
-      <circle class="pnode" data-ph="3.0" cx="470" cy="220" r="4"   fill="#9fb6ea"/>
-      <circle class="pnode" data-ph="3.8" cx="420" cy="400" r="5"   fill="#7fa0e0"/>
-      <circle class="pnode" data-ph="1.6" cx="250" cy="450" r="4.5" fill="#ff7f8d"/>
-      <circle class="pnode" data-ph="2.7" cx="90"  cy="380" r="5"   fill="#9fb6ea"/>
-      <circle class="pnode" data-ph="0.6" cx="50"  cy="210" r="4"   fill="#7fa0e0"/>
-      <circle cx="260" cy="240" r="9" fill="#C8102E"/>
-    </svg>
-
-    <div class="hero-inner">
-      <div class="hero-wrap">
-        <div class="hero-txt">
-          <div class="hero-ey"><i></i>Harare, Zimbabwe &middot; Multi-sector enterprise</div>
-          <h1 class="hero-h1">Innovating technology.<br>Connecting markets.<br><span class="red">Delivering value.</span></h1>
-          <p class="hero-p">Innovanti Solutions is a diversified partner in IT, cybersecurity, procurement and trade — helping businesses, institutions and governments operate with confidence and grow with purpose.</p>
-          <div class="hero-acts">
-            <button class="btn-r" data-nav="contact">Request a proposal <span>→</span></button>
-            <button class="btn-ghost" data-nav="services">Explore services</button>
-          </div>
-        </div>
-        <div class="hero-strip">
-          <span class="strip-label">Trusted across</span>
-          <div class="strip-items">
-            <span class="strip-item">Government</span><span class="strip-dot"></span>
-            <span class="strip-item">Institutions</span><span class="strip-dot"></span>
-            <span class="strip-item">Enterprise</span><span class="strip-dot"></span>
-            <span class="strip-item">SMEs</span>
-          </div>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div id="hero-img"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-grid"></div>
+  <div id="hero-glow"></div>
+  <svg class="hero-svg" aria-hidden="true" viewBox="0 0 520 480" width="520" height="480">
+    <g stroke="rgba(150,180,240,.26)" stroke-width="1.2">
+      <line x1="260" y1="240" x2="80" y2="90"/><line x1="260" y1="240" x2="190" y2="60"/>
+      <line x1="260" y1="240" x2="430" y2="80"/><line x1="260" y1="240" x2="470" y2="220"/>
+      <line x1="260" y1="240" x2="420" y2="400"/><line x1="260" y1="240" x2="250" y2="450"/>
+      <line x1="260" y1="240" x2="90" y2="380"/><line x1="260" y1="240" x2="50" y2="210"/>
+      <line x1="80" y1="90" x2="190" y2="60"/><line x1="430" y1="80" x2="470" y2="220"/>
+      <line x1="420" y1="400" x2="250" y2="450"/><line x1="90" y1="380" x2="50" y2="210"/>
+    </g>
+    <circle cx="260" cy="240" r="34" fill="none" stroke="rgba(200,16,46,.4)" stroke-width="1.4"/>
+    <circle cx="260" cy="240" r="56" fill="none" stroke="rgba(150,180,240,.16)" stroke-width="1"/>
+    <circle class="pnode" data-ph="0"   cx="80"  cy="90"  r="5"   fill="#7fa0e0"/>
+    <circle class="pnode" data-ph="1.1" cx="190" cy="60"  r="4"   fill="#9fb6ea"/>
+    <circle class="pnode" data-ph="2.2" cx="430" cy="80"  r="5.5" fill="#ff7f8d"/>
+    <circle class="pnode" data-ph="3.0" cx="470" cy="220" r="4"   fill="#9fb6ea"/>
+    <circle class="pnode" data-ph="3.8" cx="420" cy="400" r="5"   fill="#7fa0e0"/>
+    <circle class="pnode" data-ph="1.6" cx="250" cy="450" r="4.5" fill="#ff7f8d"/>
+    <circle class="pnode" data-ph="2.7" cx="90"  cy="380" r="5"   fill="#9fb6ea"/>
+    <circle class="pnode" data-ph="0.6" cx="50"  cy="210" r="4"   fill="#7fa0e0"/>
+    <circle cx="260" cy="240" r="9" fill="#C8102E"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-wrap">
+      <div class="hero-txt">
+        <div class="hero-ey"><i></i>Harare, Zimbabwe &middot; Multi-sector enterprise</div>
+        <h1 class="hero-h1">Innovating technology.<br>Connecting markets.<br><span class="red">Delivering value.</span></h1>
+        <p class="hero-p">Innovanti Solutions is a diversified partner in IT, cybersecurity, procurement and trade — helping businesses, institutions and governments operate with confidence and grow with purpose.</p>
+        <div class="hero-acts">
+          <a href="contact.html" class="btn-r">Request a proposal <span>→</span></a>
+          <a href="services.html" class="btn-ghost">Explore services</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- WHAT WE DO -->
-  <section class="s-what">
-    <div class="s-what-bg"></div>
-    <div class="wrap" style="position:relative">
-      <div style="max-width:640px;margin-bottom:52px" class="reveal">
-        <div class="eyebrow">What we do</div>
-        <h2 class="sh2">Integrated solutions across technology and trade.</h2>
-        <p class="sdesc">From infrastructure and security to sourcing and brokerage — one partner bridging suppliers, manufacturers, service providers and end-users.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-          <h3>IT Solutions &amp; Consulting</h3>
-          <p>Strategy, infrastructure and digital transformation built around how you operate.</p>
-        </div>
-        <div class="svc-card reveal d1">
-          <div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
-          <h3>Network Solutions</h3>
-          <p>Design, deployment and management of secure, high-performance networks.</p>
-        </div>
-        <div class="svc-card reveal d2">
-          <div class="svc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-          <h3>Managed IT Services</h3>
-          <p>Proactive support, monitoring and maintenance that keep systems running.</p>
-        </div>
-        <div class="svc-card reveal d3">
-          <div class="svc-icon r"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h3>Cybersecurity</h3>
-          <p>Assessments, protection and training that safeguard your data and your people.</p>
-        </div>
-        <div class="svc-card reveal d4">
-          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
-          <h3>Procurement &amp; Supply Chain</h3>
-          <p>Strategic sourcing that secures quality products at competitive prices.</p>
-        </div>
-        <div class="svc-card reveal d5">
-          <div class="svc-icon r"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-          <h3>Brokerage &amp; Trading</h3>
-          <p>Commodity brokerage and general trade connecting markets end to end.</p>
-        </div>
-      </div>
-      <div style="margin-top:40px" class="reveal">
-        <button class="view-all" data-nav="services">View all services <span>→</span></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- CAROUSEL -->
-  <section class="s-carousel">
-    <div class="wrap">
-      <div class="car-hdr reveal">
-        <div style="max-width:560px">
-          <div class="eyebrow">Where we deliver</div>
-          <h2 class="sh2" style="margin-bottom:0">Capability in the field.</h2>
-        </div>
-        <div style="display:flex;gap:10px">
-          <button class="btn-circle" id="prev-btn" aria-label="Previous">&#8592;</button>
-          <button class="btn-circle" id="next-btn" aria-label="Next">&#8594;</button>
-        </div>
-      </div>
-      <div class="car-outer reveal" id="car-outer">
-        <div class="car-track" id="car-track">
-          <div class="car-slide active">
-            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=75" alt="Data centre" loading="lazy">
-            <div class="car-ov"></div>
-            <div class="car-txt">
-              <div class="car-lbl">IT &amp; Infrastructure</div>
-              <h3>Resilient infrastructure, engineered to perform.</h3>
-              <p>Networks, servers and managed services built for uptime and security.</p>
-            </div>
-          </div>
-          <div class="car-slide">
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=75" alt="Cybersecurity" loading="lazy">
-            <div class="car-ov"></div>
-            <div class="car-txt">
-              <div class="car-lbl">Cybersecurity</div>
-              <h3>Security that protects data and people.</h3>
-              <p>Assessments, endpoint protection and awareness training, end to end.</p>
-            </div>
-          </div>
-          <div class="car-slide">
-            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=75" alt="Logistics" loading="lazy">
-            <div class="car-ov"></div>
-            <div class="car-txt">
-              <div class="car-lbl">Procurement &amp; Supply Chain</div>
-              <h3>Strategic sourcing, delivered to your door.</h3>
-              <p>Quality products at competitive prices, with logistics handled.</p>
-            </div>
-          </div>
-          <div class="car-slide">
-            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=75" alt="Trading" loading="lazy">
-            <div class="car-ov"></div>
-            <div class="car-txt">
-              <div class="car-lbl">Trading &amp; Brokerage</div>
-              <h3>Connecting markets with confidence.</h3>
-              <p>Commodity brokerage and general trade across the value chain.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="dots" id="dots">
-        <button class="dot on" data-s="0" aria-label="Slide 1"><span class="dot-pip"></span></button>
-        <button class="dot" data-s="1" aria-label="Slide 2"><span class="dot-pip"></span></button>
-        <button class="dot" data-s="2" aria-label="Slide 3"><span class="dot-pip"></span></button>
-        <button class="dot" data-s="3" aria-label="Slide 4"><span class="dot-pip"></span></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- VALUES -->
-  <section class="s-vals">
-    <div class="vals-bg"></div>
-    <div class="wrap" style="position:relative">
-      <div class="vals-lay">
-        <div class="reveal">
-          <div class="eyebrow">Why Innovanti</div>
-          <h2 class="sh2">Expertise that earns trust, delivery that creates value.</h2>
-          <p class="sdesc">We combine technical depth, commercial experience and strategic market knowledge — held to a single standard of professionalism, reliability and value creation.</p>
-        </div>
-        <div class="vals-cells reveal d2">
-          <div class="vcell"><div class="vnum">01</div><h4>Innovation</h4><p>Creativity, technology and continuous improvement in every solution.</p></div>
-          <div class="vcell"><div class="vnum">02</div><h4>Integrity</h4><p>Transparency, honesty and ethical responsibility in how we work.</p></div>
-          <div class="vcell"><div class="vnum">03</div><h4>Excellence</h4><p>Superior quality and professionalism across every engagement.</p></div>
-          <div class="vcell"><div class="vnum">04</div><h4>Customer Focus</h4><p>Clients at the centre of everything we plan and deliver.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PARALLAX MISSION BAND -->
-  <section class="s-mission">
-    <div id="mpx"></div>
-    <div class="mission-ov"></div>
-    <div class="mission-in reveal">
-      <div class="mission-vert">Our Mission</div>
-      <p class="mission-q">To provide innovative technology, strategic sourcing, commodity brokerage and quality products that empower businesses and communities — creating <span class="red">sustainable value</span> for clients, partners and stakeholders.</p>
-    </div>
-  </section>
-
-  <!-- HOME CTA -->
-  <section class="s-cta">
-    <div class="wrap">
-      <div class="cta-flex reveal">
-        <div>
-          <h2>Let's build what's next, together.</h2>
-          <p>Tell us what you need — we'll respond with a clear, considered proposal.</p>
-        </div>
-        <button class="btn-navy" data-nav="contact">Request a proposal</button>
-      </div>
-    </div>
-  </section>
-
-</div><!-- /pg-home -->
-
-
-<!-- ═══════════════════════ SERVICES ═══════════════════════ -->
-<div class="page" id="pg-services">
-
-  <section class="ihero">
-    <div class="ihero-ov"></div><div class="ihero-grid"></div>
-    <div class="ihero-c">
-      <div class="ihero-ey"><i></i>Services</div>
-      <h1>Capabilities that span technology and trade.</h1>
-      <p>A single, accountable partner across IT, security, procurement and commercial facilitation — tailored to the realities of your sector.</p>
-    </div>
-  </section>
-
-  <!-- IT -->
-  <section class="ssec">
-    <div class="wrap">
-      <div class="slay">
-        <div class="sstick">
-          <div class="stag">01 / TECHNOLOGY</div>
-          <h2 class="sideh2">Information Technology Solutions</h2>
-          <p class="sidep">Comprehensive IT services that help organisations leverage technology for efficiency, security and growth.</p>
-          <div class="side-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=75" alt="Technology" loading="lazy"></div>
-        </div>
-        <div class="cards-2x2">
-          <div class="dcard reveal"><h3>IT Consulting</h3><ul><li>IT strategy development</li><li>Digital transformation planning</li><li>Technology assessments</li><li>IT infrastructure design</li></ul></div>
-          <div class="dcard reveal d1"><h3>Network Solutions</h3><ul><li>Network design &amp; deployment</li><li>LAN / WAN implementation</li><li>Wireless &amp; structured cabling</li><li>Monitoring &amp; management</li></ul></div>
-          <div class="dcard reveal d2"><h3>Managed IT Services</h3><ul><li>Support &amp; maintenance</li><li>Helpdesk &amp; remote monitoring</li><li>Infrastructure &amp; sys admin</li><li>Preventive maintenance</li></ul></div>
-          <div class="dcard wbg reveal d3"><h3>Cybersecurity</h3><ul><li>Security &amp; vulnerability testing</li><li>Firewall &amp; endpoint protection</li><li>Security awareness training</li><li>Data protection solutions</li></ul></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCUREMENT -->
-  <section class="ssec gray">
-    <div class="wrap">
-      <div class="slay">
-        <div class="reveal">
-          <div class="stag">02 / SOURCING</div>
-          <h2 class="sideh2">Procurement &amp; Supply Chain</h2>
-          <p class="sidep">Strategic procurement that helps organisations obtain quality products and services at competitive prices.</p>
-        </div>
-        <div class="cards-auto">
-          <div class="mcard reveal"><h3>Strategic Sourcing</h3><p>Identifying and securing the right suppliers for quality and price.</p></div>
-          <div class="mcard reveal d1"><h3>Vendor Management</h3><p>Competitive tendering, evaluation and supplier relationships.</p></div>
-          <div class="mcard reveal d2"><h3>Logistics &amp; Delivery</h3><p>Coordinated supply, delivery and fulfilment to your site.</p></div>
-          <div class="mcard reveal d3"><h3>Quality Assurance</h3><p>Compliance and standards upheld across every order.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRADING -->
-  <section class="ssec">
-    <div class="wrap">
-      <div class="slay">
-        <div class="reveal">
-          <div class="stag">03 / TRADE</div>
-          <h2 class="sideh2">Trading &amp; Commodity Brokerage</h2>
-          <p class="sidep">Bridging suppliers, manufacturers and end-users with market intelligence and trusted facilitation.</p>
-        </div>
-        <div class="cards-auto">
-          <div class="mcard reveal"><h3>Commodity Brokerage</h3><p>Connecting buyers and sellers across markets with integrity.</p></div>
-          <div class="mcard reveal d1"><h3>General Trading</h3><p>Sourcing and supplying goods across diverse categories.</p></div>
-          <div class="mcard reveal d2"><h3>Hardware Supply</h3><p>Procurement and support for IT and business hardware.</p></div>
-          <div class="mcard reveal d3"><h3>Software Implementation</h3><p>Development and deployment aligned to your workflows.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="scta">
-    <div class="wrap">
-      <div class="cta-flex reveal">
-        <h2>Have a requirement in mind? Let's scope it.</h2>
-        <button class="btn-r" data-nav="contact">Get in touch</button>
-      </div>
-    </div>
-  </section>
-
-</div><!-- /pg-services -->
-
-
-<!-- ═══════════════════════ ABOUT ═══════════════════════ -->
-<div class="page" id="pg-about">
-
-  <section class="ihero">
-    <div class="ihero-ov"></div><div class="ihero-grid"></div>
-    <div class="ihero-c">
-      <div class="ihero-ey"><i></i>About us</div>
-      <h1>A trusted partner across technology, sourcing and trade.</h1>
-      <p>Diversified expertise in technology, strategic sourcing and trade — built on integrity, professionalism and a commitment to delivery.</p>
-    </div>
-  </section>
-
-  <div class="about-story">
-    <div class="as-grid">
-      <div class="as-txt reveal">
-        <p class="lead">Innovanti Solutions is a dynamic, diversified enterprise specialising in IT solutions, hardware and software services, commodity brokerage, procurement and general business services.</p>
-        <p class="body">We are committed to delivering innovative, reliable and cost-effective solutions that enable businesses, institutions, governments and individuals to achieve operational excellence, sustainable growth and competitive advantage.</p>
-        <p class="body">With a strong focus on technology, strategic sourcing and commercial facilitation, we serve as a trusted partner across sectors — bridging the gap between suppliers, manufacturers, service providers and end-users through industry expertise, market intelligence and strategic partnerships.</p>
-      </div>
-      <div class="as-img reveal d2">
-        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=75" alt="Team collaboration" loading="lazy">
-      </div>
-    </div>
-  </div>
-
-  <section class="s-mv">
-    <div class="mv-bg"></div>
-    <div class="wrap" style="position:relative">
-      <div style="max-width:720px;margin-bottom:44px" class="reveal">
-        <div class="eyebrow">Mission &amp; Values</div>
-        <p style="font-family:'Archivo',sans-serif;font-weight:600;font-size:clamp(22px,2.6vw,32px);line-height:1.22;letter-spacing:-.015em;color:#15213f">To empower businesses and communities with innovative technology, strategic sourcing and quality products — creating sustainable value for clients, partners and stakeholders.</p>
-      </div>
-      <div class="av-grid">
-        <div class="acard reveal"><h4>Innovation</h4><p>We embrace creativity, technology and continuous improvement.</p></div>
-        <div class="acard reveal d1"><h4>Integrity</h4><p>We conduct business with transparency, honesty and ethics.</p></div>
-        <div class="acard reveal d2"><h4>Excellence</h4><p>We strive for superior quality and professionalism throughout.</p></div>
-        <div class="acard reveal d3"><h4>Customer Focus</h4><p>We place our clients at the centre of everything we do.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="s-resp">
-    <div class="wrap">
-      <div class="resp-grid">
-        <div class="reveal">
-          <h3 class="resp-h3">Sustainability &amp; corporate responsibility</h3>
-          <ul class="resp-list">
-            <li>Promoting ethical business practices</li>
-            <li>Supporting local economic development</li>
-            <li>Encouraging environmental sustainability</li>
-            <li>Investing in innovation and skills development</li>
-            <li>Building long-term stakeholder relationships</li>
-            <li>Supporting community development initiatives</li>
-          </ul>
-        </div>
-        <div class="qcard reveal d2">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=75" alt="Quality" loading="lazy">
-          <div class="qcard-ov"></div>
-          <div class="qcard-c">
-            <h3>Commitment to quality</h3>
-            <p>We are dedicated to delivering products and services that consistently exceed expectations — maintaining high standards of quality, compliance, operational efficiency and professional conduct across all operations.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="s-cta">
-    <div class="wrap">
-      <div class="cta-flex reveal">
-        <div>
-          <h2>Work with a partner you can trust.</h2>
-        </div>
-        <button class="btn-navy" data-nav="contact">Contact us</button>
-      </div>
-    </div>
-  </section>
-
-</div><!-- /pg-about -->
-
-
-<!-- ═══════════════════════ CONTACT ═══════════════════════ -->
-<div class="page" id="pg-contact">
-
-  <section class="ihero">
-    <div class="ihero-ov"></div><div class="ihero-grid"></div>
-    <div class="ihero-c">
-      <div class="ihero-ey"><i></i>Contact</div>
-      <h1>Let's start a conversation.</h1>
-      <p>Share your requirement and we'll respond with a clear, considered proposal.</p>
-    </div>
-  </section>
-
-  <div class="contact-body">
-    <div class="contact-grid">
-      <div class="cinfo reveal">
-        <div class="cinfo-row"><div class="cinfo-lbl">Visit</div><p class="cinfo-val">No. 42 Tigere Mansions,<br>Corner 6th &amp; Central Avenue,<br>Harare, Zimbabwe</p></div>
-        <div class="cinfo-row"><div class="cinfo-lbl">Call</div><p class="cinfo-val"><a href="tel:0712538836" style="color:inherit;text-decoration:none">0712 538 836</a></p></div>
-        <div class="cinfo-row"><div class="cinfo-lbl">Email</div><p class="cinfo-val">innovantisolutions.co.zw</p></div>
-        <div class="cinfo-row"><div class="cinfo-lbl">Hours</div><p class="cinfo-val">Monday &ndash; Friday &middot; 08:00 &ndash; 17:00</p></div>
-      </div>
-      <div class="cform-card reveal d1">
-        <div class="success" id="form-success">
-          <div class="success-icon">✓</div>
-          <h3>Thank you.</h3>
-          <p>Your enquiry has been received. Our team will be in touch shortly.</p>
-        </div>
-        <form id="contact-form">
-          <div class="form-2col">
-            <div><label class="flbl" for="f-name">Full name</label><input class="finput" id="f-name" name="name" placeholder="Jane Moyo" autocomplete="name"></div>
-            <div><label class="flbl" for="f-email">Email</label><input class="finput" id="f-email" name="email" type="email" placeholder="jane@company.co.zw" autocomplete="email"></div>
-          </div>
-          <div class="fgrp"><label class="flbl" for="f-org">Organisation</label><input class="finput" id="f-org" name="company" placeholder="Company or institution" autocomplete="organization"></div>
-          <div class="fgrp"><label class="flbl" for="f-msg">How can we help?</label><textarea class="finput" id="f-msg" name="message" placeholder="Tell us about your requirement…" rows="4" style="resize:vertical"></textarea></div>
-          <button type="submit" class="btn-r" style="width:100%;justify-content:center;font-size:15.5px;padding:15px;border-radius:6px">Send enquiry</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="cmap-wrap">
-    <div class="cmap reveal">
-      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=75" alt="Office" loading="lazy">
-      <div class="cmap-ov"></div>
-      <div class="cmap-pin">
-        <div class="pin-icon">&#9679;</div>
-        <div>
-          <div class="pin-name">Innovanti Solutions</div>
-          <div class="pin-addr">Tigere Mansions, Harare</div>
+      <div class="hero-strip">
+        <span class="strip-label">Trusted across</span>
+        <div class="strip-items">
+          <span class="strip-item">Government</span><span class="strip-dot"></span>
+          <span class="strip-item">Institutions</span><span class="strip-dot"></span>
+          <span class="strip-item">Enterprise</span><span class="strip-dot"></span>
+          <span class="strip-item">SMEs</span>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-</div><!-- /pg-contact -->
+<!-- ═══ WHAT WE DO ═══ -->
+<section class="s-what">
+  <div class="s-what-bg"></div>
+  <div class="wrap" style="position:relative">
+    <div style="max-width:640px;margin-bottom:52px" class="reveal">
+      <div class="eyebrow">What we do</div>
+      <h2 class="sh2">Integrated solutions across technology and trade.</h2>
+      <p class="sdesc">From infrastructure and security to sourcing and brokerage — one partner bridging suppliers, manufacturers, service providers and end-users.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="svc-card reveal">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h3>IT Solutions &amp; Consulting</h3>
+        <p>Strategy, infrastructure and digital transformation built around how you operate.</p>
+      </div>
+      <div class="svc-card reveal d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+        <h3>Network Solutions</h3>
+        <p>Design, deployment and management of secure, high-performance networks.</p>
+      </div>
+      <div class="svc-card reveal d2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Managed IT Services</h3>
+        <p>Proactive support, monitoring and maintenance that keep systems running.</p>
+      </div>
+      <div class="svc-card reveal d3">
+        <div class="svc-icon r"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Cybersecurity</h3>
+        <p>Assessments, protection and training that safeguard your data and your people.</p>
+      </div>
+      <div class="svc-card reveal d4">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+        <h3>Procurement &amp; Supply Chain</h3>
+        <p>Strategic sourcing that secures quality products at competitive prices.</p>
+      </div>
+      <div class="svc-card reveal d5">
+        <div class="svc-icon r"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <h3>Brokerage &amp; Trading</h3>
+        <p>Commodity brokerage and general trade connecting markets end to end.</p>
+      </div>
+    </div>
+    <div style="margin-top:40px" class="reveal">
+      <a href="services.html" class="view-all">View all services <span>→</span></a>
+    </div>
+  </div>
+</section>
 
+<!-- ═══ CAROUSEL ═══ -->
+<section class="s-carousel">
+  <div class="wrap">
+    <div class="car-hdr reveal">
+      <div style="max-width:560px">
+        <div class="eyebrow">Where we deliver</div>
+        <h2 class="sh2" style="margin-bottom:0">Capability in the field.</h2>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn-circle" id="prev-btn" aria-label="Previous">&#8592;</button>
+        <button class="btn-circle" id="next-btn" aria-label="Next">&#8594;</button>
+      </div>
+    </div>
+    <div class="car-outer reveal" id="car-outer">
+      <div class="car-track" id="car-track">
+        <div class="car-slide active">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=75" alt="Data centre" loading="lazy">
+          <div class="car-ov"></div>
+          <div class="car-txt"><div class="car-lbl">IT &amp; Infrastructure</div><h3>Resilient infrastructure, engineered to perform.</h3><p>Networks, servers and managed services built for uptime and security.</p></div>
+        </div>
+        <div class="car-slide">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=75" alt="Cybersecurity" loading="lazy">
+          <div class="car-ov"></div>
+          <div class="car-txt"><div class="car-lbl">Cybersecurity</div><h3>Security that protects data and people.</h3><p>Assessments, endpoint protection and awareness training, end to end.</p></div>
+        </div>
+        <div class="car-slide">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=75" alt="Logistics" loading="lazy">
+          <div class="car-ov"></div>
+          <div class="car-txt"><div class="car-lbl">Procurement &amp; Supply Chain</div><h3>Strategic sourcing, delivered to your door.</h3><p>Quality products at competitive prices, with logistics handled.</p></div>
+        </div>
+        <div class="car-slide">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=75" alt="Trading" loading="lazy">
+          <div class="car-ov"></div>
+          <div class="car-txt"><div class="car-lbl">Trading &amp; Brokerage</div><h3>Connecting markets with confidence.</h3><p>Commodity brokerage and general trade across the value chain.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="dots" id="dots">
+      <button class="dot on" data-s="0" aria-label="Slide 1"><span class="dot-pip"></span></button>
+      <button class="dot" data-s="1" aria-label="Slide 2"><span class="dot-pip"></span></button>
+      <button class="dot" data-s="2" aria-label="Slide 3"><span class="dot-pip"></span></button>
+      <button class="dot" data-s="3" aria-label="Slide 4"><span class="dot-pip"></span></button>
+    </div>
+  </div>
+</section>
 
-<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
-<footer>
-  <div class="ft-in">
-    <div class="ft-grid">
+<!-- ═══ VALUES ═══ -->
+<section class="s-vals">
+  <div class="vals-bg"></div>
+  <div class="wrap" style="position:relative">
+    <div class="vals-lay">
+      <div class="reveal">
+        <div class="eyebrow">Why Innovanti</div>
+        <h2 class="sh2">Expertise that earns trust, delivery that creates value.</h2>
+        <p class="sdesc">We combine technical depth, commercial experience and strategic market knowledge — held to a single standard of professionalism, reliability and value creation.</p>
+      </div>
+      <div class="vals-cells reveal d2">
+        <div class="vcell"><div class="vnum">01</div><h4>Innovation</h4><p>Creativity, technology and continuous improvement in every solution.</p></div>
+        <div class="vcell"><div class="vnum">02</div><h4>Integrity</h4><p>Transparency, honesty and ethical responsibility in how we work.</p></div>
+        <div class="vcell"><div class="vnum">03</div><h4>Excellence</h4><p>Superior quality and professionalism across every engagement.</p></div>
+        <div class="vcell"><div class="vnum">04</div><h4>Customer Focus</h4><p>Clients at the centre of everything we plan and deliver.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARALLAX MISSION ═══ -->
+<section class="s-mission">
+  <div id="mpx"></div>
+  <div class="mission-ov"></div>
+  <div class="mission-in reveal">
+    <div class="mission-vert">Our Mission</div>
+    <p class="mission-q">To provide innovative technology, strategic sourcing, commodity brokerage and quality products that empower businesses and communities — creating <span class="red">sustainable value</span> for clients, partners and stakeholders.</p>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="s-cta">
+  <div class="wrap">
+    <div class="cta-flex reveal">
       <div>
-        <div class="ft-brand">Innovanti<span class="red"> Solutions</span></div>
-        <p class="ft-tag">Innovating technology. Connecting markets. Delivering value.</p>
-        <div class="ft-loc">Harare, Zimbabwe</div>
+        <h2>Let's build what's next, together.</h2>
+        <p>Tell us what you need — we'll respond with a clear, considered proposal.</p>
       </div>
-      <div>
-        <div class="ft-clbl">Explore</div>
-        <div class="ft-links">
-          <button class="ft-btn" data-nav="home">Home</button>
-          <button class="ft-btn" data-nav="services">Services</button>
-          <button class="ft-btn" data-nav="about">About</button>
-          <button class="ft-btn" data-nav="contact">Contact</button>
-        </div>
-      </div>
-      <div>
-        <div class="ft-clbl">Services</div>
-        <div class="ft-list">
-          <span>IT &amp; Cybersecurity</span>
-          <span>Network Solutions</span>
-          <span>Procurement</span>
-          <span>Trading &amp; Brokerage</span>
-        </div>
-      </div>
-      <div>
-        <div class="ft-clbl">Contact</div>
-        <div class="ft-list">
-          <span>No. 42 Tigere Mansions, Harare</span>
-          <span>0712 538 836</span>
-          <span>innovantisolutions.co.zw</span>
-          <span>Mon&ndash;Fri &middot; 08:00&ndash;17:00</span>
-        </div>
-      </div>
-    </div>
-    <div class="ft-bot">
-      <span>&copy; 2026 Innovanti Solutions. All rights reserved.</span>
-      <span>Multi-Sector Technology, Trading &amp; Procurement</span>
+      <a href="contact.html" class="btn-navy">Request a proposal</a>
     </div>
   </div>
-</footer>
+</section>
 
-
+<div id="site-footer"></div>
+<script src="assets/components.js"></script>
 <script>
-// ── ROUTING ──────────────────────────────────────────────
-const pages = { home:'pg-home', services:'pg-services', about:'pg-about', contact:'pg-contact' };
-const pills = document.querySelectorAll('.pill[data-nav]');
-let cur = 'home';
+  /* Carousel */
+  var track = document.getElementById('car-track');
+  var slides = document.querySelectorAll('.car-slide');
+  var dots = document.querySelectorAll('.dot');
+  var slide = 0, paused = false;
 
-function goTo(pg) {
-  if (!pages[pg]) return;
-  document.getElementById(pages[cur]).classList.remove('active');
-  document.getElementById(pages[pg]).classList.add('active');
-  cur = pg;
-  pills.forEach(p => p.classList.toggle('on', p.dataset.nav === pg));
-  window.scrollTo(0, 0);
-  // Reset form on contact nav
-  if (pg === 'contact') {
-    document.getElementById('contact-form').style.display = '';
-    document.getElementById('form-success').style.display = 'none';
-  }
-  // Allow DOM paint, then run scroll reveal
-  requestAnimationFrame(() => initReveal());
-}
-
-document.addEventListener('click', e => {
-  const el = e.target.closest('[data-nav]');
-  if (el) { e.preventDefault(); goTo(el.dataset.nav); }
-});
-
-// ── SCROLL REVEAL ─────────────────────────────────────────
-function initReveal() {
-  const els = document.querySelectorAll('#' + pages[cur] + ' .reveal:not(.in)');
-  if (!window.IntersectionObserver) {
-    els.forEach(el => el.classList.add('in'));
-    return;
-  }
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-  els.forEach(el => io.observe(el));
-}
-initReveal();
-
-// ── CAROUSEL ─────────────────────────────────────────────
-const track = document.getElementById('car-track');
-const dotsEls = document.querySelectorAll('.dot');
-const slides = document.querySelectorAll('.car-slide');
-let slide = 0, paused = false;
-
-function goSlide(n) {
-  slides[slide].classList.remove('active');
-  slide = ((n % 4) + 4) % 4;
-  slides[slide].classList.add('active');
-  track.style.transform = 'translateX(-' + (slide * 100) + '%)';
-  dotsEls.forEach((d, i) => d.classList.toggle('on', i === slide));
-}
-
-document.getElementById('prev-btn').addEventListener('click', () => goSlide(slide - 1));
-document.getElementById('next-btn').addEventListener('click', () => goSlide(slide + 1));
-dotsEls.forEach(d => d.addEventListener('click', () => goSlide(+d.dataset.s)));
-
-const carOuter = document.getElementById('car-outer');
-carOuter.addEventListener('mouseenter', () => paused = true);
-carOuter.addEventListener('mouseleave', () => paused = false);
-setInterval(() => { if (!paused && cur === 'home') goSlide(slide + 1); }, 5000);
-
-// ── ANIMATION LOOP ────────────────────────────────────────
-const heroImg = document.getElementById('hero-img');
-const heroGlow = document.getElementById('hero-glow');
-const mpx = document.getElementById('mpx');
-const pnodes = document.querySelectorAll('.pnode');
-
-(function loop() {
-  const t = performance.now() / 1000;
-  const sy = window.scrollY || 0;
-
-  // Pulse network nodes
-  pnodes.forEach(n => {
-    const ph = parseFloat(n.dataset.ph) || 0;
-    n.style.opacity = (0.3 + 0.65 * (0.5 + 0.5 * Math.sin(t * 1.5 + ph))).toFixed(3);
-  });
-
-  // Drift glow
-  if (heroGlow) {
-    heroGlow.style.transform = 'translate3d(' + (Math.sin(t * .28) * 26).toFixed(1) + 'px,' + (Math.cos(t * .22) * 18).toFixed(1) + 'px,0)';
+  function goSlide(n) {
+    slides[slide].classList.remove('active');
+    slide = ((n % 4) + 4) % 4;
+    slides[slide].classList.add('active');
+    track.style.transform = 'translateX(-' + (slide * 100) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('on', i === slide); });
   }
 
-  // Hero bg subtle parallax
-  if (heroImg) {
-    heroImg.style.transform = 'translateY(' + (sy * 0.22).toFixed(1) + 'px)';
-  }
+  document.getElementById('prev-btn').addEventListener('click', function() { goSlide(slide - 1); });
+  document.getElementById('next-btn').addEventListener('click', function() { goSlide(slide + 1); });
+  dots.forEach(function(d) { d.addEventListener('click', function() { goSlide(+d.dataset.s); }); });
 
-  // Mission band parallax — image stays while content scrolls over it
-  if (mpx) {
-    const sec = mpx.parentElement;
-    const rect = sec.getBoundingClientRect();
-    const vh = window.innerHeight;
-    if (rect.top < vh && rect.bottom > 0) {
-      const progress = (vh - rect.top) / (vh + rect.height);
-      mpx.style.transform = 'translateY(' + ((progress - 0.5) * 90).toFixed(1) + 'px)';
-    }
-  }
-
-  requestAnimationFrame(loop);
-})();
-
-// ── CONTACT FORM ──────────────────────────────────────────
-document.getElementById('contact-form').addEventListener('submit', e => {
-  e.preventDefault();
-  document.getElementById('contact-form').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
-});
+  var outer = document.getElementById('car-outer');
+  outer.addEventListener('mouseenter', function() { paused = true; });
+  outer.addEventListener('mouseleave', function() { paused = false; });
+  setInterval(function() { if (!paused) goSlide(slide + 1); }, 5000);
 </script>
-
 </body>
 </html>

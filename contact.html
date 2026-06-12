@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Innovanti Solutions</title>
+<meta name="description" content="Get in touch with Innovanti Solutions. Visit us at Tigere Mansions, Harare or send an enquiry online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<!-- ═══ HERO ═══ -->
+<section class="ihero">
+  <div class="ihero-ov"></div>
+  <div class="ihero-grid"></div>
+  <div class="ihero-c">
+    <div class="ihero-ey"><i></i>Contact</div>
+    <h1>Let's start a conversation.</h1>
+    <p>Share your requirement and we'll respond with a clear, considered proposal.</p>
+  </div>
+</section>
+
+<!-- ═══ CONTACT BODY ═══ -->
+<div class="contact-body">
+  <div class="contact-grid">
+    <div class="cinfo reveal">
+      <div class="cinfo-row">
+        <div class="cinfo-lbl">Visit</div>
+        <p class="cinfo-val">No. 42 Tigere Mansions,<br>Corner 6th &amp; Central Avenue,<br>Harare, Zimbabwe</p>
+      </div>
+      <div class="cinfo-row">
+        <div class="cinfo-lbl">Call</div>
+        <p class="cinfo-val"><a href="tel:0712538836" style="color:inherit">0712 538 836</a></p>
+      </div>
+      <div class="cinfo-row">
+        <div class="cinfo-lbl">Email</div>
+        <p class="cinfo-val">innovantisolutions.co.zw</p>
+      </div>
+      <div class="cinfo-row">
+        <div class="cinfo-lbl">Hours</div>
+        <p class="cinfo-val">Monday &ndash; Friday &middot; 08:00 &ndash; 17:00</p>
+      </div>
+    </div>
+
+    <div class="cform-card reveal d1">
+      <div class="success" id="form-success">
+        <div class="success-icon">✓</div>
+        <h3>Thank you.</h3>
+        <p>Your enquiry has been received. Our team will be in touch shortly.</p>
+      </div>
+      <form id="contact-form">
+        <div class="form-2col">
+          <div><label class="flbl" for="f-name">Full name</label><input class="finput" id="f-name" name="name" placeholder="Jane Moyo" autocomplete="name"></div>
+          <div><label class="flbl" for="f-email">Email</label><input class="finput" id="f-email" name="email" type="email" placeholder="jane@company.co.zw" autocomplete="email"></div>
+        </div>
+        <div class="fgrp"><label class="flbl" for="f-org">Organisation</label><input class="finput" id="f-org" name="company" placeholder="Company or institution" autocomplete="organization"></div>
+        <div class="fgrp"><label class="flbl" for="f-msg">How can we help?</label><textarea class="finput" id="f-msg" name="message" placeholder="Tell us about your requirement…" rows="4" style="resize:vertical"></textarea></div>
+        <button type="submit" class="btn-r" style="width:100%;justify-content:center;font-size:15.5px;padding:15px;border-radius:6px">Send enquiry</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ OFFICE MAP ═══ -->
+<div class="cmap-wrap">
+  <div class="cmap reveal">
+    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=75" alt="Office" loading="lazy">
+    <div class="cmap-ov"></div>
+    <div class="cmap-pin">
+      <div class="pin-icon">&#9679;</div>
+      <div>
+        <div class="pin-name">Innovanti Solutions</div>
+        <div class="pin-addr">Tigere Mansions, Harare</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="assets/components.js"></script>
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  });
+</script>
+</body>
+</html>
