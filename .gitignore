@@ -1,0 +1,6 @@
+.claude/
+.next/
+node_modules/
+out/
+*.local
+.env*
