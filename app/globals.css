@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ::selection { background: #C8102E; color: #fff; }
+  body { overflow-x: hidden; }
+  h1, h2, h3, h4 { margin: 0; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .perspective-900 { perspective: 900px; }
+}
