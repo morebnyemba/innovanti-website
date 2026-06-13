@@ -1,6 +1,7 @@
 import Hero from '@/components/home/Hero'
 import WhatWeDo from '@/components/home/WhatWeDo'
 import Carousel from '@/components/home/Carousel'
+import StackPanels from '@/components/home/StackPanels'
 import MissionBand from '@/components/home/MissionBand'
 import Values from '@/components/home/Values'
 import HomeCta from '@/components/home/HomeCta'
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Hero />
       <WhatWeDo />
       <Carousel />
+      <StackPanels />
       <MissionBand />
       <Values />
       <HomeCta />

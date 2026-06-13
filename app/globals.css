@@ -56,12 +56,31 @@
   flex-wrap: wrap;
 }
 
+/* Stacking story panels */
+.stack-card-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(24px, 4vw, 52px);
+  align-items: center;
+}
+.stack-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.stack-bullets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
 @media (max-width: 767px) {
   .grid-2col,
   .grid-2col-even,
   .grid-values,
   .grid-sidebar,
-  .grid-contact {
+  .grid-contact,
+  .stack-card-grid {
     grid-template-columns: 1fr;
   }
   .grid-sidebar .sticky-col {
