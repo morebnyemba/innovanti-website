@@ -52,7 +52,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div style={{ borderRadius: 12, overflow: 'hidden', aspectRatio: '4 / 4.4', boxShadow: '0 30px 60px -28px rgba(14,24,48,0.4)' }}>
-            <Image src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=75" alt="Team collaboration" width={640} height={704} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <Image src="/about-team.jpg" alt="Team collaboration" width={640} height={704} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </div>
         </div>
       </section>
@@ -94,7 +94,7 @@ export default function AboutPage() {
             </ul>
           </div>
           <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', padding: 'clamp(32px,4vw,48px)', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 280 }}>
-            <Image src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=75" alt="Quality" fill style={{ objectFit: 'cover' }} sizes="50vw" />
+            <Image src="/about-quality.jpg" alt="Quality" fill style={{ objectFit: 'cover' }} sizes="50vw" />
             <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(150deg, rgba(21,33,63,0.92), rgba(14,24,48,0.86))' }} />
             <div style={{ position: 'relative', zIndex: 2 }}>
               <h3 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(20px,2.2vw,26px)', lineHeight: 1.14, letterSpacing: '-0.015em', margin: '0 0 14px' }}>Commitment to quality</h3>

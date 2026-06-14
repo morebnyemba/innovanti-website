@@ -8,13 +8,13 @@ import { FiCompass, FiShare2, FiActivity, FiShield, FiTruck, FiTrendingUp, FiArr
 
 type Accent = 'navy' | 'red'
 
-const services: { Icon: IconType; accent: Accent; title: string; desc: string }[] = [
-  { Icon: FiCompass, accent: 'navy', title: 'IT Solutions & Consulting', desc: 'Strategy, infrastructure and digital transformation built around how you operate.' },
-  { Icon: FiShare2, accent: 'navy', title: 'Network Solutions', desc: 'Design, deployment and management of secure, high-performance networks.' },
-  { Icon: FiActivity, accent: 'navy', title: 'Managed IT Services', desc: 'Proactive support, monitoring and maintenance that keep systems running.' },
-  { Icon: FiShield, accent: 'red', title: 'Cybersecurity', desc: 'Assessments, protection and training that safeguard your data and your people.' },
-  { Icon: FiTruck, accent: 'navy', title: 'Procurement & Supply Chain', desc: 'Strategic sourcing that secures quality products at competitive prices.' },
-  { Icon: FiTrendingUp, accent: 'red', title: 'Brokerage & Trading', desc: 'Commodity brokerage and general trade connecting markets end to end.' },
+const services: { Icon: IconType; accent: Accent; title: string; desc: string; href: string }[] = [
+  { Icon: FiCompass, accent: 'navy', title: 'IT Solutions & Consulting', desc: 'Strategy, infrastructure and digital transformation built around how you operate.', href: '/services/technology' },
+  { Icon: FiShare2, accent: 'navy', title: 'Network Solutions', desc: 'Design, deployment and management of secure, high-performance networks.', href: '/services/technology' },
+  { Icon: FiActivity, accent: 'navy', title: 'Managed IT Services', desc: 'Proactive support, monitoring and maintenance that keep systems running.', href: '/services/technology' },
+  { Icon: FiShield, accent: 'red', title: 'Cybersecurity', desc: 'Assessments, protection and training that safeguard your data and your people.', href: '/services/technology' },
+  { Icon: FiTruck, accent: 'navy', title: 'Procurement & Supply Chain', desc: 'Strategic sourcing that secures quality products at competitive prices.', href: '/services/procurement' },
+  { Icon: FiTrendingUp, accent: 'red', title: 'Brokerage & Trading', desc: 'Commodity brokerage and general trade connecting markets end to end.', href: '/services/trading' },
 ]
 
 const tileBg: Record<Accent, string> = {
@@ -36,12 +36,12 @@ const card = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 }
 
-function ServiceCard({ Icon, accent, title, desc }: typeof services[number]) {
+function ServiceCard({ Icon, accent, title, desc, href }: typeof services[number]) {
   const [hover, setHover] = useState(false)
   return (
     <motion.div variants={card}>
       <Link
-        href="/services"
+        href={href}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         style={{ position: 'relative', display: 'block', background: '#fff', border: `1px solid ${hover ? '#c7cddc' : '#e8ebf2'}`, borderRadius: 14, padding: '30px 28px', textDecoration: 'none', overflow: 'hidden', transition: 'transform .28s ease, box-shadow .28s ease, border-color .28s ease', transform: hover ? 'translateY(-6px)' : 'none', boxShadow: hover ? accentGlow[accent] : '0 1px 2px rgba(14,24,48,0.03)' }}

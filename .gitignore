@@ -4,3 +4,6 @@ node_modules/
 out/
 *.local
 .env*
+
+# TypeScript incremental build cache
+*.tsbuildinfo

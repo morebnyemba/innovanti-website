@@ -13,6 +13,13 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ]
 
+// Staggered entrance for the mobile dropdown items
+const menuList = { hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } } }
+const menuItem = {
+  hidden: { opacity: 0, x: -12 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.32, ease: [0.16, 1, 0.3, 1] } },
+}
+
 function NavItem({ href, label, isActive }: { href: string; label: string; isActive: boolean }) {
   const [hover, setHover] = useState(false)
   return (
@@ -96,11 +103,14 @@ export default function Header() {
           </Link>
 
           {/* Mobile toggle */}
-          <button className="md:hidden" onClick={() => setMobileOpen(v => !v)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, color: '#15213f' }}>
+          <button className="md:hidden" onClick={() => setMobileOpen(v => !v)} aria-label="Toggle menu" aria-expanded={mobileOpen} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, color: '#15213f' }}>
             <div style={{ width: 22, display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <span style={{ display: 'block', height: 2, background: '#15213f', borderRadius: 2, width: mobileOpen ? '100%' : '100%' }} />
-              <span style={{ display: 'block', height: 2, background: '#15213f', borderRadius: 2 }} />
-              <span style={{ display: 'block', height: 2, background: '#15213f', borderRadius: 2, width: '70%' }} />
+              <motion.span animate={{ rotate: mobileOpen ? 45 : 0, y: mobileOpen ? 7 : 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}
+                style={{ display: 'block', height: 2, width: '100%', background: '#15213f', borderRadius: 2, transformOrigin: 'center' }} />
+              <motion.span animate={{ opacity: mobileOpen ? 0 : 1, x: mobileOpen ? -10 : 0 }} transition={{ duration: 0.2, ease: 'easeInOut' }}
+                style={{ display: 'block', height: 2, width: '100%', background: '#15213f', borderRadius: 2 }} />
+              <motion.span animate={{ rotate: mobileOpen ? -45 : 0, y: mobileOpen ? -7 : 0, width: mobileOpen ? '100%' : '70%' }} transition={{ duration: 0.3, ease: 'easeInOut' }}
+                style={{ display: 'block', height: 2, width: '70%', background: '#15213f', borderRadius: 2, transformOrigin: 'center' }} />
             </div>
           </button>
         </div>
@@ -114,20 +124,24 @@ export default function Header() {
               exit={{ height: 0, opacity: 0 }}
               style={{ overflow: 'hidden', borderTop: '1px solid #e9ebf2' }}
             >
-              <div style={{ padding: '12px 16px 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <motion.div variants={menuList} initial="hidden" animate="show" style={{ padding: '12px 16px 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {navLinks.map((link) => (
-                  <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}
-                    style={{ padding: '10px 14px', borderRadius: 8, fontSize: 14, fontWeight: 600, color: pathname === link.href ? '#fff' : '#39456b', background: pathname === link.href ? '#15213f' : 'transparent', textDecoration: 'none', display: 'block' }}
-                  >
-                    {link.label}
-                  </Link>
+                  <motion.div key={link.href} variants={menuItem}>
+                    <Link href={link.href} onClick={() => setMobileOpen(false)}
+                      style={{ padding: '10px 14px', borderRadius: 8, fontSize: 14, fontWeight: 600, color: pathname === link.href ? '#fff' : '#39456b', background: pathname === link.href ? '#15213f' : 'transparent', textDecoration: 'none', display: 'block' }}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
                 ))}
-                <Link href="/contact" onClick={() => setMobileOpen(false)}
-                  style={{ marginTop: 6, padding: '12px 14px', borderRadius: 8, fontSize: 14, fontWeight: 600, color: '#fff', background: '#C8102E', textDecoration: 'none', textAlign: 'center', display: 'block' }}
-                >
-                  Request a proposal →
-                </Link>
-              </div>
+                <motion.div variants={menuItem}>
+                  <Link href="/contact" onClick={() => setMobileOpen(false)}
+                    style={{ marginTop: 6, padding: '12px 14px', borderRadius: 8, fontSize: 14, fontWeight: 600, color: '#fff', background: '#C8102E', textDecoration: 'none', textAlign: 'center', display: 'block' }}
+                  >
+                    Request a proposal →
+                  </Link>
+                </motion.div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>

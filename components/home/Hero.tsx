@@ -1,9 +1,9 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
-import { FiArrowRight, FiShield, FiServer, FiTruck } from 'react-icons/fi'
+import { FiArrowRight, FiShield, FiServer, FiTruck, FiChevronDown } from 'react-icons/fi'
 
 const NODES = [
   { cx: 80, cy: 90, r: 5, fill: '#7fa0e0', delay: 0 },
@@ -34,6 +34,11 @@ const floatCards = [
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
   const [ctaHover, setCtaHover] = useState(false)
+  const reduce = useReducedMotion()
+
+  // Scroll-linked parallax: the floating visual drifts as the hero scrolls past.
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const visualY = useTransform(scrollYProgress, [0, 1], [0, 90])
 
   return (
     <section ref={ref} style={{ position: 'relative', overflow: 'hidden', background: '#0a1324', color: '#fff', paddingTop: 120 }}>
@@ -52,25 +57,40 @@ export default function Hero() {
       />
 
       {/* Desktop floating visual — absolute, never affects mobile flow */}
-      <div aria-hidden className="hidden lg:block" style={{ position: 'absolute', top: '50%', right: 'max(3%, calc(50% - 560px + 12px))', width: 470, height: 470, transform: 'translateY(-46%)', zIndex: 1 }}>
+      <motion.div aria-hidden className="hidden lg:block" style={{ position: 'absolute', top: '50%', right: 'max(3%, calc(50% - 560px + 12px))', width: 470, height: 470, marginTop: -216, zIndex: 1, y: reduce ? 0 : visualY }}>
+        {/* central illumination */}
+        <motion.div animate={{ opacity: [0.45, 0.85, 0.45], scale: [1, 1.08, 1] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ position: 'absolute', top: '50%', left: '50%', width: 330, height: 330, marginTop: -165, marginLeft: -165, borderRadius: '50%', background: 'radial-gradient(circle, rgba(110,150,240,0.45), rgba(110,150,240,0.12) 45%, transparent 70%)', filter: 'blur(8px)' }} />
+        <motion.div animate={{ opacity: [0.4, 0.75, 0.4] }} transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ position: 'absolute', top: '50%', left: '50%', width: 160, height: 160, marginTop: -80, marginLeft: -80, borderRadius: '50%', background: 'radial-gradient(circle, rgba(200,16,46,0.5), transparent 68%)', filter: 'blur(6px)' }} />
+
         {/* rotating rings */}
         <motion.div animate={{ rotate: 360 }} transition={{ duration: 64, repeat: Infinity, ease: 'linear' }}
-          style={{ position: 'absolute', top: '50%', left: '50%', width: 380, height: 380, marginTop: -190, marginLeft: -190, borderRadius: '50%', border: '1px dashed rgba(150,180,240,0.22)' }} />
+          style={{ position: 'absolute', top: '50%', left: '50%', width: 380, height: 380, marginTop: -190, marginLeft: -190, borderRadius: '50%', border: '1px dashed rgba(150,180,240,0.30)', boxShadow: '0 0 30px rgba(120,150,230,0.18), inset 0 0 30px rgba(120,150,230,0.10)' }} />
         <motion.div animate={{ rotate: -360 }} transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
-          style={{ position: 'absolute', top: '50%', left: '50%', width: 250, height: 250, marginTop: -125, marginLeft: -125, borderRadius: '50%', border: '1px solid rgba(200,16,46,0.25)' }} />
+          style={{ position: 'absolute', top: '50%', left: '50%', width: 250, height: 250, marginTop: -125, marginLeft: -125, borderRadius: '50%', border: '1px solid rgba(255,127,141,0.38)', boxShadow: '0 0 34px rgba(200,16,46,0.28), inset 0 0 24px rgba(200,16,46,0.12)' }} />
 
-        {/* constellation accent */}
-        <svg viewBox="0 0 520 480" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.55, pointerEvents: 'none' }}>
-          <g stroke="rgba(150,180,240,0.16)" strokeWidth="1">
+        {/* constellation accent — illuminated */}
+        <svg viewBox="0 0 520 480" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
+          <defs>
+            <filter id="nodeGlow" x="-200%" y="-200%" width="500%" height="500%">
+              <feGaussianBlur stdDeviation="3.2" result="b" />
+              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+          </defs>
+          <g stroke="rgba(150,180,240,0.30)" strokeWidth="1.1" filter="url(#nodeGlow)">
             {NODES.map((n, i) => (
               <line key={i} x1="260" y1="240" x2={n.cx} y2={n.cy} />
             ))}
           </g>
           {NODES.map((n, i) => (
-            <motion.circle key={i} cx={n.cx} cy={n.cy} r={n.r} fill={n.fill}
-              animate={{ opacity: [0.5, 1, 0.5], r: [n.r, n.r * 1.6, n.r] }}
+            <motion.circle key={i} cx={n.cx} cy={n.cy} r={n.r} fill={n.fill} filter="url(#nodeGlow)"
+              animate={{ opacity: [0.55, 1, 0.55], r: [n.r, n.r * 1.7, n.r] }}
               transition={{ duration: 3, repeat: Infinity, delay: n.delay, ease: 'easeInOut' }} />
           ))}
+          <motion.circle cx="260" cy="240" r="8" fill="#C8102E" filter="url(#nodeGlow)"
+            animate={{ r: [7, 10, 7], opacity: [0.85, 1, 0.85] }}
+            transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }} />
         </svg>
 
         {/* cards */}
@@ -81,25 +101,27 @@ export default function Hero() {
             transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
             style={{ position: 'absolute', top, left }}
           >
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: dur, repeat: Infinity, ease: 'easeInOut', delay }}
-              style={{ display: 'flex', alignItems: 'center', gap: 14, width: 244, padding: '15px 17px', borderRadius: 16, background: 'rgba(18,29,55,0.72)', border: '1px solid rgba(255,255,255,0.12)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', boxShadow: '0 24px 48px -24px rgba(0,0,0,0.7)' }}
-            >
-              <span style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44, borderRadius: 11, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: accent }}>
-                <Icon size={21} />
-              </span>
-              <div>
-                <div className="font-display" style={{ fontWeight: 700, fontSize: 15.5, color: '#fff', marginBottom: 3 }}>{title}</div>
-                <div style={{ fontSize: 12.5, color: '#9aa6c4' }}>{meta}</div>
+            <motion.div animate={{ y: [0, -12, 0] }} transition={{ duration: dur, repeat: Infinity, ease: 'easeInOut', delay }} style={{ position: 'relative' }}>
+              {/* illumination halo behind the card */}
+              <motion.span aria-hidden animate={{ opacity: [0.35, 0.7, 0.35] }} transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay }}
+                style={{ position: 'absolute', inset: -22, borderRadius: 28, background: `radial-gradient(circle at 26% 40%, ${accent}66, transparent 70%)`, filter: 'blur(16px)', zIndex: 0 }} />
+              {/* glass card */}
+              <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: 14, width: 244, padding: '15px 17px', borderRadius: 16, background: 'rgba(18,29,55,0.74)', border: '1px solid rgba(255,255,255,0.14)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', boxShadow: `0 24px 48px -24px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.14), 0 0 0 1px ${accent}22` }}>
+                <span style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44, borderRadius: 11, background: `radial-gradient(circle at 30% 25%, ${accent}40, rgba(255,255,255,0.05))`, border: `1px solid ${accent}55`, color: accent, boxShadow: `0 0 18px -2px ${accent}80` }}>
+                  <Icon size={21} />
+                </span>
+                <div>
+                  <div className="font-display" style={{ fontWeight: 700, fontSize: 15.5, color: '#fff', marginBottom: 3 }}>{title}</div>
+                  <div style={{ fontSize: 12.5, color: '#9aa6c4' }}>{meta}</div>
+                </div>
               </div>
             </motion.div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Content */}
-      <div style={{ position: 'relative', zIndex: 2, maxWidth: 1180, margin: '0 auto', padding: 'clamp(72px,9vw,126px) 32px clamp(28px,3vw,40px)' }}>
+      <div style={{ position: 'relative', zIndex: 2, maxWidth: 1180, margin: '0 auto', padding: 'clamp(24px,3.5vw,48px) 32px clamp(28px,3vw,40px)' }}>
         <motion.div variants={container} initial="hidden" animate="show" style={{ maxWidth: 640 }}>
           <motion.h1 variants={item} className="font-display" style={{ fontWeight: 800, fontSize: 'clamp(38px,5.6vw,74px)', lineHeight: 1.03, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 28px' }}>
             Innovating technology.<br />
@@ -143,6 +165,18 @@ export default function Hero() {
             ))}
           </div>
         </motion.div>
+
+        {/* Scroll cue */}
+        <div className="hidden md:flex justify-center" style={{ marginTop: 'clamp(28px,3vw,38px)' }}>
+          <motion.div
+            animate={reduce ? {} : { y: [0, 7, 0] }}
+            transition={{ duration: 1.7, repeat: Infinity, ease: 'easeInOut' }}
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 7, color: '#6b769a' }}
+          >
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' }}>Scroll</span>
+            <FiChevronDown size={18} />
+          </motion.div>
+        </div>
       </div>
     </section>
   )

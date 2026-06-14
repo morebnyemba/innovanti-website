@@ -4,10 +4,10 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 
 const slides = [
-  { image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=75', tag: 'IT & Infrastructure',         title: 'Resilient infrastructure, engineered to perform.', body: 'Networks, servers and managed services built for uptime and security.' },
-  { image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=75', tag: 'Cybersecurity',                 title: 'Security that protects data and people.',         body: 'Assessments, endpoint protection and awareness training, end to end.' },
-  { image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=75', tag: 'Procurement & Supply Chain', title: 'Strategic sourcing, delivered to your door.',     body: 'Quality products at competitive prices, with logistics handled.' },
-  { image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=75', tag: 'Trading & Brokerage',        title: 'Connecting markets with confidence.',             body: 'Commodity brokerage and general trade across the value chain.' },
+  { image: '/carousel-infrastructure.jpg', tag: 'IT & Infrastructure',         title: 'Resilient infrastructure, engineered to perform.', body: 'Networks, servers and managed services built for uptime and security.' },
+  { image: '/carousel-cybersecurity.jpg',  tag: 'Cybersecurity',                 title: 'Security that protects data and people.',         body: 'Assessments, endpoint protection and awareness training, end to end.' },
+  { image: '/carousel-procurement.jpg',    tag: 'Procurement & Supply Chain', title: 'Strategic sourcing, delivered to your door.',     body: 'Quality products at competitive prices, with logistics handled.' },
+  { image: '/carousel-trading.jpg',        tag: 'Trading & Brokerage',        title: 'Connecting markets with confidence.',             body: 'Commodity brokerage and general trade across the value chain.' },
 ]
 
 export default function Carousel() {
