@@ -1,0 +1,24 @@
+# Innovanti Solutions — static (Next.js export) on Apache / cPanel
+
+DirectoryIndex index.html
+Options -MultiViews
+DirectorySlash On
+
+# Branded 404 page
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+  # Fingerprinted build assets — safe to cache forever
+  <FilesMatch "\.(js|css|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # …but never cache the service worker, so updates ship immediately
+  <FilesMatch "^(sw\.js|workbox-.*\.js)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# Compress text responses
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml application/manifest+json
+</IfModule>

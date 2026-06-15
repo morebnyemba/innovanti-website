@@ -22,6 +22,7 @@ const tileBg: Record<Accent, string> = {
   red: 'linear-gradient(135deg, #e01435 0%, #C8102E 100%)',
 }
 const accentColor: Record<Accent, string> = { navy: '#15213f', red: '#C8102E' }
+const accentSpot: Record<Accent, string> = { navy: 'rgba(21,33,63,0.12)', red: 'rgba(200,16,46,0.13)' }
 const accentGlow: Record<Accent, string> = {
   navy: '0 26px 50px -26px rgba(21,33,63,0.45)',
   red: '0 26px 50px -24px rgba(200,16,46,0.42)',
@@ -38,28 +39,34 @@ const card = {
 
 function ServiceCard({ Icon, accent, title, desc, href }: typeof services[number]) {
   const [hover, setHover] = useState(false)
+  const [pos, setPos] = useState({ x: -300, y: -300 })
   return (
     <motion.div variants={card}>
       <Link
         href={href}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        onMouseMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); setPos({ x: e.clientX - r.left, y: e.clientY - r.top }) }}
         style={{ position: 'relative', display: 'block', background: '#fff', border: `1px solid ${hover ? '#c7cddc' : '#e8ebf2'}`, borderRadius: 14, padding: '30px 28px', textDecoration: 'none', overflow: 'hidden', transition: 'transform .28s ease, box-shadow .28s ease, border-color .28s ease', transform: hover ? 'translateY(-6px)' : 'none', boxShadow: hover ? accentGlow[accent] : '0 1px 2px rgba(14,24,48,0.03)' }}
       >
         {/* top accent line */}
         <span aria-hidden style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: tileBg[accent], opacity: hover ? 1 : 0, transition: 'opacity .28s ease' }} />
+        {/* cursor spotlight */}
+        <span aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: hover ? 1 : 0, transition: 'opacity .3s ease', background: `radial-gradient(240px circle at ${pos.x}px ${pos.y}px, ${accentSpot[accent]}, transparent 72%)` }} />
 
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, marginBottom: 22 }}>
-          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 52, height: 52, borderRadius: 13, background: tileBg[accent], color: '#fff', boxShadow: hover ? accentGlow[accent] : 'none', transition: 'transform .28s ease, box-shadow .28s ease', transform: hover ? 'scale(1.06) rotate(-3deg)' : 'none' }}>
-            <Icon size={24} />
-          </span>
-          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 34, height: 34, borderRadius: '50%', color: accentColor[accent], background: hover ? 'rgba(200,16,46,0.08)' : 'transparent', transition: 'opacity .28s ease, transform .28s ease, background .28s ease', opacity: hover ? 1 : 0, transform: hover ? 'translate(0,0)' : 'translate(-4px,4px)' }}>
-            <FiArrowUpRight size={19} />
-          </span>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, marginBottom: 22 }}>
+            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 52, height: 52, borderRadius: 13, background: tileBg[accent], color: '#fff', boxShadow: hover ? accentGlow[accent] : 'none', transition: 'transform .28s ease, box-shadow .28s ease', transform: hover ? 'scale(1.06) rotate(-3deg)' : 'none' }}>
+              <Icon size={24} />
+            </span>
+            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 34, height: 34, borderRadius: '50%', color: accentColor[accent], background: hover ? 'rgba(200,16,46,0.08)' : 'transparent', transition: 'opacity .28s ease, transform .28s ease, background .28s ease', opacity: hover ? 1 : 0, transform: hover ? 'translate(0,0)' : 'translate(-4px,4px)' }}>
+              <FiArrowUpRight size={19} />
+            </span>
+          </div>
+
+          <h3 className="font-display" style={{ fontWeight: 700, fontSize: 19, color: '#15213f', margin: '0 0 10px' }}>{title}</h3>
+          <p style={{ fontSize: 15, color: '#5b6479', margin: 0, lineHeight: 1.55 }}>{desc}</p>
         </div>
-
-        <h3 className="font-display" style={{ fontWeight: 700, fontSize: 19, color: '#15213f', margin: '0 0 10px' }}>{title}</h3>
-        <p style={{ fontSize: 15, color: '#5b6479', margin: 0, lineHeight: 1.55 }}>{desc}</p>
       </Link>
     </motion.div>
   )

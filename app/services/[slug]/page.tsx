@@ -6,6 +6,8 @@ import { FiArrowLeft, FiArrowUpRight, FiCheck } from 'react-icons/fi'
 import InnerHero from '@/components/shared/InnerHero'
 import HoverCard from '@/components/shared/HoverCard'
 import Faq from '@/components/shared/Faq'
+import Grain from '@/components/shared/Grain'
+import PhotoTint from '@/components/shared/PhotoTint'
 import { departments, departmentSlugs, getDepartment } from '../departments'
 
 const cardBase = { border: '1px solid #e8ebf2', borderRadius: 8, padding: '26px 24px', transition: 'transform .25s ease, box-shadow .25s ease, border-color .25s ease', background: '#fff' }
@@ -52,8 +54,9 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
               <p style={{ fontSize: 15.5, color: '#5b6479', margin: '0 0 14px' }}>{dept.intro}</p>
               <p style={{ fontSize: 14.5, color: '#6b7488', margin: '0 0 20px', lineHeight: 1.6 }}>{dept.overview}</p>
               {dept.image ? (
-                <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '4/3' }}>
+                <div style={{ position: 'relative', borderRadius: 10, overflow: 'hidden', aspectRatio: '4/3' }}>
                   <Image src={dept.image} alt={dept.name} width={640} height={480} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  <PhotoTint />
                 </div>
               ) : (
                 <div style={{ position: 'relative', borderRadius: 10, overflow: 'hidden', aspectRatio: '4/3', background: 'linear-gradient(135deg, #1f2c4a 0%, #15213f 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -100,7 +103,8 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
       {/* How we work */}
       <section style={{ borderTop: '1px solid #edeff5', background: '#0a1324', color: '#fff', position: 'relative', overflow: 'hidden' }}>
         <div aria-hidden style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '60px 60px', WebkitMaskImage: 'radial-gradient(circle at 80% 0%, #000, transparent 70%)', maskImage: 'radial-gradient(circle at 80% 0%, #000, transparent 70%)' }} />
-        <div style={{ position: 'relative', maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) 32px' }}>
+        <Grain opacity={0.06} />
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) 32px' }}>
           <div className="font-display" style={{ fontWeight: 800, fontSize: 13, letterSpacing: '0.1em', color: '#ff7f8d', marginBottom: 14 }}>HOW WE WORK</div>
           <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(26px,3vw,36px)', lineHeight: 1.08, letterSpacing: '-0.02em', color: '#fff', margin: '0 0 40px', maxWidth: 560 }}>A clear path from first conversation to delivery.</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px,1fr))', gap: 18 }}>
@@ -181,8 +185,9 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
       </section>
 
       {/* CTA strip */}
-      <section style={{ background: '#15213f', color: '#fff' }}>
-        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,88px) 32px' }}>
+      <section style={{ position: 'relative', overflow: 'hidden', background: '#15213f', color: '#fff' }}>
+        <Grain opacity={0.07} />
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,88px) 32px' }}>
           <div className="cta-row">
             <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0, maxWidth: 560 }}>
               Have a {dept.name.toLowerCase()} requirement? Let&apos;s scope it.

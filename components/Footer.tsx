@@ -29,7 +29,7 @@ const raceLines = [
 
 const contactItems = [
   { Icon: FiMapPin, text: 'No. 42 Tigere Mansions, Cnr 6th & Central Ave, Harare', href: undefined },
-  { Icon: FiPhone, text: '0712 538 836', href: 'tel:+263712538836' },
+  { Icon: FiPhone, text: '+263 712 538 836', href: 'tel:+263712538836' },
   { Icon: FiGlobe, text: 'innovantisolutions.co.zw', href: 'https://innovantisolutions.co.zw' },
   { Icon: FiClock, text: 'Mon–Fri · 08:00–17:00', href: undefined },
 ]

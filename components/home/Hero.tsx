@@ -1,9 +1,11 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion, useMotionValue, useSpring } from 'framer-motion'
 import Link from 'next/link'
 import { FiArrowRight, FiShield, FiServer, FiTruck, FiChevronDown } from 'react-icons/fi'
+import Grain from '@/components/shared/Grain'
+import TypedHeadline from '@/components/home/TypedHeadline'
 
 const NODES = [
   { cx: 80, cy: 90, r: 5, fill: '#7fa0e0', delay: 0 },
@@ -40,8 +42,24 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const visualY = useTransform(scrollYProgress, [0, 1], [0, 90])
 
+  // Cursor-driven parallax: the constellation tilts and drifts toward the pointer.
+  const mvX = useMotionValue(0)
+  const mvY = useMotionValue(0)
+  const spring = { stiffness: 90, damping: 18, mass: 0.6 }
+  const rotateY = useSpring(useTransform(mvX, [-0.5, 0.5], [-11, 11]), spring)
+  const rotateX = useSpring(useTransform(mvY, [-0.5, 0.5], [9, -9]), spring)
+  const driftX = useSpring(useTransform(mvX, [-0.5, 0.5], [-18, 18]), spring)
+
+  const handlePointer = (e: React.MouseEvent<HTMLElement>) => {
+    if (reduce) return
+    const r = e.currentTarget.getBoundingClientRect()
+    mvX.set((e.clientX - r.left) / r.width - 0.5)
+    mvY.set((e.clientY - r.top) / r.height - 0.5)
+  }
+  const resetPointer = () => { mvX.set(0); mvY.set(0) }
+
   return (
-    <section ref={ref} style={{ position: 'relative', overflow: 'hidden', background: '#0a1324', color: '#fff', paddingTop: 120 }}>
+    <section ref={ref} onMouseMove={handlePointer} onMouseLeave={resetPointer} style={{ position: 'relative', overflow: 'hidden', background: '#0a1324', color: '#fff', paddingTop: 120 }}>
       {/* Gradient overlay */}
       <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'radial-gradient(900px 520px at 80% 6%, rgba(46,78,150,0.55), transparent 60%), radial-gradient(720px 520px at 4% 100%, rgba(200,16,46,0.20), transparent 62%), linear-gradient(180deg, #0b1426 0%, #0a1324 100%)', pointerEvents: 'none' }} />
 
@@ -57,7 +75,7 @@ export default function Hero() {
       />
 
       {/* Desktop floating visual — absolute, never affects mobile flow */}
-      <motion.div aria-hidden className="hidden lg:block" style={{ position: 'absolute', top: '50%', right: 'max(3%, calc(50% - 560px + 12px))', width: 470, height: 470, marginTop: -216, zIndex: 1, y: reduce ? 0 : visualY }}>
+      <motion.div aria-hidden className="hidden lg:block" style={{ position: 'absolute', top: '50%', right: 'max(3%, calc(50% - 560px + 12px))', width: 470, height: 470, marginTop: -216, zIndex: 1, y: reduce ? 0 : visualY, x: reduce ? 0 : driftX, rotateX: reduce ? 0 : rotateX, rotateY: reduce ? 0 : rotateY, transformPerspective: 1200 }}>
         {/* central illumination */}
         <motion.div animate={{ opacity: [0.45, 0.85, 0.45], scale: [1, 1.08, 1] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
           style={{ position: 'absolute', top: '50%', left: '50%', width: 330, height: 330, marginTop: -165, marginLeft: -165, borderRadius: '50%', background: 'radial-gradient(circle, rgba(110,150,240,0.45), rgba(110,150,240,0.12) 45%, transparent 70%)', filter: 'blur(8px)' }} />
@@ -120,13 +138,16 @@ export default function Hero() {
         ))}
       </motion.div>
 
+      <Grain opacity={0.05} />
+
       {/* Content */}
       <div style={{ position: 'relative', zIndex: 2, maxWidth: 1180, margin: '0 auto', padding: 'clamp(24px,3.5vw,48px) 32px clamp(28px,3vw,40px)' }}>
         <motion.div variants={container} initial="hidden" animate="show" style={{ maxWidth: 640 }}>
-          <motion.h1 variants={item} className="font-display" style={{ fontWeight: 800, fontSize: 'clamp(38px,5.6vw,74px)', lineHeight: 1.03, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 28px' }}>
-            Innovating technology.<br />
-            Connecting markets.<br />
-            <span style={{ background: 'linear-gradient(100deg, #ff7f8d 0%, #C8102E 60%, #ff9aa6 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', color: '#ff7f8d' }}>Delivering value.</span>
+          <motion.h1 variants={item} className="font-display" aria-label="Innovating technology. Connecting markets. Delivering value." style={{ fontWeight: 800, fontSize: 'clamp(38px,5.6vw,74px)', lineHeight: 1.03, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 28px', minHeight: '2.15em' }}>
+            <span style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }}>
+              Innovating technology. Connecting markets. Delivering value.
+            </span>
+            <TypedHeadline phrases={['Innovating Technology', 'Connecting Markets', 'Delivering Value']} />
           </motion.h1>
 
           <motion.p variants={item} style={{ fontSize: 'clamp(16px,1.4vw,19px)', color: '#aeb8d0', maxWidth: 540, margin: '0 0 38px', lineHeight: 1.6 }}>

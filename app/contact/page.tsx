@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import InnerHero from '@/components/shared/InnerHero'
 import ContactForm from '@/components/contact/ContactForm'
+import OfficeStatus from '@/components/contact/OfficeStatus'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
   description: 'Get in touch with Innovanti Solutions — Harare, Zimbabwe.',
 }
 
-const contactItems = [
+const contactItems: { label: string; value: string; href?: string }[] = [
   { label: 'Visit', value: 'No. 42 Tigere Mansions,\nCorner 6th & Central Avenue,\nHarare, Zimbabwe' },
-  { label: 'Call',  value: '0712 538 836' },
-  { label: 'Email', value: 'innovantisolutions.co.zw' },
+  { label: 'Call',  value: '+263 712 538 836', href: 'tel:+263712538836' },
+  { label: 'Email', value: 'info@innovantisolutions.co.zw', href: 'mailto:info@innovantisolutions.co.zw' },
   { label: 'Hours', value: 'Monday – Friday · 08:00 – 17:00' },
 ]
 
@@ -29,10 +29,15 @@ export default function ContactPage() {
         <div className="grid-contact">
           {/* Info column */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-            {contactItems.map(({ label, value }) => (
+            {contactItems.map(({ label, value, href }) => (
               <div key={label} style={{ padding: '24px 0', borderTop: '1px solid #e8ebf2' }}>
                 <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: '#C8102E', marginBottom: 8 }}>{label}</div>
-                <p style={{ fontSize: 16, color: '#2a3350', margin: 0, lineHeight: 1.5, whiteSpace: 'pre-line' as const }}>{value}</p>
+                {href ? (
+                  <a href={href} className="contact-link" style={{ fontSize: 16, margin: 0, lineHeight: 1.5, display: 'inline-block' }}>{value}</a>
+                ) : (
+                  <p style={{ fontSize: 16, color: '#2a3350', margin: 0, lineHeight: 1.5, whiteSpace: 'pre-line' as const }}>{value}</p>
+                )}
+                {label === 'Hours' && <OfficeStatus />}
               </div>
             ))}
             <div style={{ borderTop: '1px solid #e8ebf2' }} />
@@ -45,12 +50,18 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Office image */}
+      {/* Office map */}
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '0 32px clamp(56px,7vw,96px)' }}>
-        <div style={{ position: 'relative', height: 320, borderRadius: 12, overflow: 'hidden', boxShadow: '0 24px 50px -28px rgba(14,24,48,0.4)' }}>
-          <Image src="/contact-office.jpg" alt="Our office" fill style={{ objectFit: 'cover' }} sizes="100vw" />
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(120deg, rgba(14,24,48,0.55), rgba(14,24,48,0.15))' }} />
-          <div style={{ position: 'absolute', left: 'clamp(20px,3vw,40px)', bottom: 'clamp(20px,3vw,40px)', background: '#fff', borderRadius: 10, padding: '18px 22px', display: 'flex', alignItems: 'center', gap: 14, boxShadow: '0 18px 40px -18px rgba(14,24,48,0.4)' }}>
+        <div style={{ position: 'relative', height: 'clamp(320px,42vw,440px)', borderRadius: 12, overflow: 'hidden', boxShadow: '0 24px 50px -28px rgba(14,24,48,0.4)', border: '1px solid #e8ebf2' }}>
+          <iframe
+            title="Innovanti Solutions office location"
+            src="https://www.google.com/maps?q=Tigere%20Mansions%2C%20Central%20Avenue%2C%20Harare%2C%20Zimbabwe&z=15&output=embed"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          <div style={{ position: 'absolute', left: 'clamp(20px,3vw,40px)', bottom: 'clamp(20px,3vw,40px)', background: '#fff', borderRadius: 10, padding: '18px 22px', display: 'flex', alignItems: 'center', gap: 14, boxShadow: '0 18px 40px -18px rgba(14,24,48,0.4)', pointerEvents: 'none' }}>
             <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#C8102E', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#fff', display: 'block' }} />
             </div>

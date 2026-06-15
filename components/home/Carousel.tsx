@@ -18,6 +18,17 @@ export default function Carousel() {
   const next = useCallback(() => setCurrent(c => (c + 1) % slides.length), [])
   const prev = useCallback(() => setCurrent(c => (c - 1 + slides.length) % slides.length), [])
 
+  // Touch / pointer swipe support
+  const dragStart = useRef<number | null>(null)
+  const onPointerDown = (e: React.PointerEvent) => { dragStart.current = e.clientX }
+  const onPointerUp = (e: React.PointerEvent) => {
+    if (dragStart.current === null) return
+    const dx = e.clientX - dragStart.current
+    dragStart.current = null
+    if (dx > 45) prev()
+    else if (dx < -45) next()
+  }
+
   useEffect(() => {
     if (paused) return
     const id = setInterval(next, 5000)
@@ -53,11 +64,16 @@ export default function Carousel() {
         </div>
 
         <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
-          style={{ position: 'relative', borderRadius: 14, overflow: 'hidden', background: '#0e1830' }}>
+          onPointerDown={onPointerDown} onPointerUp={onPointerUp}
+          style={{ position: 'relative', borderRadius: 14, overflow: 'hidden', background: '#0e1830', touchAction: 'pan-y', cursor: 'grab' }}>
+          {/* autoplay progress */}
+          <div aria-hidden style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'rgba(255,255,255,0.12)', zIndex: 3 }}>
+            <div key={current} style={{ height: '100%', background: '#C8102E', transformOrigin: 'left', animation: 'carousel-progress 5s linear', animationPlayState: paused ? 'paused' : 'running' }} />
+          </div>
           <div ref={trackRef} style={{ display: 'flex', transition: 'transform .7s cubic-bezier(.45,0,.15,1)', willChange: 'transform' }}>
             {slides.map((slide, i) => (
               <div key={i} style={{ flex: '0 0 100%', position: 'relative', aspectRatio: '16 / 7', overflow: 'hidden' }}>
-                <Image src={slide.image} alt={slide.title} fill style={{ objectFit: 'cover' }} sizes="100vw" />
+                <Image src={slide.image} alt={slide.title} fill sizes="100vw" style={{ objectFit: 'cover', transform: i === current ? 'scale(1.06)' : 'scale(1)', transition: 'transform 6s ease' }} />
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(14,24,48,0.85) 0%, rgba(14,24,48,0.4) 55%, rgba(14,24,48,0.1) 100%)' }} />
                 <div style={{ position: 'absolute', left: 'clamp(24px,4vw,56px)', bottom: 'clamp(24px,4vw,52px)', right: 24, maxWidth: 520 }}>
                   <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase' as const, color: '#ff7f8d', marginBottom: 12 }}>{slide.tag}</div>

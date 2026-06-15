@@ -1,3 +1,5 @@
+import Grain from './Grain'
+
 interface Props {
   tag: string
   title: string
@@ -11,6 +13,7 @@ export default function InnerHero({ tag, title, subtitle }: Props) {
       <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'radial-gradient(820px 460px at 84% 0%, rgba(46,78,150,0.5), transparent 62%), radial-gradient(620px 440px at 0% 100%, rgba(200,16,46,0.18), transparent 62%), linear-gradient(180deg, #0b1426, #0a1324)', pointerEvents: 'none' }} />
       {/* Grid pattern */}
       <div aria-hidden style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '60px 60px', WebkitMaskImage: 'radial-gradient(circle at 86% 22%, #000, transparent 72%)', maskImage: 'radial-gradient(circle at 86% 22%, #000, transparent 72%)', pointerEvents: 'none' }} />
+      <Grain opacity={0.05} />
 
       <div style={{ position: 'relative', zIndex: 2, maxWidth: 1180, margin: '0 auto', padding: 'clamp(60px,8vw,104px) 32px clamp(48px,6vw,76px)' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 11, fontSize: 12.5, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase' as const, color: '#ff7f8d', marginBottom: 22 }}>

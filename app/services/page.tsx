@@ -5,6 +5,8 @@ import { FiArrowRight } from 'react-icons/fi'
 import InnerHero from '@/components/shared/InnerHero'
 import HoverCard from '@/components/shared/HoverCard'
 import Faq from '@/components/shared/Faq'
+import Grain from '@/components/shared/Grain'
+import PhotoTint from '@/components/shared/PhotoTint'
 import { getDepartment } from './departments'
 
 export const metadata: Metadata = {
@@ -46,8 +48,9 @@ export default function ServicesPage() {
               <div className="font-display" style={{ fontWeight: 800, fontSize: 13, letterSpacing: '0.1em', color: '#C8102E', marginBottom: 14 }}>{tech.index} / {tech.eyebrow.toUpperCase()}</div>
               <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(26px,3vw,34px)', lineHeight: 1.08, letterSpacing: '-0.02em', color: '#15213f', margin: '0 0 14px' }}>{tech.title}</h2>
               <p style={{ fontSize: 15.5, color: '#5b6479', margin: '0 0 20px' }}>Comprehensive IT services that help organisations leverage technology for efficiency, security and growth.</p>
-              <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '4/3' }}>
+              <div style={{ position: 'relative', borderRadius: 10, overflow: 'hidden', aspectRatio: '4/3' }}>
                 <Image src={tech.image!} alt={tech.name} width={640} height={480} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <PhotoTint />
               </div>
               <Link href={`/services/${tech.slug}`} style={exploreLink}>Explore {tech.name} <FiArrowRight size={16} /></Link>
             </div>
@@ -131,8 +134,9 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA strip */}
-      <section style={{ background: '#15213f', color: '#fff' }}>
-        <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,88px) 32px' }}>
+      <section style={{ position: 'relative', overflow: 'hidden', background: '#15213f', color: '#fff' }}>
+        <Grain opacity={0.07} />
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: 1180, margin: '0 auto', padding: 'clamp(56px,6vw,88px) 32px' }}>
           <div className="cta-row">
             <h2 className="font-display" style={{ fontWeight: 700, fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0, maxWidth: 560 }}>
               Have a requirement in mind? Let&apos;s scope it.

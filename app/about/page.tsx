@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import InnerHero from '@/components/shared/InnerHero'
 import HoverCard from '@/components/shared/HoverCard'
+import PhotoTint from '@/components/shared/PhotoTint'
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -51,8 +52,9 @@ export default function AboutPage() {
               With a strong focus on technology, strategic sourcing and commercial facilitation, we serve as a trusted partner across sectors — bridging the gap between suppliers, manufacturers, service providers and end-users through industry expertise, market intelligence and strategic partnerships.
             </p>
           </div>
-          <div style={{ borderRadius: 12, overflow: 'hidden', aspectRatio: '4 / 4.4', boxShadow: '0 30px 60px -28px rgba(14,24,48,0.4)' }}>
+          <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', aspectRatio: '4 / 4.4', boxShadow: '0 30px 60px -28px rgba(14,24,48,0.4)' }}>
             <Image src="/about-team.jpg" alt="Team collaboration" width={640} height={704} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <PhotoTint />
           </div>
         </div>
       </section>

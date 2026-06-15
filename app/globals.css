@@ -133,3 +133,28 @@
 @media (prefers-reduced-motion: reduce) {
   .footer-race-line { animation: none; opacity: 0; }
 }
+
+/* Carousel autoplay progress fill */
+@keyframes carousel-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Live "open now" status pulse */
+@keyframes status-ping {
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* Typed hero heading caret */
+@keyframes caret-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Clickable contact details */
+.contact-link {
+  color: #2a3350;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.contact-link:hover { color: #C8102E; }

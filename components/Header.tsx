@@ -20,6 +20,14 @@ const menuItem = {
   show: { opacity: 1, x: 0, transition: { duration: 0.32, ease: [0.16, 1, 0.3, 1] } },
 }
 
+// Active when the path equals the link or is nested under it — and tolerant of
+// the trailing slash added by `trailingSlash: true` in the static export.
+function isActiveLink(pathname: string, href: string) {
+  const p = pathname !== '/' && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
+  if (href === '/') return p === '/'
+  return p === href || p.startsWith(href + '/')
+}
+
 function NavItem({ href, label, isActive }: { href: string; label: string; isActive: boolean }) {
   const [hover, setHover] = useState(false)
   return (
@@ -64,7 +72,7 @@ export default function Header() {
             <span style={{ color: '#46527a' }}>Multi-sector technology &amp; trade</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '7px 0', whiteSpace: 'nowrap' }}>
-            <span style={{ color: '#aeb8d0' }}>0712 538 836</span>
+            <span style={{ color: '#aeb8d0' }}>+263 712 538 836</span>
             <span style={{ width: 1, height: 13, background: '#25304f', display: 'block' }} />
             <span style={{ color: '#aeb8d0' }}>innovantisolutions.co.zw</span>
             <span style={{ width: 1, height: 13, background: '#25304f', display: 'block' }} />
@@ -88,7 +96,7 @@ export default function Header() {
           {/* Pill nav */}
           <div className="hidden md:flex" style={{ alignItems: 'center', gap: 2, background: '#f4f5f9', border: '1px solid #eceef5', borderRadius: 999, padding: 5, position: 'relative' }}>
             {navLinks.map((link) => (
-              <NavItem key={link.href} href={link.href} label={link.label} isActive={pathname === link.href} />
+              <NavItem key={link.href} href={link.href} label={link.label} isActive={isActiveLink(pathname, link.href)} />
             ))}
           </div>
 
@@ -128,7 +136,7 @@ export default function Header() {
                 {navLinks.map((link) => (
                   <motion.div key={link.href} variants={menuItem}>
                     <Link href={link.href} onClick={() => setMobileOpen(false)}
-                      style={{ padding: '10px 14px', borderRadius: 8, fontSize: 14, fontWeight: 600, color: pathname === link.href ? '#fff' : '#39456b', background: pathname === link.href ? '#15213f' : 'transparent', textDecoration: 'none', display: 'block' }}
+                      style={{ padding: '10px 14px', borderRadius: 8, fontSize: 14, fontWeight: 600, color: isActiveLink(pathname, link.href) ? '#fff' : '#39456b', background: isActiveLink(pathname, link.href) ? '#15213f' : 'transparent', textDecoration: 'none', display: 'block' }}
                     >
                       {link.label}
                     </Link>
